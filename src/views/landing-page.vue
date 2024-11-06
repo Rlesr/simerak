@@ -52,39 +52,13 @@
             <img src="../assets/brand/logo-simerak.png" alt="" height="220" class="d-inline-block align-text-top m-2">
           </div>
           <div class="display-4">
-            <button class="btn btn-lg" style="margin: 0; padding:0;" @click="press()" v-if="!showMe">{{ button }}</button>
+            <button class="btn btn-lg" style="margin: 0; padding:0;" @click="press()" v-if="!showMe">Login</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Modal for Changing Password -->
-    <button class="d-none" @click="openModal" id="button-modal"></button>
-    <b-modal v-model="isModalOpen" title="Ubah Password">
-      <form @submit.prevent="changePassword">
-        <div class="form-group row mt-0 mb-0">
-          <label class="col-md-3 col-form-label">Kata sandi lama</label>
-          <div class="col-md-9">
-            <input type="password" v-model="formPassword.sandiLama" class="form-control m-1">
-          </div>
-        </div>
-        <div class="form-group row mt-0 mb-0">
-          <label class="col-md-3 col-form-label">Kata sandi</label>
-          <div class="col-md-9">
-            <input type="password" v-model="formPassword.sandi" class="form-control m-1">
-          </div>
-        </div>
-        <div class="form-group row mt-0 mb-0">
-          <label class="col-md-3 col-form-label">Konfirmasi Kata sandi</label>
-          <div class="col-md-9">
-            <input type="password" v-model="formPassword.konfirmasiSandi" class="form-control m-1">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
-    </b-modal>
+ 
   </template>
 
   <script>
@@ -131,6 +105,82 @@
   };
   </script>
 
-  <style>
-  /* Tambahkan style yang diperlukan */
-  </style>
+<style>
+.navbar-brand{
+  font-family: Open Sans;
+  font-size: 30px;
+}
+.navbar-brand, .nav-link{
+  color: #434f5e !important;
+  margin-bottom: 30px;
+  margin-left:30px;
+  padding: 20px;
+}
+
+.navbar-brand, .nav-link:hover{
+  color: #024ea3 !important;
+}
+
+.nav-link{
+  text-transform: capitalize;
+  margin-right: 20px;
+  padding: 20px;
+}
+.display-4{
+  color: #024ea3;
+  margin-top: 0px;
+  margin-left: 150px;
+  font-weight: semibold;
+}
+.display-5{
+  color: #024ea3;
+  margin-top: 5px;
+  margin-left: -130px;
+  margin-bottom: 0px;
+  font-weight: semibold;
+}
+.btn{
+  color: white;
+  background-color: #024ea3 !important;
+  margin-top: 5px;
+  margin-left: 30px;
+  height: 50px;
+  width: 100px;
+  font-weight: semibold;
+}
+
+span{
+  color:#434f5e !important;
+  font-weight: semibold;
+}
+.dropdown-menu li {
+  position: relative;
+  }
+.dropdown-menu .dropdown-submenu {
+display: none;
+position: absolute;
+left: 100%;
+top: -150px;
+}
+.dropdown-menu .dropdown-submenu-left {
+right: 100%;
+left: auto;
+}
+.dropdown-menu > li:hover > .dropdown-submenu {
+display: block;
+}
+
+.navbar-landingpage{
+  background-color: #e4e7ea;
+}
+
+.bg-landing{
+  background-image: url("../assets/brand/landing.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.vertical-separator{
+  border-left: 3px solid grey;
+  height: 24px;
+}
+</style>
