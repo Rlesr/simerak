@@ -22,6 +22,6 @@
     useMeta({ title: 'Sales Admin' });
 
     const mainLayout = computed(() => {
-        return store.mainLayout === 'auth' ? authLayout : appLayout;
+        return store.mainLayout === 'auth' ? authLayout : appLayout; 
     });
 </script>
