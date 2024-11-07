@@ -19,43 +19,43 @@
       <!-- Navigation Links -->
       <ul :class="{ 'hidden': !menuOpen, 'lg:flex': true, 'lg:space-x-5': true, 'flex-col': true, 'mt-3': true, 'lg:mt-0': true }" class="flex items-center space-x-10 lg:flex-row">
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Dashboard
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Buka Rekening
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Tutup Rekening
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Pengusulan
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             User Management
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Ubah Specimen
           </a>
         </li>
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Laporan
           </a>
         </li>
         <!-- Master Menu with Dropdown -->
         <li class="relative w-full">
-          <button @click="toggleDropdown" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center w-full">
+          <button @click="toggleDropdown" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center w-full">
             Master
           </button>
           <ul v-if="dropdownOpen" class="absolute left-[-10px] mt-0 w-[175px] bg-white text-sm text-black shadow-lg rounded-lg">
@@ -65,13 +65,13 @@
           </ul>
         </li>
         <li class="w-full">
-          <a href="https://drive.google.com/drive/folders/1hE5Hmo6CULyxmPlnAEvEVbE9BnKWuvLz?usp=sharing" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="https://drive.google.com/drive/folders/1hE5Hmo6CULyxmPlnAEvEVbE9BnKWuvLz?usp=sharing" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Buku Panduan
           </a>
         </li>
         <!-- Other Links -->
         <li class="w-full">
-          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-4 text-center">
+          <a href="#" class="text-l text-black hover:text-red-400 transition-colors duration-200 block py-2 px-3 text-center">
             Akun
           </a>
         </li>
