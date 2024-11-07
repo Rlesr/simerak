@@ -47,9 +47,9 @@
       </nav>
 
       <div class="container-fluid">
-        <div class="container" style="padding-left: 2;">
-          <div class="display-5">
-            <img src="../assets/brand/logo-simerak.png" alt="" height="220" class="d-inline-block align-text-top m-2">
+        <div class="container" style="padding-left: 2; ">
+          <div class="display-15">
+            <img src="../assets/brand/logo-simerak.png" alt="" height="220" class="d-inline-block align-text-top m-3">
           </div>
           <div class="display-4">
             <button class="btn btn-lg" style="margin: 0; padding:0;" @click="press()" v-if="!showMe">Login</button>
@@ -58,7 +58,7 @@
       </div>
     </div>
 
- 
+
   </template>
 
   <script>
@@ -174,11 +174,16 @@ display: block;
   background-color: #e4e7ea;
 }
 
-.bg-landing{
+.bg-landing {
   background-image: url("../assets/brand/landing.png");
+  background-color: #e4e7ea;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
 }
+
 .vertical-separator{
   border-left: 3px solid grey;
   height: 24px;
