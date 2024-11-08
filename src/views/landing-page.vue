@@ -5,7 +5,7 @@
     >
       <NavBar class="absolute top-0 left-0 w-full bg-transparent flex justify-start p-10" />
 
-      <div class="w-full max-w-2lg flex flex-col items-start mb-[175px] ml-[200px] mt-[130px]">
+      <div class="w-90% max-w-1xl flex flex-col items-start mb-[24px] ml-[100px]  mr-auto mt-[130px] ">
         <div class="mb-4 ml-6">
           <img src="/src/assets/brand/logo-simerak.png" alt="Logo Simerak" class="w-[400px] h-[137px]" />
         </div>
@@ -23,7 +23,22 @@
             Login
           </button>
         </div>
-      </div>
+    </div>
+    <div class=" flex items-center justify-center w-full h-[256px] bg-gradient-to-t from-[#054083] to-transparent">
+
+    </div>
+<div class="flex items-center justify-center w-full h-[256px]">
+  <div class="w-full h-full bg-[#054083] text-white flex flex-col items-center justify-center ">
+    <h2 class="text-2xl font-bold mb-2">Layanan Kami</h2>
+    <p class="text-lg">SIMERAK (Sistem Informasi Manajemen Rekening Bank) Terdiri Dari Beberapa Fitur Menu Yakni :</p>
+  </div>
+</div>
+<div class=" flex items-center justify-center w-full h-[256px] bg-gradient-to-b from-[#054083] to-transparent">
+
+</div>
+
+
+
 
       <Footer class="w-full" />
     </div>
