@@ -15,14 +15,14 @@
           <p class="text-xl">Daerah Khusus Ibu Kota Jakarta</p>
         </div>
         <div class="mt-9 ml-6">
+        <router-link to="/login">
           <button
             class="bg-[#F57900] text-white text-[20px] w-[150px] h-[60px] px-[10px] py-[14px] rounded-[10px] hover:bg-blue-600 transition duration-300"
-            @click="press"
-            v-if="!showMe"
           >
             Login
           </button>
-        </div>
+        </router-link>
+      </div>
     </div>
     <div class=" flex items-center justify-center w-full h-[256px] bg-gradient-to-t from-[#054083] to-transparent">
 
@@ -34,13 +34,58 @@
   </div>
 </div>
 <div class=" flex items-center justify-center w-full h-[256px] bg-gradient-to-b from-[#054083] to-transparent">
+  <div class="p-10 h-[417px]">
+  <div class="grid grid-cols-3 ml-[324px]  gap-[42px] p-13 bg-opacity-80 bg-transparent">
+    <!-- Bagian atas dengan 2 kolom -->
+    <div class="p-2 text-white w-[402px] h-[116px]">
+      <h2 class="font-bold mb-2">
+        <span class="text-2xl font-bold text-[#F57900]">Buka Rekening</span> | <span class="text-white">Buka Rekening User SKPD</span>
+      </h2>
+      <p class="text-x">Modul untuk mengajukan buka rekening penerimaan, pengeluaran, dan rekening lainnya di wilayah pemerintahan Provinsi DKI Jakarta.</p>
+    </div>
+
+    <div class="p-2 text-white w-[402px] h-[116px] ">
+      <h2 class="mb-2">
+        <span class="text-2xl font-bold text-[#F57900]">Tutup Rekening</span> | <span class="text-white">Tutup Rekening User SKPD</span>
+      </h2>
+      <p class="text-x">Modul untuk mengajukan tutup rekening penerimaan, pengeluaran dan rekening lainnya pada Bank DKI yang ada di wilayah pemerintahan Provinsi DKI Jakarta.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 p-6 bg-opacity-80 bg-transparent mt-4">
+    <!-- Bagian bawah dengan 3 kolom -->
+    <div class="p-4 text-white">
+      <h2 class="mb-2">
+        <span class="text-2xl font-bold text-[#F57900]">Pengusulan</span> | <span class="text-white text-xs">Pengusulan KPA, Bendahara, dan PLT/PLH User SKPD</span>
+      </h2>
+      <p class="text-x">Modul untuk mengusulkan pelaksana kerja baru atau mengganti yang sudah ada.</p>
+    </div>
+
+    <div class="p-4 text-white gap-10">
+      <h2 class="mb-2">
+        <span class="text-2xl font-bold text-[#F57900]">Laporan</span> | <span class="text-white text-xs">Laporan Mutasi dan Saldo Bank DKI User SKPD</span>
+      </h2>
+      <p class="text-x">Modul untuk menampilkan berbagai jenis laporan di seluruh rekening milik Pemerintah Provinsi DKI Jakarta.</p>
+    </div>
+
+    <div class="p-4 text-white">
+      <h2 class="mb-2">
+        <span class="text-2xl font-bold text-[#F57900]">Ubah Specimen</span> | <span class="text-white text-xs">Ubah Specimen User SKPD</span>
+      </h2>
+      <p class="text-x">Modul untuk mengajukan pengubahan spesimen atas rekening yang sudah dimiliki.</p>
+    </div>
+  </div>
+</div>
+
+
+
 
 </div>
 
 
 
 
-      <Footer class="w-full" />
+      <Footer class="w-full mb-auto h-fit"  />
     </div>
   </template>
 
