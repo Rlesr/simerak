@@ -3,7 +3,7 @@
       class="bg-local bg-cover bg-center bg-gray-200 min-h-screen flex flex-col items-center justify-center relative py-10"
       style="background-image: url('/src/assets/brand/image4.png');"
     >
-      <NavBar class="absolute top-0 left-0 w-full bg-transparent flex justify-start p-4 md:p-10" />
+      <NavBar class="absolute top-0  left-0 w-full bg-transparent flex justify-start p-4 md:p-10" />
 
       <div class="w-full max-w-6xl px-4 md:px-10 flex flex-col items-start mb-6 mt-20">
         <div class="mb-4 w-full">
@@ -84,8 +84,7 @@
           </div>
         </div>
       </div>
-
-      <Footer class="w-full" />
+      <Footer class="w-full fixed top-12"/>
     </div>
   </template>
 
