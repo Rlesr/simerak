@@ -21,8 +21,20 @@
           <div class="mb-3">
             <input type="text" class="form-control form-control-lg rounded-lg w-full p-2 border border-gray-300" placeholder="Username" v-model="form.username" required>
           </div>
-          <div class="mb-3">
-            <input type="password" class="form-control form-control-lg rounded-lg w-full p-2 border border-gray-300" placeholder="Password" v-model="form.password" required>
+          <div class="mb-3 relative">
+            <input :type="showPassword ? 'text' : 'password'" class="form-control form-control-lg rounded-lg w-full p-2 border border-gray-300" placeholder="Password" v-model="form.password" required>
+            <svg @click="togglePasswordVisibility" xmlns="http://www.w3.org/2000/svg" :class="['h-6 w-6 absolute right-3 top-3 cursor-pointer']" fill="none" viewBox="0 0 24 24" stroke="#044DA4">
+  <g v-if="showPassword" fill="none" stroke="#044DA4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+    <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0" />
+    <path d="M2 12c1.6-4.097 5.336-7 10-7s8.4 2.903 10 7c-1.6 4.097-5.336 7-10 7s-8.4-2.903-10-7" />
+  </g>
+  <g v-else fill="none" stroke="#044DA4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+    <!-- Garis melingkar pada ikon mata tertutup -->
+    <path d="M10.73 5.073A11 11 0 0 1 12 5c4.664 0 8.4 2.903 10 7a11.6 11.6 0 0 1-1.555 2.788M6.52 6.519C4.48 7.764 2.9 9.693 2 12c1.6 4.097 5.336 7 10 7a10.44 10.44 0 0 0 5.48-1.52m-7.6-7.6a3 3 0 1 0 4.243 4.243"/>
+    <!-- Garis silang biru -->
+    <path d="M4 4l16 16" stroke="#044DA4" stroke-width="1.5" />
+  </g>
+</svg>
           </div>
           <div class="mb-3 flex items-center">
             <input type="text" class="form-control form-control-lg mr-5 rounded-lg w-full p-2 border border-gray-300" placeholder="Captcha" v-model="form.captcha" required>
@@ -62,6 +74,7 @@ export default {
       captcha: '',
     });
     const captcha = ref('');
+    const showPassword = ref(false);
 
     const isFormValid = computed(() => form.username && form.password && form.captcha === captcha.value);
     const isCaptchaValid = computed(() => form.captcha === captcha.value);
@@ -69,6 +82,10 @@ export default {
     const makeCaptcha = () => {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       captcha.value = Array.from({ length: 6 }, () => characters.charAt(Math.floor(Math.random() * characters.length))).join('');
+    };
+
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
     };
 
     const login = () => {
@@ -81,7 +98,7 @@ export default {
 
     onMounted(() => makeCaptcha());
 
-    return { form, captcha, login, makeCaptcha, isFormValid, isCaptchaValid };
+    return { form, captcha, login, makeCaptcha, isFormValid, isCaptchaValid, showPassword, togglePasswordVisibility };
   },
 };
 </script>
