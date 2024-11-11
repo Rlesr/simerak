@@ -104,6 +104,7 @@ export default {
 </script>
 
 <style>
+
 .page-wrapper {
   background-color: #7EA5EC;
   min-height: 100vh;
