@@ -30,73 +30,80 @@
 
         <!-- Navigation Links -->
         <ul
+    :class="{
+        'hidden': !menuOpen,
+        'lg:flex': true,
+        'flex-col': menuOpen,
+        'lg:flex-row': true,
+        'absolute': menuOpen,
+        'top-0': menuOpen,
+        'left-0': menuOpen,
+        'w-full': menuOpen,
+        'bg-white': menuOpen,
+        'pt-20': menuOpen,
+        'z-40': menuOpen
+    }"
+    class="flex items-center space-x-0 lg:space-x-5"
+>
+    <li
+        v-for="(link, index) in navLinks"
+        :key="index"
+        class="w-full lg:w-auto relative group"
+    >
+        <a
+            :href="link.href"
+            @click="setActiveLink(index); menuOpen = false"
             :class="{
-                'hidden': !menuOpen,
-                'lg:flex': true,
-                'flex-col': menuOpen,
-                'lg:flex-row': true,
-                'absolute': menuOpen,
-                'top-0': menuOpen,
-                'left-0': menuOpen,
-                'w-full': menuOpen,
-                'bg-white': menuOpen,
-                'pt-20': menuOpen,
-                'z-40': menuOpen
+                'text-[#F57900]': activeLink === index,
+                'text-black': activeLink !== index
             }"
-            class="flex items-center space-x-0 lg:space-x-5"
+            class="text-l hover:text-[#F57900] transition-colors duration-200 block py-2 px-3 text-center relative"
+        >
+            {{ link.name }}
+            <span
+                v-if="activeLink === index"
+                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-8 bg-[#F57900] rounded-full"
+            ></span>
+        </a>
+    </li>
+
+    <!-- Master Dropdown -->
+    <li class="relative w-full lg:w-auto group">
+        <button
+            @click="toggleDropdown"
+            :class="{
+                'text-[#F57900]': dropdownOpen,
+                'text-black': !dropdownOpen
+            }"
+            class="text-l hover:text-[#F57900] transition-colors duration-200 block py-2 px-3 text-center w-full relative"
+        >
+            Master
+            <span
+                v-if="dropdownOpen"
+                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-8 bg-[#F57900] rounded-full"
+            ></span>
+        </button>
+        <ul
+            v-if="dropdownOpen"
+            class="lg:absolute lg:left-0 lg:mt-2 w-full lg:w-[250px] bg-white text-sm text-black shadow-lg rounded-lg lg:z-50"
         >
             <li
-                v-for="(link, index) in navLinks"
+                v-for="(item, index) in masterItems"
                 :key="index"
-                class="w-full lg:w-auto relative group"
+                class="hover:bg-gray-200"
             >
                 <a
-                    :href="link.href"
-                    @click="setActiveLink(index)"
-                    :class="{
-                        'text-[#F57900]': activeLink === index,
-                        'text-white': activeLink !== index
-                    }"
-                    class="text-l hover:text-[#F57900] transition-colors duration-200 block py-2 px-3 text-center relative"
+                    href="#"
+                    @click="dropdownOpen = false; menuOpen = false"
+                    class="block py-2 px-6"
                 >
-                    {{ link.name }}
-                    <span
-                        v-if="activeLink === index"
-                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-8 bg-[#F57900] rounded-full"
-                    ></span>
+                    {{ item }}
                 </a>
             </li>
-
-            <!-- Master Dropdown -->
-            <li class="relative w-full lg:w-auto group">
-                <button
-                    @click="toggleDropdown"
-                    :class="{
-                        'text-[#F57900]': dropdownOpen,
-                        'text-black': !dropdownOpen
-                    }"
-                    class="text-l hover:text-[#F57900] transition-colors duration-200 block py-2 px-3 text-center w-full relative"
-                >
-                    Master
-                    <span
-                        v-if="dropdownOpen"
-                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-8 bg-[#F57900] rounded-full"
-                    ></span>
-                </button>
-                <ul
-                    v-if="dropdownOpen"
-                    class="lg:absolute lg:left-0 lg:mt-2 w-full lg:w-[250px] bg-white text-sm text-black shadow-lg rounded-lg lg:z-50"
-                >
-                    <li
-                        v-for="(item, index) in masterItems"
-                        :key="index"
-                        class="hover:bg-gray-200"
-                    >
-                        <a href="#" class="block py-2 px-6">{{ item }}</a>
-                    </li>
-                </ul>
-            </li>
         </ul>
+    </li>
+</ul>
+
     </nav>
 </template>
 
