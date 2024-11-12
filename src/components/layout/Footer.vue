@@ -16,7 +16,7 @@
 
         <!-- Bagian Kanan: Layanan SIMERA -->
         <div class="lg:w-1/3 text-center lg:text-right">
-          <h3 class="text-[#F57900] font-semibold mb-3">Layanan SIMERAK</h3>
+          <h3 class="text-[#F57900] font-semibold mt-20 mb-3">Layanan SIMERAK</h3>
           <ul class="space-y-2">
             <li><a href="#" class="text-white/90 hover:text-[#F57900] transition-colors duration-300">Buka Rekening</a></li>
             <li><a href="#" class="text-white/90 hover:text-[#F57900] transition-colors duration-300">Tutup Rekening</a></li>
