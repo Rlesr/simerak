@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import landingPage from '@/views/landing-page.vue';
 import login from '@/views/auth/login.vue';
 import register from '@/views/auth/register.vue';
-import bukaRekeningDKI from '@/views/buka-rekening/buka-rekeningDKI.vue';
+import rekeningall from '@/views/buka-rekening/buka-rekeningSKPD.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -21,13 +21,11 @@ const router = createRouter({
       name: 'register',
       component: register,
     },
-
     {
-      path: '/buka/rekeningDKI',
-      name: 'BukaDki',
-      component: bukaRekeningDKI,
-    },
-
+        path: '/buka-rekening',
+        name: 'buka-rekening',
+        component: rekeningall,
+      },
   ],
 });
 
