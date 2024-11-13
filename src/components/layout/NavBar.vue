@@ -119,7 +119,7 @@ export default {
 
         const navLinks = [
             { name: 'Dashboard', href: '#' },
-            { name: 'Buka Rekening', href: '#' },
+            { name: 'Buka Rekening', href: '/buka/rekeningDkI' },
             { name: 'Tutup Rekening', href: '#' },
             { name: 'Pengusulan', href: '#' },
             { name: 'User Management', href: '#' },

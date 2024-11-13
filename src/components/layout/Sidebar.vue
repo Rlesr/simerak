@@ -1,8 +1,8 @@
 <template>
-    <aside class="w-64 h-[100vh] bg-[#054083] text-white flex flex-col items-start p-4 overflow-y-scroll no-scrollbar " 
+    <aside class="w-64 h-[100vh] bg-[#054083] text-white flex flex-col items-start p-4 overflow-y-scroll no-scrollbar "
     @scroll="onScroll"
     ref="scrollContainer">
-        
+
         <!-- Logo -->
         <div class="mb-6">
             <img src="/src/assets/brand/logo-simerak.png" alt="Logo Simerak" class="w-[200px] ml-[10px] mt-[20px] h-[73px]mx-auto" />
@@ -12,7 +12,7 @@
         <!-- Menu Items -->
         <ul class="space-y-2 w-full">
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083] group">
+                <a href="/" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083] group">
                     <span class="mr-2">
                         <!-- Home Icon -->
                         <svg
@@ -30,7 +30,7 @@
                             />
                         </svg>
                     </span>
-                    <span>Home</span>
+                    <span href="">Home</span>
                 </a>
             </li>
             <li>
@@ -418,12 +418,12 @@ import { defineComponent, onMounted, ref } from 'vue';
         const scrollTop = scrollContainer.value.scrollTop;
         const scrollHeight = scrollContainer.value.scrollHeight;
         const clientHeight = scrollContainer.value.clientHeight;
-        
+
         // Persentase scroll
         const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
-        
+
         console.log(`Scroll position: ${scrollTop}px (${scrollPercentage.toFixed(2)}%)`);
-        
+
         // Tambahkan logika lain di sini berdasarkan posisi scroll
       }
     };
@@ -461,7 +461,7 @@ import { defineComponent, onMounted, ref } from 'vue';
     .hover-effect:hover svg {
         fill: #054083;
     }
-    
+
     .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
