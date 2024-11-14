@@ -553,14 +553,8 @@
 
         computed: {
             totalPages() {
-                return Math.ceil(this.data.length / this.entriesPerPage);
+                return Math.ceil(this.sortedData.length / this.entriesPerPage);
             },
-            paginatedData() {
-                const start = (this.currentPage - 1) * this.entriesPerPage;
-                const end = start + this.entriesPerPage;
-                return this.data.slice(start, end);
-            },
-
             sortedData() {
                 if (!this.sortColumn) return this.data;
 
@@ -568,10 +562,16 @@
                     const aValue = a[this.sortColumn!];
                     const bValue = b[this.sortColumn!];
 
+                    if (aValue === bValue) return 0;
                     if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
                     if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
                     return 0;
                 });
+            },
+            paginatedData() {
+                const start = (this.currentPage - 1) * this.entriesPerPage;
+                const end = start + this.entriesPerPage;
+                return this.sortedData.slice(start, end);
             },
         },
         methods: {
@@ -602,8 +602,10 @@
                     this.currentPage--;
                 }
             },
-            goToPage(page) {
-                this.currentPage = page;
+            goToPage(page: number) {
+                if (page > 0 && page <= this.totalPages) {
+                    this.currentPage = page;
+                }
             },
         },
     });
