@@ -55,15 +55,51 @@
                 <thead>
                     <tr>
                     <th class="border-b p-4 font-medium text-gray-900">No.</th>
-                    <th class="border-b p-4 font-medium text-gray-900">Kode</th>
-                    <th class="border-b p-4 font-medium text-gray-900">Nama</th>
+                    <th class="border-b p-4 font-medium text-gray-900">
+                        <div class="flex items-center space-x-2">
+                                        Kode
+                                        <button @click="toggleSort('Kode')">
+                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                <!-- Panah Ascending -->
+                                                <path
+                                                    :fill="sortColumn === 'Kode' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                ></path>
+                                                <!-- Panah Descending -->
+                                                <path
+                                                    :fill="sortColumn === 'Kode' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                         </div>
+                    </th>
+                    <th class="border-b p-4 font-medium text-gray-900">
+                        <div class="flex items-center space-x-2">
+                                        Nama
+                                        <button @click="toggleSort('nama')">
+                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                <!-- Panah Ascending -->
+                                                <path
+                                                    :fill="sortColumn === 'nama' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                ></path>
+                                                <!-- Panah Descending -->
+                                                <path
+                                                    :fill="sortColumn === 'nama' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M18.3174     7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                         </div>
+                    </th>
                     <th class="border-b p-4 font-medium text-gray-900">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in paginatedData" :key="index" class="hover:bg-gray-50">
-                    <td class="border-b p-4">{{ index + 1 + (currentPage - 1) * entriesPerPage }}</td>
-                    <td class="border-b p-4">{{ item.kode }}</td>
+                    <td class="border-b p-4">{{ (currentPage - 1) * entriesPerPage + index + 1 }}</td>
+                    <td class="border-b p-4">{{ item.Kode }}</td>
                     <td class="border-b p-4">{{ item.nama }}</td>
                     <td class="border-b p-4">
                         <button class="p-2">
@@ -85,9 +121,10 @@
                 <div class="text-sm">
                 Show
                 <select v-model="entriesPerPage" @change="changeEntries" class="border rounded-md p-1 text-gray-600">
-                    <option :value="2">2</option>
-                    <option :value="5">5</option>
                     <option :value="10">10</option>
+                    <option :value="20">20</option>
+                    <option :value="50">50</option>
+                    <option :value="100">100</option>
                 </select>
                 entries
                 </div>
@@ -116,9 +153,13 @@
         </div>
     </template>
 
-    <script>
+    <script lang="ts">
     import Header from '@/components/layout/Header.vue';
     import Sidebar from '@/components/layout/Sidebar.vue';
+    interface DataItem {
+        Kode: string;
+        nama: string;
+    }
     export default {
         components: {
         Sidebar,
@@ -126,36 +167,61 @@
         },
         data() {
         return {
-            entriesPerPage: 5,
-            currentPage: 1,
             data: [
-            { kode: "P97665469", nama: "Lorem Ipsum" },
-            { kode: "P97665470", nama: "Dolor Sit" },
-            { kode: "P97665471", nama: "Amet Consectetur" },
-            { kode: "P97665472", nama: "Adipiscing Elit" },
-            { kode: "P97665473", nama: "Sed Do" },
-            { kode: "P97665474", nama: "Eiusmod Tempor" },
-            { kode: "P97665475", nama: "Incididunt Ut" },
-            { kode: "P97665476", nama: "Labore Et" },
-            { kode: "P97665477", nama: "Dolore Magna" },
-            { kode: "P97665478", nama: "Aliqua Ut" },
-            ],
+            { Kode: "P97665469", nama: "Lorem Ipsum" },
+            { Kode: "P97665470", nama: "Dolor Sit" },
+            { Kode: "P97665471", nama: "Amet Consectetur" },
+            { Kode: "P97665472", nama: "Adipiscing Elit" },
+            { Kode: "P97665473", nama: "Sed Do" },
+            { Kode: "P97665474", nama: "Eiusmod Tempor" },
+            { Kode: "P97665475", nama: "Incididunt Ut" },
+            { Kode: "P97665476", nama: "Labore Et" },
+            { Kode: "P97665477", nama: "Dolore Magna" },
+            { Kode: "P97665478", nama: "Aliqua Ut" },
+            ] as DataItem[],
+                sortColumn: null as keyof DataItem | null,
+                sortDirection: 'asc' as 'asc' | 'desc',
+                entriesPerPage: 10,
+                currentPage: 1,
         };
         },
         computed: {
         totalPages() {
             return Math.ceil(this.data.length / this.entriesPerPage);
         },
-        paginatedData() {
-            const start = (this.currentPage - 1) * this.entriesPerPage;
-            const end = start + this.entriesPerPage;
-            return this.data.slice(start, end);
-        },
+        sortedData() {
+                if (!this.sortColumn) return this.data;
+
+                return [...this.data].sort((a, b) => {
+                    const aValue = a[this.sortColumn!];
+                    const bValue = b[this.sortColumn!];
+
+                    if (aValue === bValue) return 0;
+                    if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
+                    if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
+                    return 0;
+                });
+            },
+            paginatedData() {
+    const start = (this.currentPage - 1) * this.entriesPerPage;
+    const end = start + this.entriesPerPage;
+    return this.sortedData.slice(start, end);
+},
+
         },
         methods: {
+        toggleSort(column: keyof DataItem) {
+                if (this.sortColumn === column) {
+                    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    this.sortColumn = column;
+                    this.sortDirection = 'asc';
+                }
+            },
         changeEntries() {
             this.currentPage = 1;
         },
+
         goToFirstPage() {
             this.currentPage = 1;
         },
@@ -204,4 +270,4 @@
     .content-area {
         margin-left: 250px; /* Matches sidebar width */
     }
-    </style>
+</style>

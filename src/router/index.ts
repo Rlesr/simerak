@@ -23,12 +23,12 @@ const router = createRouter({
       component: register,
     },
     {
-        path: '/buka-rekening',
+        path: '/buka',
         name: 'buka-rekening',
         component: rekeningall,
       },
     {
-        path: '/buka/rekeningDKI',
+        path: '/buka/opd',
         name: 'BukaDki',
         component: bukaRekeningDKI,
     },

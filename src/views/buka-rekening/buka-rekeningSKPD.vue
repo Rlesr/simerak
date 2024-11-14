@@ -1,4 +1,6 @@
 <template>
+<Header class="fixed-header border-1"/>
+
     <div class="min-h-screen flex overflow-hidden">
         <!-- Sidebar -->
         <Sidebar class="h-[100vh] fixed-sidebar" />
@@ -328,6 +330,8 @@
 <script lang="ts">
     import { defineComponent, ref, computed } from 'vue';
     import Sidebar from '@/components/layout/Sidebar.vue';
+    import Header from '@/components/layout/Header.vue';
+
 
     interface DataItem {
         tanggalBuka: string;
@@ -343,7 +347,8 @@
     export default defineComponent({
         name: 'BukaRekening',
         components: {
-            Sidebar, // Register sidebar component
+            Sidebar,
+            Header, // Register sidebar component
         },
         data() {
             return {
@@ -553,14 +558,8 @@
 
         computed: {
             totalPages() {
-                return Math.ceil(this.data.length / this.entriesPerPage);
+                return Math.ceil(this.sortedData.length / this.entriesPerPage);
             },
-            paginatedData() {
-                const start = (this.currentPage - 1) * this.entriesPerPage;
-                const end = start + this.entriesPerPage;
-                return this.data.slice(start, end);
-            },
-
             sortedData() {
                 if (!this.sortColumn) return this.data;
 
@@ -568,10 +567,16 @@
                     const aValue = a[this.sortColumn!];
                     const bValue = b[this.sortColumn!];
 
+                    if (aValue === bValue) return 0;
                     if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
                     if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
                     return 0;
                 });
+            },
+            paginatedData() {
+                const start = (this.currentPage - 1) * this.entriesPerPage;
+                const end = start + this.entriesPerPage;
+                return this.sortedData.slice(start, end);
             },
         },
         methods: {
@@ -602,16 +607,25 @@
                     this.currentPage--;
                 }
             },
-            goToPage(page) {
-                this.currentPage = page;
+            goToPage(page: number) {
+                if (page > 0 && page <= this.totalPages) {
+                    this.currentPage = page;
+                }
             },
         },
     });
 </script>
 
 <style scoped>
-    /* Hide scrollbar but enable scroll functionality */
-
+    .fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(249 250 251);
+  z-index: 50;
+}
     .fixed-sidebar {
         position: fixed;
         top: 0;
