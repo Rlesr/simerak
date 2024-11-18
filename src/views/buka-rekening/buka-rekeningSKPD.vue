@@ -6,7 +6,7 @@
         <Sidebar class="h-[100vh] fixed-sidebar" />
 
         <!-- Main Content Area dengan Scroll -->
-        <div class="content-area flex-1 flex flex-col overflow-hidden">
+        <div class="content-area py-16 flex-1 flex flex-col overflow-hidden">
             <!-- Breadcrumb -->
             <div class="px-6 py-4 flex-shrink-0">
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
