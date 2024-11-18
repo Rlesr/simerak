@@ -8,6 +8,9 @@ import FormUmum from '@/views/buka-rekening/form/formUmum.vue';
 import FormBendahara from '@/views/buka-rekening/form/formBendahara.vue';
 import FormKepalaSekolah from '@/views/buka-rekening/form/formKepalaSekolah.vue';
 import FormTandaTangan from '@/views/buka-rekening/form/formTandaTangan.vue';
+import nonDKIOpd from '@/views/buka-rekening/nonDkiOpd/bank-lainOpd.vue';
+import BankLainSKPD from '@/views/buka-rekening/nonDkiOpd/bank-lainSKPD.vue';
+import forbukabanklain from '@/views/buka-rekening/form-banklain/buka-bank-lain.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -55,6 +58,21 @@ const router = createRouter({
         path: '/buka/form/tandatangan',
         name: 'formTandaTangan',
         component: FormTandaTangan,
+    },
+    {
+        path: '/buka/opd/bank-lain',
+        name: 'nonDKIOpd',
+        component: nonDKIOpd,
+    },
+    {
+        path: '/buka/bank-lain',
+        name: 'BankLainSKPD',
+        component: BankLainSKPD,
+    },
+    {
+        path: '/buka/buka-bank-lain/add/0',
+        name: 'forbukabanklain',
+        component: forbukabanklain,
     },
 
   ],
