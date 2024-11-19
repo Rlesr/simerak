@@ -110,10 +110,6 @@
 <script lang="ts">
     import Header from '@/components/layout/Header.vue';
     import Sidebar from '@/components/layout/Sidebar.vue';
-    interface DataItem {
-        Kode: string;
-        nama: string;
-    }
     export default {
         components: {
             Sidebar,

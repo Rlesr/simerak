@@ -19,7 +19,6 @@
                 <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat daftar pembukaan rekening Bank DKI</p>
                 <hr class="border-t-2 border-black" />
             </div>
-
             <!-- Scrollable Content -->
             <div class="flex-1 overflow-y-auto px-6 py-4 space-y-6">
                 <!-- Rekening Details Form -->

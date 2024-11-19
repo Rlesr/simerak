@@ -11,6 +11,8 @@ import FormTandaTangan from '@/views/buka-rekening/form/formTandaTangan.vue';
 import nonDKIOpd from '@/views/buka-rekening/nonDkiOpd/bank-lainOpd.vue';
 import BankLainSKPD from '@/views/buka-rekening/nonDkiOpd/bank-lainSKPD.vue';
 import forbukabanklain from '@/views/buka-rekening/form-banklain/buka-bank-lain.vue'
+import opdDeposito from '@/views/buka-rekening/deposito/opd-deposito.vue';
+import listDeposito from '@/views/buka-rekening/deposito/list-deposito.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -73,6 +75,16 @@ const router = createRouter({
         path: '/buka/buka-bank-lain/add/0',
         name: 'forbukabanklain',
         component: forbukabanklain,
+    },
+    {
+        path: '/buka/opd/deposito/',
+        name: 'opdDeposito',
+        component: opdDeposito,
+    },
+    {
+        path: '/buka/deposito/list',
+        name: 'listDeposito',
+        component: listDeposito,
     },
 
   ],

@@ -26,6 +26,7 @@
         "chart.js": "^2.9.4",
         "easymde": "^2.18.0",
         "file-upload-with-preview": "^4.2.0",
+        "flatpickr": "^4.6.13",
         "highlight.js": "^11.3.1",
         "install": "^0.13.0",
         "maska": "^3.0.3",
