@@ -55,41 +55,88 @@
                     <div class="flex justify-between items-center w-full">
                         <!-- Left side: Search/Filter Controls -->
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="input-field h-10 w-[200px]" placeholder="Nama SKPD" />
+                            <input
+                                type="text"
+                                v-model="searchQuery"
+                                class="input-field h-10 w-[200px] border border-gray-300 rounded px-2"
+                                placeholder="Cari Nama Bank"
+                            />
 
                             <select class="input-field h-10 w-[200px]">
                                 <option disabled selected value="" class="text-gray-500">Nama Bank</option>
                                 <option>1</option>
-                                <option>a</option>-
+                                <option>a</option>
+                                -
                                 <option>sad</option>
                                 <option>lla</option>
                                 <option>sada</option>
                             </select>
-
-                            <!-- Date input with calendar icon -->
                             <div class="flex gap-2">
-                                <!-- Input untuk rentang tanggal -->
-                                <div class="relative flex items-center border border-gray-300 rounded-md h-10 w-[190px] px-2">
+                                <div class="relative flex items-center border border-gray-300 rounded-md h-10 w-[225px] px-2">
                                     <input
                                         ref="dateRangePicker"
                                         type="text"
                                         class="w-full outline-none text-sm bg-transparent"
                                         placeholder="Pilih rentang tanggal"
                                     />
-                                    <!-- Ikon Kalender -->
-                                    <button @click="openCalendar" class="ml-2 text-gray-500">
+                                    <!-- Tombol Kalender -->
+                                    <button
+                                        type="button"
+                                        @click="openCalendar"
+                                        class="ml-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                                        aria-label="Buka Kalender"
+                                    >
                                         <i class="fa fa-calendar"></i>
+                                    </button>
+
+                                    <!-- Tombol Clear -->
+                                    <button
+                                        type="button"
+                                        @click="clearDateFilter"
+                                        class="ml-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                                        aria-label="Hapus Tanggal"
+                                    >
+                                        <i class="fa fa-times border-red-400"
+                                            ><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,255.99431,255.99431">
+                                                <g
+                                                    fill="#ff0000"
+                                                    fill-rule="nonzero"
+                                                    stroke="none"
+                                                    stroke-width="1"
+                                                    stroke-linecap="butt"
+                                                    stroke-linejoin="miter"
+                                                    stroke-miterlimit="10"
+                                                    stroke-dasharray=""
+                                                    stroke-dashoffset="0"
+                                                    font-family="none"
+                                                    font-weight="none"
+                                                    font-size="none"
+                                                    text-anchor="none"
+                                                    style="mix-blend-mode: normal"
+                                                >
+                                                    <g transform="scale(8.53333,8.53333)">
+                                                        <path
+                                                            d="M7,4c-0.25587,0 -0.51203,0.09747 -0.70703,0.29297l-2,2c-0.391,0.391 -0.391,1.02406 0,1.41406l7.29297,7.29297l-7.29297,7.29297c-0.391,0.391 -0.391,1.02406 0,1.41406l2,2c0.391,0.391 1.02406,0.391 1.41406,0l7.29297,-7.29297l7.29297,7.29297c0.39,0.391 1.02406,0.391 1.41406,0l2,-2c0.391,-0.391 0.391,-1.02406 0,-1.41406l-7.29297,-7.29297l7.29297,-7.29297c0.391,-0.39 0.391,-1.02406 0,-1.41406l-2,-2c-0.391,-0.391 -1.02406,-0.391 -1.41406,0l-7.29297,7.29297l-7.29297,-7.29297c-0.1955,-0.1955 -0.45116,-0.29297 -0.70703,-0.29297z"
+                                                        ></path>
+                                                    </g>
+                                                </g></svg
+                                        ></i>
                                     </button>
                                 </div>
                             </div>
-
-                            <select class="input-field h-10 w-[200px]">
-                                <option disabled selected value="">Jenis Deposito</option>
-                                <option>All</option>
-                                <option>Pro</option>
-                                <option>Aro</option>
-                                <option>Manual</option>
-                            </select>
+                            <div class="flex gap-2">
+                                <select v-model="selectedStatus" class="border border-gray-300 rounded-md px-2 py-1">
+                                    <option disabled value="">Pilih Jenis Deposito</option>
+                                    <option
+                                        v-for="option in statusOptions"
+                                        :key="option.value"
+                                        :value="option.value"
+                                        class="hover:bg-blue-500 hover:text-white"
+                                    >
+                                        {{ option.label }}
+                                    </option>
+                                </select>
+                            </div>
 
                             <button class="btn-primary h-10 w-[200px] flex items-center justify-center text-[#054083]">
                                 <p class="text-[#054083] font-semibold">Cari</p>
@@ -146,7 +193,7 @@
                                 <th class="border-b p-4 font-medium text-gray-900">No.</th>
                                 <th class="border-b p-4 font-medium text-gray-900">
                                     <div class="flex items-center space-x-2">
-                                        Tanggal Pendaftaran
+                                        Tanggal Buka
                                         <button @click="toggleSort('tanggalBuka')">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                 <!-- Panah Ascending -->
@@ -165,17 +212,17 @@
                                 </th>
                                 <th class="border-b p-4 font-medium text-gray-900">
                                     <div class="flex items-center space-x-2">
-                                        Kode SKPD
-                                        <button @click="toggleSort('kodeSKPD')">
+                                        Nama Bank
+                                        <button @click="toggleSort('namaBank')">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                 <!-- Panah Ascending -->
                                                 <path
-                                                    :fill="sortColumn === 'kodeSKPD' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'namaBank' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
                                                 ></path>
                                                 <!-- Panah Descending -->
                                                 <path
-                                                    :fill="sortColumn === 'kodeSKPD' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'namaBank' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
                                                 ></path>
                                             </svg>
@@ -184,17 +231,55 @@
                                 </th>
                                 <th class="border-b p-4 font-medium text-gray-900">
                                     <div class="flex items-center space-x-2">
-                                        Nama SKPD
-                                        <button @click="toggleSort('namaSKPD')">
+                                        Tanggal Deposito
+                                        <button @click="toggleSort('tanggalDeposito')">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                 <!-- Panah Ascending -->
                                                 <path
-                                                    :fill="sortColumn === 'namaSKPD' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'tanggalDeposito' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
                                                 ></path>
                                                 <!-- Panah Descending -->
                                                 <path
-                                                    :fill="sortColumn === 'namaSKPD' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'tanggalDeposito' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </th>
+                                <th class="border-b p-4 font-medium text-gray-900">
+                                    <div class="flex items-center space-x-2">
+                                        Bunga
+                                        <button @click="toggleSort('bunga')">
+                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                <!-- Panah Ascending -->
+                                                <path
+                                                    :fill="sortColumn === 'bunga' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                ></path>
+                                                <!-- Panah Descending -->
+                                                <path
+                                                    :fill="sortColumn === 'bunga' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </th>
+                                <th class="border-b p-4 font-medium text-gray-900">
+                                    <div class="flex items-center space-x-2">
+                                        Tanggal Jatuh Tempo
+                                        <button @click="toggleSort('TanggalJatuhTempo')">
+                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                <!-- Panah Ascending -->
+                                                <path
+                                                    :fill="sortColumn === 'TanggalJatuhTempo' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                ></path>
+                                                <!-- Panah Descending -->
+                                                <path
+                                                    :fill="sortColumn === 'TanggalJatuhTempo' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
                                                 ></path>
                                             </svg>
@@ -204,62 +289,24 @@
                                 <th class="border-b p-4 font-medium text-gray-900">
                                     <div class="flex items-center space-x-2">
                                         Jenis Deposito
-                                        <button @click="toggleSort('jenisRekening')">
+                                        <button @click="toggleSort('jenisDeposito')">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                 <!-- Panah Ascending -->
                                                 <path
-                                                    :fill="sortColumn === 'jenisRekening' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'jenisDeposito' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
                                                 ></path>
                                                 <!-- Panah Descending -->
                                                 <path
-                                                    :fill="sortColumn === 'jenisRekening' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'jenisDeposito' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
                                                 ></path>
                                             </svg>
                                         </button>
                                     </div>
                                 </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Nomor Rekening
-                                        <button @click="toggleSort('nomorRekening')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'nomorRekening' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'nomorRekening' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Nama Cabang
-                                        <button @click="toggleSort('namaCabang')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'namaCabang' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'namaCabang' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">Status Pengajuan</th>
-                                <th class="border-b p-4 font-medium text-gray-900">Catatan</th>
+                                <th class="border-b p-4 font-medium text-gray-900">Jumlah Deposito</th>
+                                <th class="border-b p-4 font-medium text-gray-900">Keterangan</th>
                                 <th class="border-b p-4 font-medium text-gray-900">Action</th>
                             </tr>
                         </thead>
@@ -267,15 +314,21 @@
                             <tr v-for="(item, index) in paginatedData" :key="index" class="border-b">
                                 <td class="border-b p-4">{{ (currentPage - 1) * entriesPerPage + index + 1 }}</td>
                                 <td class="border-b p-4">{{ item.tanggalBuka }}</td>
-                                <td class="border-b p-4">{{ item.kodeSKPD }}</td>
-                                <td class="border-b p-4">{{ item.namaSKPD }}</td>
-                                <td class="border-b p-4">{{ item.jenisRekening }}</td>
-                                <td class="border-b p-4">{{ item.nomorRekening }}</td>
-                                <td class="border-b p-4">{{ item.namaCabang }}</td>
+                                <td class="border-b p-4">{{ item.namaBank }}</td>
+                                <td class="border-b p-4">{{ item.tanggalDeposito }}</td>
+                                <td class="border-b p-4">{{ item.bunga }}</td>
+                                <td class="border-b p-4">{{ item.TanggalJatuhTempo }}</td>
+                                <td class="border-b p-4">{{ item.jenisDeposito }}</td>
+                                <td class="border-b p-4">{{ item.jumlahDeposito }}</td>
                                 <td class="border-b p-4">
-                                    <span class="bg-orange-500 text-white px-3 py-1 rounded-full">{{ item.statusPengajuan }}</span>
+                                    <span
+                                        class="text-white w-32 h-8 flex items-center justify-center px-3 py-1 rounded-full"
+                                        :class="getKeteranganColorClass(item.keterangan)"
+                                    >
+                                        {{ item.keterangan }}
+                                    </span>
                                 </td>
-                                <td class="border-b p-4">{{ item.catatan }}</td>
+
                                 <td class="border-b p-4">
                                     <button class="text-blue-500">⋮</button>
                                 </td>
@@ -355,238 +408,127 @@
 
     interface DataItem {
         tanggalBuka: string;
-        kodeSKPD: string;
-        namaSKPD: string;
-        jenisRekening: string;
-        nomorRekening: string;
-        namaCabang: string;
-        statusPengajuan: string;
-        catatan: string;
+        namaBank: string;
+        tanggalDeposito: string;
+        bunga: string;
+        TanggalJatuhTempo: string;
+        jenisDeposito: string;
+        jumlahDeposito: string;
+        keterangan: string;
     }
 
     export default defineComponent({
         name: 'BukaRekening',
         components: {
             Sidebar,
-            Header, // Register sidebar component
+            Header,
         },
         data() {
             return {
                 data: [
                     {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098763',
-                        namaSKPD: 'Lorem Ipsum',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '12345678',
-                        namaCabang: 'Cabang A',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 1',
+                        tanggalBuka: '2024-11-01',
+                        namaBank: 'Bank BCD',
+                        tanggalDeposito: '2024-11-05',
+                        bunga: '5%',
+                        TanggalJatuhTempo: '2025-11-05',
+                        jenisDeposito: 'Manual',
+                        jumlahDeposito: 'Rp 17.000.000',
+                        keterangan: 'Sudah Dicairkan',
                     },
                     {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
+                        tanggalBuka: '2024-12-01',
+                        namaBank: 'Bank EFG',
+                        tanggalDeposito: '2024-12-05',
+                        bunga: '6%',
+                        TanggalJatuhTempo: '2025-12-05',
+                        jenisDeposito: 'Aro',
+                        jumlahDeposito: 'Rp 23.000.000',
+                        keterangan: 'Pending',
                     },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    {
-                        tanggalBuka: 'dd/mm/yy',
-                        kodeSKPD: '098764',
-                        namaSKPD: 'Dolor Sit',
-                        jenisRekening: 'Lorem Ipsum',
-                        nomorRekening: '87654321',
-                        namaCabang: 'Cabang B',
-                        statusPengajuan: 'Rekening Aktif',
-                        catatan: 'Catatan 2',
-                    },
-                    // Tambahkan data sesuai kebutuhan
                 ] as DataItem[],
                 sortColumn: null as keyof DataItem | null,
                 sortDirection: 'asc' as 'asc' | 'desc',
                 entriesPerPage: 5,
                 currentPage: 1,
+                selectedStatus: '',
+                searchQuery: '',
+                statusOptions: [
+                    // Define the dropdown options here
+                    { value: 'all', label: 'All' },
+                    { value: 'aro', label: 'Aro' },
+                    { value: 'manual', label: 'Manual' },
+                ],
+
+                // Tambahan untuk filtering
+                filterCriteria: {
+                    startDate: '',
+                    endDate: '',
+                },
             };
         },
         setup() {
             const dateRangePicker = ref(null);
             const calendarInstance = ref<any>(null);
 
-            // Fungsi untuk membuka kalender
             const openCalendar = () => {
                 if (calendarInstance.value) {
                     calendarInstance.value.open();
                 }
             };
 
-            // Inisialisasi Flatpickr dengan mode rentang
-            onMounted(() => {
-                if (dateRangePicker.value) {
-                    calendarInstance.value = flatpickr(dateRangePicker.value as HTMLElement, {
-                        mode: 'range', // Mode untuk rentang tanggal
-                        dateFormat: 'd/m/Y',
-                        onChange: (selectedDates) => {
-                            if (selectedDates.length === 2) {
-                                console.log('Tanggal awal:', selectedDates[0]);
-                                console.log('Tanggal akhir:', selectedDates[1]);
-                            }
-                        },
-                    });
+            const clearDate = () => {
+                if (calendarInstance.value) {
+                    calendarInstance.value.clear();
                 }
-            });
+            };
 
             return {
                 dateRangePicker,
                 openCalendar,
+                clearDate,
             };
         },
-
         computed: {
-            totalPages() {
-                return Math.ceil(this.sortedData.length / this.entriesPerPage);
+            // Modifikasi computed properties untuk mendukung filtering
+            filteredData() {
+                let result = this.data;
+
+                // Filter berdasarkan rentang tanggal
+                if (this.filterCriteria.startDate && this.filterCriteria.endDate) {
+                    result = result.filter((item) => {
+                        const itemDate = new Date(item.tanggalBuka);
+                        const startDate = new Date(this.filterCriteria.startDate);
+                        const endDate = new Date(this.filterCriteria.endDate);
+
+                        // Set jam ke awal dan akhir hari untuk perbandingan akurat
+                        startDate.setHours(0, 0, 0, 0);
+                        endDate.setHours(23, 59, 59, 999);
+
+                        return itemDate >= startDate && itemDate <= endDate;
+                    });
+                }
+                if (this.selectedStatus && this.selectedStatus !== 'all') {
+                    result = result.filter((item) => item.jenisDeposito.toLowerCase().includes(this.selectedStatus.toLowerCase()));
+                }
+                if (this.searchQuery) {
+                    result = result.filter((item) => item.namaBank.toLowerCase().includes(this.searchQuery.toLowerCase()));
+                }
+
+                // Sorting
+                if (this.sortColumn) {
+                    result.sort((a, b) => {
+                        const aValue = a[this.sortColumn!];
+                        const bValue = b[this.sortColumn!];
+
+                        if (aValue === bValue) return 0;
+                        if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
+                        if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
+                        return 0;
+                    });
+                }
+
+                return result;
             },
             sortedData() {
                 if (!this.sortColumn) return this.data;
@@ -595,19 +537,30 @@
                     const aValue = a[this.sortColumn!];
                     const bValue = b[this.sortColumn!];
 
-                    if (aValue === bValue) return 0;
-                    if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
-                    if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
-                    return 0;
+                    if (aValue === bValue) {
+                        const statusOrder = ['aro', 'manual'];
+
+                        const aStatusIndex = statusOrder.indexOf(a.jenisDeposito.toLowerCase());
+                        const bStatusIndex = statusOrder.indexOf(b.jenisDeposito.toLowerCase());
+
+                        if (aStatusIndex === bStatusIndex) return 0;
+                        return aStatusIndex < bStatusIndex ? -1 : 1;
+                    }
+
+                    return aValue < bValue ? (this.sortDirection === 'asc' ? -1 : 1) : this.sortDirection === 'asc' ? 1 : -1;
                 });
+            },
+            totalPages() {
+                return Math.ceil(this.filteredData.length / this.entriesPerPage);
             },
             paginatedData() {
                 const start = (this.currentPage - 1) * this.entriesPerPage;
                 const end = start + this.entriesPerPage;
-                return this.sortedData.slice(start, end);
+                return this.filteredData.slice(start, end);
             },
         },
         methods: {
+            // Metode existing tetap sama
             toggleSort(column: keyof DataItem) {
                 if (this.sortColumn === column) {
                     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -616,8 +569,22 @@
                     this.sortDirection = 'asc';
                 }
             },
+            getKeteranganColorClass(Keterangan) {
+                switch (Keterangan) {
+                    case 'Sudah Dicairkan':
+                        return 'bg-green-500 text-white';
+                    case 'Pending':
+                        return 'bg-blue-500 text-white';
+                    default:
+                        return 'bg-gray-500 text-white';
+                }
+            },
             changeEntries() {
                 this.currentPage = 1;
+            },
+            clearStatus() {
+                this.selectedStatus = ''; // Clear the status filter
+                this.goToFirstPage(); // Optional: go back to the first page
             },
             goToFirstPage() {
                 this.currentPage = 1;
@@ -640,6 +607,62 @@
                     this.currentPage = page;
                 }
             },
+
+            // Tambahan metode untuk date range picker
+            setupDateRangePicker() {
+                if (this.$refs.dateRangePicker) {
+                    flatpickr(this.$refs.dateRangePicker as HTMLElement, {
+                        mode: 'range',
+                        dateFormat: 'Y-m-d',
+                        onChange: (selectedDates, dateStr) => {
+                            if (selectedDates.length === 2) {
+                                // Format tanggal ke 'YYYY-MM-DD'
+                                this.filterCriteria.startDate = this.formatDate(selectedDates[0]);
+                                this.filterCriteria.endDate = this.formatDate(selectedDates[1]);
+
+                                // Reset ke halaman pertama saat filtering
+                                this.currentPage = 1;
+                            }
+                        },
+                    });
+                }
+            },
+            formatDate(date: Date): string {
+                return date.toISOString().split('T')[0];
+            },
+            clearDateFilter() {
+                // Pembersihan dengan validasi tambahan
+                try {
+                    if (this.$refs.dateRangePicker) {
+                        const picker = (this.$refs.dateRangePicker as any)._flatpickr;
+                        if (picker) {
+                            picker.clear();
+                        }
+                    }
+
+                    // Reset filter dan state terkait
+                    this.filterCriteria = {
+                        startDate: '',
+                        endDate: '',
+                    };
+
+                    // Opsional: Tambahkan notifikasi atau logging
+                    this.$nextTick(() => {
+                        // Contoh: Tampilkan pesan atau lakukan sesuatu setelah clear
+                        console.log('Filter tanggal telah dibersihkan');
+                    });
+
+                    // Reset halaman
+                    this.currentPage = 1;
+                } catch (error) {
+                    console.error('Gagal membersihkan filter tanggal:', error);
+                    // Tangani error jika diperlukan
+                }
+            },
+        },
+        mounted() {
+            // Inisialisasi date range picker saat komponen dimuat
+            this.setupDateRangePicker();
         },
     });
 </script>

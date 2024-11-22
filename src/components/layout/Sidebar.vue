@@ -179,7 +179,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/buka/opd/bank-lain" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <!-- Icon SVG for Non Bank DKI -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="20px" viewBox="0 0 20 21" fill="none">
                             <path
@@ -196,7 +196,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/buka/opd/deposito/" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <!-- Icon SVG for Deposito -->
                         <svg width="40px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

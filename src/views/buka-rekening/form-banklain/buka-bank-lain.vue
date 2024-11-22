@@ -9,7 +9,7 @@
             <!-- Header and Breadcrumb -->
             <div class="px-6 py-4 flex-shrink-0">
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
-                    <li><a href="javascript:;">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li class="before:content-['/'] before:px-0.5">
                         <a href="javascript:;" class="text-black dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70"
                             >Buka Rekening Bank Lain Tambah</a
