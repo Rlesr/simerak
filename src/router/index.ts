@@ -5,7 +5,7 @@ import register from '@/views/auth/register.vue';
 import rekeningall from '@/views/buka-rekening/buka-rekeningSKPD.vue';
 import bukaRekeningDKI from '@/views/buka-rekening/buka-rekeningDKI.vue';
 import FormUmum from '@/views/buka-rekening/form/formUmum.vue';
-import FormDKI from '@/views/buka-rekening/form/form-DKI.vue';
+import FormDKI from '@/views/buka-rekening/form/form-Bank-DKI.vue';
 import FormKepalaSekolah from '@/views/buka-rekening/form/formKepalaSekolah.vue';
 import FormTandaTangan from '@/views/buka-rekening/form/formTandaTangan.vue';
 

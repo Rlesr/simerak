@@ -1,145 +1,266 @@
 <template>
-  <div>
-      <Header />
-      <Sidebar />
-
-      <div class="p-6">
-          <h1 class="text-2xl font-bold mb-4">Form dengan Multiple Dropdown</h1>
-
-          <!-- Dropdown 1 -->
-          <div class="relative inline-block text-left mb-4">
-              <button
-                  @click="toggleDropdown(0)"
-                  class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                  Dropdown 1
-                  <svg
-                      class="-mr-1 ml-2 h-5 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                  >
-                      <path
-                          fill-rule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                      />
-                  </svg>
-              </button>
-              <div
-                  v-show="dropdownStates[0]"
-                  class="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              >
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Opsi 1
-                  </a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Opsi 2
-                  </a>
-              </div>
-          </div>
-
-          <!-- Dropdown 2 -->
-          <div class="relative inline-block text-left mb-4">
-              <button
-                  @click="toggleDropdown(1)"
-                  class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                  Dropdown 2
-                  <svg
-                      class="-mr-1 ml-2 h-5 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                  >
-                      <path
-                          fill-rule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                      />
-                  </svg>
-              </button>
-              <div
-                  v-show="dropdownStates[1]"
-                  class="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              >
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Opsi A
-                  </a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Opsi B
-                  </a>
-              </div>
-          </div>
-
-          <!-- Dropdown 3 -->
-          <div class="relative inline-block text-left">
-              <button
-                  @click="toggleDropdown(2)"
-                  class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                  Dropdown 3
-                  <svg
-                      class="-mr-1 ml-2 h-5 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                  >
-                      <path
-                          fill-rule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                      />
-                  </svg>
-              </button>
-              <div
-                  v-show="dropdownStates[2]"
-                  class="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              >
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Pilihan X
-                  </a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Pilihan Y
-                  </a>
-              </div>
-          </div>
+  <div class="p-4">
+    <h1 class="text-lg font-bold mb-4">Data Alamat Tempat Tinggal</h1>
+    <form @submit.prevent="handleSubmit" class="space-y-4 w-full">
+      <!-- Radio Buttons -->
+      <div class="flex flex-col">
+        <label class="font-medium mb-2">Pilih Opsi Alamat</label>
+        <div class="flex items-center">
+          <input
+            type="radio"
+            id="alamat-sesuai"
+            value="sesuai"
+            v-model="formData.tipeAlamat"
+            class="mr-2"
+          />
+          <label for="alamat-sesuai">
+            Alamat sesuai tanda pengenal (copy tanda pengenal terlampir)
+          </label>
+        </div>
+        <div class="flex items-center mt-2">
+          <input
+            type="radio"
+            id="alamat-berbeda"
+            value="berbeda"
+            v-model="formData.tipeAlamat"
+            class="mr-2"
+          />
+          <label for="alamat-berbeda">
+            Alamat Tempat Tinggal Saat Ini (hanya diisi apabila berbeda dengan tanda pengenal)
+          </label>
+        </div>
       </div>
+
+      <!-- RT/RW -->
+      <div class="flex flex-col">
+        <label for="rt-rw" class="font-medium">
+          RT/RW <span class="text-red-500">*</span>
+        </label>
+        <div class="flex space-x-2">
+          <input
+            id="rt"
+            type="text"
+            v-model="formData.rt"
+            placeholder="RT"
+            class="border rounded p-2 w-full"
+          />
+          <input
+            id="rw"
+            type="text"
+            v-model="formData.rw"
+            placeholder="RW"
+            class="border rounded p-2 w-full"
+          />
+        </div>
+      </div>
+
+      <!-- Provinsi -->
+      <div class="flex flex-col">
+        <label for="provinsi" class="font-medium">
+          Provinsi <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="provinsi"
+          v-model="formData.provinsi"
+          @change="fetchKota"
+          class="border rounded p-2 w-full"
+        >
+          <option value="">Pilih Provinsi</option>
+          <option v-for="prov in provinsiList" :key="prov.id" :value="prov.id">
+            {{ prov.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Kota/Kabupaten -->
+      <div class="flex flex-col">
+        <label for="kota" class="font-medium">
+          Kota/Kabupaten <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="kota"
+          v-model="formData.kota"
+          @change="fetchKecamatan"
+          :disabled="!formData.provinsi"
+          class="border rounded p-2 w-full"
+        >
+          <option value="">Pilih Kota/Kabupaten</option>
+          <option
+            v-for="kota in kotaList"
+            :key="kota.id"
+            :value="kota.id"
+          >
+            {{ kota.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Kecamatan -->
+      <div class="flex flex-col">
+        <label for="kecamatan" class="font-medium">
+          Kecamatan <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="kecamatan"
+          v-model="formData.kecamatan"
+          @change="fetchKelurahan"
+          :disabled="!formData.kota"
+          class="border rounded p-2 w-full"
+        >
+          <option value="">Pilih Kecamatan</option>
+          <option
+            v-for="kecamatan in kecamatanList"
+            :key="kecamatan.id"
+            :value="kecamatan.id"
+          >
+            {{ kecamatan.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Kelurahan -->
+      <div class="flex flex-col">
+        <label for="kelurahan" class="font-medium">
+          Kelurahan <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="kelurahan"
+          v-model="formData.kelurahan"
+          :disabled="!formData.kecamatan"
+          class="border rounded p-2 w-full"
+        >
+          <option value="">Pilih Kelurahan</option>
+          <option
+            v-for="kelurahan in kelurahanList"
+            :key="kelurahan.id"
+            :value="kelurahan.id"
+          >
+            {{ kelurahan.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Kode Pos -->
+      <div class="flex flex-col">
+        <label for="kode-pos" class="font-medium">
+          Kode Pos
+        </label>
+        <input
+          id="kode-pos"
+          type="text"
+          v-model="formData.kodePos"
+          placeholder="Masukkan Kode Pos"
+          class="border rounded p-2 w-full"
+        />
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+      >
+        Submit
+      </button>
+    </form>
   </div>
 </template>
 
-
 <script lang="ts">
-    import Sidebar from '@/components/layout/Sidebar.vue';
-    import Header from '@/components/layout/Header.vue';
-    import { ref } from 'vue';
+import { defineComponent, reactive, ref } from "vue";
 
-    export default {
-        components: { Sidebar, Header },
-        name: 'CombinedLayout',
-        setup() {
-            // State untuk mengontrol status dropdown secara dinamis
-            const dropdownStates = ref<boolean[]>([false, false, false]);
+interface Option {
+  id: string | number;
+  name: string;
+}
 
-            // Fungsi untuk toggle dropdown tertentu
-            const toggleDropdown = (index: number) => {
-                // Tutup semua dropdown lainnya sebelum membuka yang dipilih
-                dropdownStates.value = dropdownStates.value.map((_, i) => i === index);
-            };
+export default defineComponent({
+  name: "FormAlamat",
+  setup() {
+    const formData = reactive({
+      tipeAlamat: "",
+      rt: "",
+      rw: "",
+      provinsi: "",
+      kota: "",
+      kecamatan: "",
+      kelurahan: "",
+      kodePos: "",
+    });
 
-            // Fungsi untuk menutup semua dropdown
-            const closeAllDropdowns = () => {
-                dropdownStates.value = dropdownStates.value.map(() => false);
-            };
+    // Options for dropdowns
+    const provinsiList = ref<Option[]>([
+      { id: 1, name: "SUMATERA UTARA" },
+      { id: 2, name: "JAWA BARAT" },
+    ]);
+    const kotaList = ref<Option[]>([]);
+    const kecamatanList = ref<Option[]>([]);
+    const kelurahanList = ref<Option[]>([]);
 
-            return {
-                dropdownStates,
-                toggleDropdown,
-                closeAllDropdowns,
-            };
-        },
+    // Fetch kota based on provinsi
+    const fetchKota = () => {
+      formData.kota = "";
+      formData.kecamatan = "";
+      formData.kelurahan = "";
+      kecamatanList.value = [];
+      kelurahanList.value = [];
+      if (formData.provinsi === "1") {
+        kotaList.value = [
+          { id: 101, name: "KABUPATEN MANDAILING NATAL" },
+          { id: 102, name: "KOTA MEDAN" },
+        ];
+      } else if (formData.provinsi === "2") {
+        kotaList.value = [
+          { id: 201, name: "KOTA BANDUNG" },
+          { id: 202, name: "KOTA BEKASI" },
+        ];
+      }
     };
+
+    // Fetch kecamatan based on kota
+    const fetchKecamatan = () => {
+      formData.kecamatan = "";
+      formData.kelurahan = "";
+      kelurahanList.value = [];
+      if (formData.kota === "101") {
+        kecamatanList.value = [
+          { id: 1001, name: "TAMBANGAN" },
+          { id: 1002, name: "PANYABUNGAN" },
+        ];
+      } else if (formData.kota === "102") {
+        kecamatanList.value = [
+          { id: 2001, name: "MEDAN SELAYANG" },
+          { id: 2002, name: "MEDAN TIMUR" },
+        ];
+      }
+    };
+
+    // Fetch kelurahan based on kecamatan
+    const fetchKelurahan = () => {
+      formData.kelurahan = "";
+      if (formData.kecamatan === "1001") {
+        kelurahanList.value = [
+          { id: 10001, name: "KELURAHAN A" },
+          { id: 10002, name: "KELURAHAN B" },
+        ];
+      }
+    };
+
+    const handleSubmit = () => {
+      console.log("Submitted Data:", formData);
+    };
+
+    return {
+      formData,
+      provinsiList,
+      kotaList,
+      kecamatanList,
+      kelurahanList,
+      fetchKota,
+      fetchKecamatan,
+      fetchKelurahan,
+      handleSubmit,
+    };
+  },
+});
 </script>
+
