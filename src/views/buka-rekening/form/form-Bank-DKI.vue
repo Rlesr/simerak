@@ -11,7 +11,7 @@
             <div class="form-wizard-container">
                 <form-wizard shape="square" color="#4361ee" class="square" :stagger="100">
                     <!-- Tabs di bagian atas -->
-                    <tab-content title="umum"   :before-change="(moveNext) => nextTab('umum', moveNext)">
+                    <tab-content title="umum"   :before-change="() => validateFormsInTab('umum')">
                         <template #icon>
                             <i class="fas fa-user"></i>
                         </template>
@@ -62,7 +62,7 @@
                             </div>
                     </tab-content>
 
-                    <tab-content title="kepalaSekolah"   :before-change="(moveNext) => nextTab('kepalaSekolah', moveNext)">
+                    <tab-content title="kepalaSekolah"   :before-change="(moveNext) =>  validateFormsInTab('kepalasekolah')">
                         <template #icon>
                             <i class="fas fa-user-tie"></i>
                         </template>
@@ -126,7 +126,7 @@
                         </div>
                     </tab-content>
 
-                    <tab-content title="bendahara"   :before-change="(moveNext) => nextTab('bendahara', moveNext)">
+                    <tab-content title="bendahara"   :before-change="(moveNext) =>  validateFormsInTab('bendahara')">
                         <template #icon>
                             <i class="fas fa-user-shield"></i>
                         </template>
@@ -191,7 +191,7 @@
                         </div>
                     </tab-content>
 
-                    <tab-content title="Tanda Tangan"   :before-change="(moveNext) => nextTab('tandaTangan', moveNext)">
+                    <tab-content title="Tanda Tangan"   :before-change="(moveNext) =>  validateFormsInTab('Tanda Tangan')">
                         <template #icon>
                             <i class="fas fa-pen"></i>
                         </template>
@@ -290,7 +290,7 @@
             };
             const nextTab = (tab: string, moveNext: Function) => {
                 if (validateFormsInTab(tab)) {
-                    moveNext(); // Fungsi dari `vue3-form-wizard` untuk pindah tab
+                    moveNext();
                 } else {
                     alert('Kolom belum terisi semua!');
                 }
