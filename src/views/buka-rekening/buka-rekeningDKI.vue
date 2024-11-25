@@ -1,8 +1,7 @@
     <template>
-        <Header class="fixed-header border-1"/>
+        <Layout />
         <div class="flex">
         <!-- Sidebar Component -->
-        <Sidebar class="fixed-sidebar" />
 
         <!-- Main Content -->
         <div class="content-area p-8 py-16 bg-gray-50 min-h-screen w-full ml-[250px]">
@@ -154,16 +153,14 @@
     </template>
 
     <script lang="ts">
-    import Header from '@/components/layout/Header.vue';
-    import Sidebar from '@/components/layout/Sidebar.vue';
+    import Layout from '@/components/layout/Layout.vue';
     interface DataItem {
         Kode: string;
         nama: string;
     }
     export default {
         components: {
-        Sidebar,
-        Header
+        Layout,
         },
         data() {
         return {
