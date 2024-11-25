@@ -1,9 +1,8 @@
 <template>
-<Header class="fixed-header border-1"/>
+<Layout />
 
     <div class="min-h-screen flex overflow-hidden">
         <!-- Sidebar -->
-        <Sidebar class="h-[100vh] fixed-sidebar" />
 
         <!-- Main Content Area dengan Scroll -->
         <div class="content-area py-16 flex-1 flex flex-col overflow-hidden">
