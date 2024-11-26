@@ -4,10 +4,7 @@ import login from '@/views/auth/login.vue';
 import register from '@/views/auth/register.vue';
 import rekeningall from '@/views/buka-rekening/buka-rekeningSKPD.vue';
 import bukaRekeningDKI from '@/views/buka-rekening/buka-rekeningDKI.vue';
-import FormUmum from '@/views/buka-rekening/form/formUmum.vue';
 import FormDKI from '@/views/buka-rekening/form/form-Bank-DKI.vue';
-import FormKepalaSekolah from '@/views/buka-rekening/form/formKepalaSekolah.vue';
-import FormTandaTangan from '@/views/buka-rekening/form/formTandaTangan.vue';
 import nonDKIOpd from '@/views/buka-rekening/nonDkiOpd/bank-lainOpd.vue';
 import BankLainSKPD from '@/views/buka-rekening/nonDkiOpd/bank-lainSKPD.vue';
 import forbukabanklain from '@/views/buka-rekening/form-banklain/buka-bank-lain.vue'
@@ -38,11 +35,6 @@ const router = createRouter({
         component: rekeningall,
       },
     {
-        path: '/buka/form/umum',
-        name: 'formUmum',
-        component: FormUmum,
-    },
-    {
         path: '/buka/opd',
         name: 'BukaDki',
         component: bukaRekeningDKI,
@@ -51,16 +43,6 @@ const router = createRouter({
         path: '/buka/form/DKI',
         name: 'form DKI',
         component: FormDKI,
-    },
-    {
-        path: '/buka/form/kepalasekolah',
-        name: 'formKepalaSekolah',
-        component: FormKepalaSekolah,
-    },
-    {
-        path: '/buka/form/tandatangan',
-        name: 'formTandaTangan',
-        component: FormTandaTangan,
     },
     {
         path: '/buka/opd/bank-lain',

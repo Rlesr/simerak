@@ -87,6 +87,14 @@
             </label>
             <input id="foto-upload" type="file" accept=".pdf" class="hidden" @change="handleFileChange('FotoKS', $event)" />
         </div>
+        <div class="text-center mt-4">
+            <span
+                :class="isAllFilesComplete ? 'text-green-500' : 'text-red-500'"
+                class="font-semibold"
+            >
+                {{ isAllFilesComplete ? 'Semua dokumen telah diunggah.' : 'Harap lengkapi semua dokumen.' }}
+            </span>
+        </div>
     </div>
 </template>
 
@@ -115,7 +123,9 @@ export default {
             }
         };
 
-
+        const isAllFilesComplete = computed(() =>
+            Object.values(files).every(file => file !== null)
+        );
 
         const onCompletionChange = () => {
             const isComplete = Object.values(files).every((file) => file !== null);
@@ -130,7 +140,7 @@ export default {
         return {
             files,
             handleFileChange,
-           
+            isAllFilesComplete,
         };
     },
 };

@@ -87,11 +87,19 @@
             </label>
             <input id="foto-bendahara-upload" type="file" accept=".pdf" class="hidden" @change="handleFileChange('FotoB', $event)" />
         </div>
+        <div class="text-center mt-4">
+            <span
+                :class="isAllFilesComplete ? 'text-green-500' : 'text-red-500'"
+                class="font-semibold"
+            >
+                {{ isAllFilesComplete ? 'Semua dokumen telah diunggah.' : 'Harap lengkapi semua dokumen.' }}
+            </span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { reactive, computed } from 'vue';
+import { reactive, computed, watch } from 'vue';
 
 export default {
     setup() {
@@ -119,6 +127,20 @@ export default {
             Object.values(files).every(file => file !== null)
         );
 
+        const onCompletionChange = (isComplete: boolean) => {
+            if (isComplete) {
+                console.log('Semua dokumen telah diunggah.');
+                alert('Semua dokumen lengkap!');
+            } else {
+                console.log('Masih ada dokumen yang belum diunggah.');
+            }
+        };
+
+        // Watcher untuk memantau perubahan status kelengkapan
+        watch(isAllFilesComplete, (newValue) => {
+            onCompletionChange(newValue);
+        });
+
         return {
             files,
             handleFileChange,
@@ -127,3 +149,4 @@ export default {
     },
 };
 </script>
+

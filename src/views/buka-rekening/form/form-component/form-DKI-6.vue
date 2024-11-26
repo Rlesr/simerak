@@ -76,11 +76,16 @@
                 <input type="text" v-model="form.Tempat" class="w-full border rounded px-3 py-2 form-input" />
             </div>
         </div>
+        <div class="text-center mt-6">
+            <span :class="isComplete ? 'text-green-500' : 'text-red-500'" class="font-semibold">
+                {{ isComplete ? 'Form lengkap dan siap dikirim.' : 'Harap lengkapi semua Form.' }}
+            </span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted } from 'vue';
+import { defineComponent, ref, reactive, computed, watch, onMounted } from 'vue';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
@@ -113,11 +118,34 @@ export default defineComponent({
             Tempat: '',
         });
 
+        const isComplete = ref(false);
+
+        const onCompleteChange = () => {
+            isComplete.value =
+                selectedSource.value.trim() !== '' &&
+                selectedIncome.value.trim() !== '' &&
+                form.namaKepala.trim() !== '' &&
+                form.NIK.trim() !== '' &&
+                form.Jabatan.trim() !== '' &&
+                form.NoHP.trim() !== '' &&
+                form.NoSK.trim() !== '' &&
+                form.TanggalSK.trim() !== '' &&
+                form.Tempat.trim() !== '';
+        };
+
+        // Watchers to trigger onCompleteChange
+        watch(
+            [selectedSource, selectedIncome, () => form],
+            onCompleteChange,
+            { deep: true }
+        );
+
         onMounted(() => {
             if (flatpickrTanggalSK.value) {
                 flatpickr(flatpickrTanggalSK.value, {
                     onChange: (selectedDates) => {
                         form.TanggalSK = selectedDates[0]?.toISOString() || '';
+                        onCompleteChange();
                     },
                 });
             }
@@ -130,6 +158,7 @@ export default defineComponent({
             selectedSource,
             selectedIncome,
             flatpickrTanggalSK,
+            isComplete,
         };
     },
 });

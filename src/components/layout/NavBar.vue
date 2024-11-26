@@ -86,6 +86,7 @@
         <ul
             v-if="dropdownOpen"
             class="lg:absolute lg:left-0 lg:mt-2 w-full lg:w-[250px] bg-white text-sm text-black shadow-lg rounded-lg lg:z-50"
+            
         >
             <li
                 v-for="(item, index) in masterItems"
