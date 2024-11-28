@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "type": "commonjs",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --proxy --proxy.config.json",
         "build": "vue-tsc --noEmit && vite build",
         "preview": "vite preview"
     },

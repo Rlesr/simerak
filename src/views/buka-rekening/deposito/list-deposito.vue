@@ -1,12 +1,8 @@
 <template>
-    <Header class="fixed-header border-1" />
-
-    <div class="min-h-screen flex overflow-hidden">
-        <!-- Sidebar -->
-        <Sidebar class="h-[100vh] fixed-sidebar" />
-
-        <!-- Main Content Area dengan Scroll -->
-        <div class="content-area py-16 flex-1 flex flex-col overflow-hidden">
+    <Layout />
+    <div class="min-h-screen flex flex-auto">
+        <!-- Gunakan ml-64 untuk desktop, ml-0 untuk mobile -->
+        <div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">
             <!-- Breadcrumb -->
             <div class="px-6 py-4 flex-shrink-0">
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
@@ -21,38 +17,37 @@
                 <h2 class="text-2xl font-bold mb-[10px]">List Deposito</h2>
                 <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat list Deposito</p>
                 <hr class="border-t-2 border-black" />
-            </div>
-            <!-- Scrollable Content -->
-            <div class="flex-1 overflow-y-auto px-6 py-4 space-y-6">
-                <!-- Rekening Details Form -->
+
                 <div class="bg-white p-6 rounded-md shadow-md mx-auto">
-                    <h3 class="text-2xl font-bold mb-4">Daftar Pembukaan Rekening</h3>
+                    <h3 class="text-2xl font-bold mb-4">Daftar Deposito Rekening</h3>
                     <div class="space-y-4">
-                        <div class="flex items-center">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-x-4">
                             <label for="kode-skpd" class="mr-[200px] text-sm font-medium text-gray-700">Kode SKPD</label>
                             <input
                                 id="kode-skpd"
                                 type="text"
-                                class="block w-[400px] px-3 py-2 border border-gray-300 rounded-md bg-gray-100 shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                                class="block w-full sm:w-[400px] px-3 py-2 border border-gray-300 rounded-md bg-gray-100 shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                                 placeholder="P908763"
                             />
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-x-4">
                             <label for="nama-skpd" class="mr-[195px] text-sm font-medium text-gray-700">Nama SKPD</label>
                             <input
                                 id="nama-skpd"
                                 type="text"
-                                class="block w-[400px] px-3 py-2 border border-gray-300 rounded-md bg-gray-100 shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                                class="block w-full sm:w-[400px] px-3 py-2 border border-gray-300 rounded-md bg-gray-100 shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                                 placeholder="PJKM (Perguruan Tinggi)"
                             />
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto px-6 py-4 space-y-6">
                 <!-- Rekening List -->
-                <div class="bg-white p-4 rounded-md shadow">
+                <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full">
                     <!-- Filter Section -->
-                    <div class="flex justify-between items-center w-full">
+                    <div class="flex justify-between items-center w-full overflow-x-auto">
                         <!-- Left side: Search/Filter Controls -->
                         <div class="flex items-center space-x-4">
                             <input
@@ -187,155 +182,156 @@
                     </div>
 
                     <!-- Table Section -->
-                    <table class="w-full border-collapse bg-white text-left text-sm text-gray-700">
-                        <thead>
-                            <tr>
-                                <th class="border-b p-4 font-medium text-gray-900">No.</th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Tanggal Buka
-                                        <button @click="toggleSort('tanggalBuka')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'tanggalBuka' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'tanggalBuka' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Nama Bank
-                                        <button @click="toggleSort('namaBank')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'namaBank' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'namaBank' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Tanggal Deposito
-                                        <button @click="toggleSort('tanggalDeposito')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'tanggalDeposito' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'tanggalDeposito' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Bunga
-                                        <button @click="toggleSort('bunga')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'bunga' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'bunga' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Tanggal Jatuh Tempo
-                                        <button @click="toggleSort('TanggalJatuhTempo')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'TanggalJatuhTempo' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'TanggalJatuhTempo' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">
-                                    <div class="flex items-center space-x-2">
-                                        Jenis Deposito
-                                        <button @click="toggleSort('jenisDeposito')">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
-                                                <!-- Panah Ascending -->
-                                                <path
-                                                    :fill="sortColumn === 'jenisDeposito' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
-                                                ></path>
-                                                <!-- Panah Descending -->
-                                                <path
-                                                    :fill="sortColumn === 'jenisDeposito' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
-                                                    d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
-                                                ></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </th>
-                                <th class="border-b p-4 font-medium text-gray-900">Jumlah Deposito</th>
-                                <th class="border-b p-4 font-medium text-gray-900">Keterangan</th>
-                                <th class="border-b p-4 font-medium text-gray-900">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(item, index) in paginatedData" :key="index" class="border-b">
-                                <td class="border-b p-4">{{ (currentPage - 1) * entriesPerPage + index + 1 }}</td>
-                                <td class="border-b p-4">{{ item.tanggalBuka }}</td>
-                                <td class="border-b p-4">{{ item.namaBank }}</td>
-                                <td class="border-b p-4">{{ item.tanggalDeposito }}</td>
-                                <td class="border-b p-4">{{ item.bunga }}</td>
-                                <td class="border-b p-4">{{ item.TanggalJatuhTempo }}</td>
-                                <td class="border-b p-4">{{ item.jenisDeposito }}</td>
-                                <td class="border-b p-4">{{ item.jumlahDeposito }}</td>
-                                <td class="border-b p-4">
-                                    <span
-                                        class="text-white w-32 h-8 flex items-center justify-center px-3 py-1 rounded-full"
-                                        :class="getKeteranganColorClass(item.keterangan)"
-                                    >
-                                        {{ item.keterangan }}
-                                    </span>
-                                </td>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse bg-white text-left text-sm text-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="border-b p-4 font-medium text-gray-900">No.</th>
+                                    <th class="border-b p-4 font-medium text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            Tanggal Buka
+                                            <button @click="toggleSort('tanggalBuka')">
+                                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Panah Ascending -->
+                                                    <path
+                                                        :fill="sortColumn === 'tanggalBuka' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                    ></path>
+                                                    <!-- Panah Descending -->
+                                                    <path
+                                                        :fill="sortColumn === 'tanggalBuka' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th class="border-b p-4 font-medium text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            Nama Bank
+                                            <button @click="toggleSort('namaBank')">
+                                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Panah Ascending -->
+                                                    <path
+                                                        :fill="sortColumn === 'namaBank' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                    ></path>
+                                                    <!-- Panah Descending -->
+                                                    <path
+                                                        :fill="sortColumn === 'namaBank' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th class="border-b p-4 font-medium text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            Tanggal Deposito
+                                            <button @click="toggleSort('tanggalDeposito')">
+                                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Panah Ascending -->
+                                                    <path
+                                                        :fill="sortColumn === 'tanggalDeposito' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                    ></path>
+                                                    <!-- Panah Descending -->
+                                                    <path
+                                                        :fill="sortColumn === 'tanggalDeposito' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th class="border-b p-4 font-medium text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            Bunga
+                                            <button @click="toggleSort('bunga')">
+                                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Panah Ascending -->
+                                                    <path
+                                                        :fill="sortColumn === 'bunga' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                    ></path>
+                                                    <!-- Panah Descending -->
+                                                    <path
+                                                        :fill="sortColumn === 'bunga' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th class="border-b p-4 font-medium text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            Tanggal Jatuh Tempo
+                                            <button @click="toggleSort('TanggalJatuhTempo')">
+                                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Panah Ascending -->
+                                                    <path
+                                                        :fill="sortColumn === 'TanggalJatuhTempo' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                    ></path>
+                                                    <!-- Panah Descending -->
+                                                    <path
+                                                        :fill="sortColumn === 'TanggalJatuhTempo' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th class="border-b p-4 font-medium text-gray-900">
+                                        <div class="flex items-center space-x-2">
+                                            Jenis Deposito
+                                            <button @click="toggleSort('jenisDeposito')">
+                                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
+                                                    <!-- Panah Ascending -->
+                                                    <path
+                                                        :fill="sortColumn === 'jenisDeposito' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
+                                                    ></path>
+                                                    <!-- Panah Descending -->
+                                                    <path
+                                                        :fill="sortColumn === 'jenisDeposito' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th class="border-b p-4 font-medium text-gray-900">Jumlah Deposito</th>
+                                    <th class="border-b p-4 font-medium text-gray-900">Keterangan</th>
+                                    <th class="border-b p-4 font-medium text-gray-900">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item, index) in paginatedData" :key="index" class="border-b">
+                                    <td class="border-b p-4">{{ (currentPage - 1) * entriesPerPage + index + 1 }}</td>
+                                    <td class="border-b p-4">{{ item.tanggalBuka }}</td>
+                                    <td class="border-b p-4">{{ item.namaBank }}</td>
+                                    <td class="border-b p-4">{{ item.tanggalDeposito }}</td>
+                                    <td class="border-b p-4">{{ item.bunga }}</td>
+                                    <td class="border-b p-4">{{ item.TanggalJatuhTempo }}</td>
+                                    <td class="border-b p-4">{{ item.jenisDeposito }}</td>
+                                    <td class="border-b p-4">{{ item.jumlahDeposito }}</td>
+                                    <td class="border-b p-4">
+                                        <span
+                                            class="text-white w-32 h-8 flex items-center justify-center px-3 py-1 rounded-full"
+                                            :class="getKeteranganColorClass(item.keterangan)"
+                                        >
+                                            {{ item.keterangan }}
+                                        </span>
+                                    </td>
 
-                                <td class="border-b p-4">
-                                    <button class="text-blue-500">⋮</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                                    <td class="border-b p-4">
+                                        <button class="text-blue-500">⋮</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- Pagination Section -->
                     <div class="flex justify-between items-center mt-4">
                         <!-- Entries Selection -->
@@ -402,9 +398,9 @@
 
 <script lang="ts">
     import { defineComponent, ref, onMounted, computed } from 'vue';
-    import Sidebar from '@/components/layout/Sidebar.vue';
-    import Header from '@/components/layout/Header.vue';
+
     import flatpickr from 'flatpickr';
+    import Layout from '@/components/layout/Layout.vue';
 
     interface DataItem {
         tanggalBuka: string;
@@ -420,8 +416,7 @@
     export default defineComponent({
         name: 'BukaRekening',
         components: {
-            Sidebar,
-            Header,
+            Layout,
         },
         data() {
             return {

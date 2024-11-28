@@ -13,7 +13,9 @@ import BankLainSKPD from '@/views/buka-rekening/nonDkiOpd/bank-lainSKPD.vue';
 import forbukabanklain from '@/views/buka-rekening/form-banklain/buka-bank-lain.vue'
 import opdDeposito from '@/views/buka-rekening/deposito/opd-deposito.vue';
 import listDeposito from '@/views/buka-rekening/deposito/list-deposito.vue';
-import formDeposito from '@/views/buka-rekening/form-deposito/deposito.vue'
+import formDeposito from '@/views/buka-rekening/form-deposito/deposito.vue';
+import tutupRekeningBankOpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-bank-opd.vue';
+import tutupRekeningSkpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-skpd.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -36,6 +38,7 @@ const router = createRouter({
         path: '/buka',
         name: 'buka-rekening',
         component: rekeningall,
+
       },
     {
         path: '/buka/form/umum',
@@ -91,6 +94,16 @@ const router = createRouter({
         path: '/buka/deposito/add/0',
         name: 'formDeposito',
         component: formDeposito,
+    },
+    {
+        path: '/home/tutup/opd',
+        name: 'tutupRekeningBankOpd',
+        component: tutupRekeningBankOpd,
+    },
+    {
+        path: '/home/tutup/list',
+        name: 'tutupRekeningSkpd',
+        component: tutupRekeningSkpd,
     },
 
   ],

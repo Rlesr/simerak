@@ -8,11 +8,13 @@
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
                     <li><a href="/">Home</a></li>
                     <li class="before:content-['/'] before:px-0.5">
-                        <a href="javascript:;" class="text-black dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70">Deposito</a>
+                        <a href="javascript:;" class="text-black dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70"
+                            >BuTutup Rekening Bank DKI</a
+                        >
                     </li>
                 </ol>
-                <h2 class="text-2xl font-bold mb-[10px]">Deposito</h2>
-                <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat Daftar SKPD Deposito</p>
+                <h2 class="text-2xl font-bold mb-[10px]">Tutup Rekening</h2>
+                <p class="text-sm mb-[10px]">Menu ini digunakan untuk menutup rekening Bank DKI</p>
                 <hr class="border-t-2 border-black" />
             </div>
 
@@ -20,7 +22,7 @@
             <div class="mt-8 bg-white shadow rounded-lg p-6">
                 <!-- Search Bar and Buttons -->
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold">Daftar SKPD Buka Rekening Bank Lain</h2>
+                    <h2 class="text-xl font-semibold">Daftar SKPD Tutup Rekening Bank DKI</h2>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
@@ -31,7 +33,6 @@
                             placeholder="Nama SKPD"
                             class="input-field border-[1px] w-[400px] h-[40px] rounded-md py-2 px-4 text-sm"
                         />
-
                         <button class="bg-[#7EA5EC] text-[#054083] px-2 py-3 gap-2 w-[82px] h-[40px] mr-[271px] rounded-md flex items-center">
                             Cari
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,255.99431,255.99431">
@@ -199,9 +200,8 @@
         </div>
     </div>
 </template>
-
 <script lang="ts">
-    import Layout from '@/components/layout/Layout.vue';
+import Layout from '@/components/layout/Layout.vue';
 
     interface DataItem {
         Kode: string;
@@ -209,7 +209,7 @@
     }
     export default {
         components: {
-            Layout,
+          Layout
         },
         data() {
             return {
@@ -223,18 +223,6 @@
                     { Kode: 'P97665475', nama: 'Incididunt Ut' },
                     { Kode: 'P97665476', nama: 'Labore Et' },
                     { Kode: 'P97665477', nama: 'Dolore Magna' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
                     { Kode: 'P97665478', nama: 'Aliqua Ut' },
                     { Kode: 'P97665478', nama: 'Aliqua Ut' },
                 ] as DataItem[],
@@ -322,24 +310,6 @@
         cursor: not-allowed;
         color: #d1d5db;
     }
-    .fixed-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        background-color: rgb(249 250 251);
-        z-index: 50;
-    }
-    .fixed-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 250px;
-        background-color: #1e3a8a;
-    }
-    .content-area {
-        margin-left: 250px; /* Matches sidebar width */
-    }
+
+
 </style>

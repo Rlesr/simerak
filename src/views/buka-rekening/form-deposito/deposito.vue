@@ -1,11 +1,8 @@
 <template>
-    <Header class="fixed-header border-1" />
-    <div class="flex">
-        <!-- Sidebar Component -->
-        <Sidebar class="fixed-sidebar" />
-
-        <!-- Main Content -->
-        <div class="content-area p-8 py-16 bg-gray-50 min-h-screen w-full ml-[250px]">
+    <Layout />
+    <div class="min-h-screen flex flex-auto">
+        <!-- Gunakan ml-64 untuk desktop, ml-0 untuk mobile -->
+        <div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">
             <!-- Header and Breadcrumb -->
             <div class="px-6 py-4 flex-shrink-0">
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
@@ -157,13 +154,11 @@
 <script>
     import { ref, onMounted } from 'vue';
     import flatpickr from 'flatpickr';
-    import Sidebar from '@/components/layout/Sidebar.vue';
-    import Header from '@/components/layout/Header.vue';
+import Layout from '@/components/layout/Layout.vue';
 
     export default {
         components: {
-            Sidebar,
-            Header,
+           Layout
         },
         setup() {
             const tanggalDeposito = ref(null);
@@ -214,24 +209,5 @@
 </script>
 
 <style scoped>
-    .fixed-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        background-color: rgb(249 250 251);
-        z-index: 50;
-    }
-    .fixed-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 250px; /* Adjust width as needed */
-        background-color: #1e3a8a; /* Adjust color as needed */
-    }
-    .content-area {
-        margin-left: 250px; /* Matches sidebar width */
-    }
+    
 </style>
