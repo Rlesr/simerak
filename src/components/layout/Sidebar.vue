@@ -248,7 +248,7 @@
                 </li>
             </ul>
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <a href="/home/tutup/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                     <span class="mr-2">
                         <!-- Pengusulan Icon -->
                         <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">

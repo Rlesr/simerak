@@ -16,13 +16,12 @@
                         <a href="#" class="text-black dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70">List</a>
                     </li>
                 </ol>
-                <h2 class="text-2xl font-bold mb-[10px]">Buka Rekening</h2>
-                <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat daftar pembukaan rekening Bank lain</p>
+                <h2 class="text-2xl font-bold mb-[10px]">Tutup Rekening</h2>
+                <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat daftar menutup rekening </p>
                 <hr class="border-t-2 border-black" />
 
                 <!-- Info Skpd Bank Lain -->
                 <div class="bg-white p-6 rounded-md shadow-md mx-auto">
-                    <h3 class="text-2xl font-bold mb-4">Daftar Pembukaan Rekening</h3>
                     <div class="space-y-4">
                         <div class="flex flex-col sm:flex-row sm:items-center sm:gap-x-4">
                             <label for="kode-skpd" class="text-sm font-medium text-gray-700 sm:w-[200px] mb-2 sm:mb-0">Kode SKPD</label>

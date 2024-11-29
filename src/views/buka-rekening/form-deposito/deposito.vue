@@ -1,7 +1,7 @@
 <template>
     <Layout />
     <div class="min-h-screen flex flex-auto">
-        <!-- Gunakan ml-64 untuk desktop, ml-0 untuk mobile -->
+            <!-- Gunakan ml-64 untuk desktop, ml-0 untuk mobile -->
         <div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">
             <!-- Header and Breadcrumb -->
             <div class="px-6 py-4 flex-shrink-0">
@@ -17,7 +17,7 @@
                 <h2 class="text-2xl font-bold mb-[10px]">Deposito</h2>
                 <p class="text-sm mb-[10px]"></p>
                 <hr class="border-t-2 border-black" />
-            </div>
+            </div>  
 
             <!-- Form Section -->
             <div class="mt-8 bg-white shadow rounded-lg p-6">
@@ -209,5 +209,5 @@ import Layout from '@/components/layout/Layout.vue';
 </script>
 
 <style scoped>
-    
+
 </style>

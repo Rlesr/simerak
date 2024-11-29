@@ -16,6 +16,7 @@ import listDeposito from '@/views/buka-rekening/deposito/list-deposito.vue';
 import formDeposito from '@/views/buka-rekening/form-deposito/deposito.vue';
 import tutupRekeningBankOpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-bank-opd.vue';
 import tutupRekeningSkpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-skpd.vue';
+import formTutupRekeningDKI from '@/views/tutup-rekening/tutup-bankDKi/form/tutup-rekening.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -104,6 +105,11 @@ const router = createRouter({
         path: '/home/tutup/list',
         name: 'tutupRekeningSkpd',
         component: tutupRekeningSkpd,
+    },
+    {
+        path: '/home/tutup/add/0',
+        name: 'formTutupRekeningDKI',
+        component: formTutupRekeningDKI,
     },
 
   ],
