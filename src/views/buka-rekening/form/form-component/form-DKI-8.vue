@@ -84,7 +84,8 @@ import { defineComponent, reactive, ref, watch } from "vue";
 
 export default defineComponent({
   name: "FormPembukaanRekening",
-  setup() {
+  emits: ["completion-change"], // Emit untuk perubahan status kelengkapan
+  setup(_, { emit }) {
     const formData = reactive({
       produk: "",
       valuta: "",
@@ -100,6 +101,9 @@ export default defineComponent({
         !!formData.valuta &&
         !!formData.tujuanRekening &&
         !!formData.tujuanDana;
+
+      // Emit perubahan kelengkapan
+      emit("completion-change", isComplete.value);
     };
 
     // Watcher untuk memeriksa perubahan di formData
@@ -112,6 +116,7 @@ export default defineComponent({
   },
 });
 </script>
+
 
 <style scoped>
 /* Tambahkan style tambahan di sini jika diperlukan */

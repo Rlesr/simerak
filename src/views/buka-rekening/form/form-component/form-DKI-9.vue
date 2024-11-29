@@ -74,7 +74,8 @@ import { defineComponent, reactive, ref, watch } from "vue";
 
 export default defineComponent({
   name: "FormGiroDeposito",
-  setup() {
+  emits: ["completion-change"], // Deklarasi emits
+  setup(_, { emit }) {
     const formData = reactive({
       tujuanRekening: "",
       tujuanDanaGiro: "",
@@ -85,10 +86,16 @@ export default defineComponent({
     const isComplete = ref(false);
 
     const checkCompletion = () => {
+      const previousStatus = isComplete.value;
       isComplete.value =
         !!formData.tujuanRekening &&
         !!formData.tujuanDanaGiro &&
         !!formData.alamatRekeningKoran;
+
+      // Emit event jika status kelengkapan berubah
+      if (previousStatus !== isComplete.value) {
+        emit("completion-change", isComplete.value);
+      }
     };
 
     // Watcher untuk memantau perubahan di formData

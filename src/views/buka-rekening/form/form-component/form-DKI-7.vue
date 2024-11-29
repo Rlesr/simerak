@@ -86,37 +86,42 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, reactive, ref, watch } from 'vue';
+import { defineComponent, reactive, ref, watch } from 'vue';
 
-    export default defineComponent({
-        name: 'FormComponent',
-        setup() {
-            const formData = reactive({
-                nominalSetoranTertinggi: '',
-                jumlahSetoran: '',
-                nominalTarikanTertinggi: '',
-                jumlahTarikan: '',
-            });
+export default defineComponent({
+    name: 'FormComponent',
+    emits: ['completion-change'], // Emit untuk perubahan status kelengkapan
+    setup(_, { emit }) {
+        const formData = reactive({
+            nominalSetoranTertinggi: '',
+            jumlahSetoran: '',
+            nominalTarikanTertinggi: '',
+            jumlahTarikan: '',
+        });
 
-            const isComplete = ref(false);
+        const isComplete = ref(false);
 
-            const checkCompletion = () => {
-                isComplete.value =
-                    !!formData.nominalSetoranTertinggi && // `!!` memastikan nilainya boolean
-                    !!formData.jumlahSetoran &&
-                    !!formData.nominalTarikanTertinggi &&
-                    !!formData.jumlahTarikan;
-            };
+        const checkCompletion = () => {
+            isComplete.value =
+                !!formData.nominalSetoranTertinggi &&
+                !!formData.jumlahSetoran &&
+                !!formData.nominalTarikanTertinggi &&
+                !!formData.jumlahTarikan;
 
-            // Watch for changes in formData and check completion
-            watch(() => formData, checkCompletion, { deep: true });
+            // Emit perubahan kelengkapan
+            emit('completion-change', isComplete.value);
+        };
 
-            return {
-                formData,
-                isComplete,
-            };
-        },
-    });
+        // Watch for changes in formData and check completion
+        watch(() => formData, checkCompletion, { deep: true });
+
+        return {
+            formData,
+            isComplete,
+        };
+    },
+});
 </script>
+
 
 <style scoped></style>

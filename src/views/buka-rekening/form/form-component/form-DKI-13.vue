@@ -124,7 +124,7 @@
             type="text"
             v-model="formData.noHp"
             class="border rounded p-2 w-full focus:outline-none focus:ring focus:ring-blue-200"
-            placeholder="No. HP"
+            placeholder=""
           />
         </div>
         <div class="mb-4">
@@ -134,103 +134,143 @@
             type="email"
             v-model="formData.email"
             class="border rounded p-2 w-full focus:outline-none focus:ring focus:ring-blue-200"
-            placeholder="Email"
+            placeholder=""
           />
         </div>
+      </div>
+  
+      <!-- Status Kelengkapan -->
+      <div class="text-center mt-4">
+        <span :class="isComplete ? 'text-green-500' : 'text-red-500'" class="font-semibold">
+          {{ isComplete ? 'Semua data telah terisi.' : 'Harap lengkapi data yang diperlukan.' }}
+        </span>
       </div>
     </div>
   </template>
   
   <script lang="ts">
-  import { defineComponent, ref } from "vue";
-  
-  interface Option {
-    id: string | number;
-    name: string;
-  }
-  
-  export default defineComponent({
-    setup() {
-      const provinsiList = ref<Option[]>([
-        { id: "1", name: "SUMATERA UTARA" },
-        { id: "2", name: "JAWA BARAT" },
-      ]);
-      const kotaList = ref<Option[]>([]);
-      const kecamatanList = ref<Option[]>([]);
-      const kelurahanList = ref<Option[]>([]);
-  
-      const formData = ref({
-        alamatType: "current",
-        rt: "",
-        rw: "",
-        provinsi: "",
-        kota: "",
-        kecamatan: "",
-        kelurahan: "",
-        kodePos: "",
-        noHp: "",
-        email: "",
-      });
-  
-      const fetchKota = () => {
-        formData.value.kota = "";
-        formData.value.kecamatan = "";
-        formData.value.kelurahan = "";
+import { defineComponent, ref, reactive, watch } from "vue";
+
+interface Option {
+  id: string | number;
+  name: string;
+}
+
+export default defineComponent({
+  name: "FormAlamat",
+  emits: ["completion-change"], // Emit untuk perubahan status kelengkapan form
+  setup(_, { emit }) {
+    const provinsiList = ref<Option[]>([
+      { id: "1", name: "SUMATERA UTARA" },
+      { id: "2", name: "JAWA BARAT" },
+    ]);
+    const kotaList = ref<Option[]>([]);
+    const kecamatanList = ref<Option[]>([]);
+    const kelurahanList = ref<Option[]>([]);
+
+    const formData = reactive({
+      alamatType: "current",
+      rt: "",
+      rw: "",
+      provinsi: "",
+      kota: "",
+      kecamatan: "",
+      kelurahan: "",
+      kodePos: "",
+      noHp: "",
+      email: "",
+    });
+
+    const isComplete = ref(false);
+
+    // Fungsi untuk memeriksa kelengkapan form
+    const checkCompletion = () => {
+      if (formData.alamatType === "copy") {
+        isComplete.value = true; // Tidak perlu validasi lebih lanjut untuk "copy"
+      } else {
+        isComplete.value =
+          !!formData.rt &&
+          !!formData.rw &&
+          !!formData.provinsi &&
+          !!formData.kota &&
+          !!formData.kecamatan &&
+          !!formData.kelurahan &&
+          !!formData.kodePos &&
+          !!formData.noHp &&
+          !!formData.email;
+      }
+
+      // Emit perubahan status kelengkapan form
+      emit("completion-change", isComplete.value);
+    };
+
+    // Watcher untuk memantau perubahan pada formData
+    watch(formData, checkCompletion, { deep: true });
+
+    // Fungsi untuk mengambil data kota berdasarkan provinsi
+    const fetchKota = () => {
+      formData.kota = "";
+      formData.kecamatan = "";
+      formData.kelurahan = "";
+      kecamatanList.value = [];
+      kelurahanList.value = [];
+
+      if (formData.provinsi === "1") {
+        kotaList.value = [
+          { id: "101", name: "KABUPATEN MANDAILING NATAL" },
+          { id: "102", name: "KOTA MEDAN" },
+        ];
+      } else if (formData.provinsi === "2") {
+        kotaList.value = [
+          { id: "201", name: "KOTA BANDUNG" },
+          { id: "202", name: "KOTA BEKASI" },
+        ];
+      } else {
+        kotaList.value = [];
+      }
+    };
+
+    // Fungsi untuk mengambil data kecamatan berdasarkan kota
+    const fetchKecamatan = () => {
+      formData.kecamatan = "";
+      formData.kelurahan = "";
+      kelurahanList.value = [];
+
+      if (formData.kota === "101") {
+        kecamatanList.value = [{ id: "10101", name: "TAMBANGAN" }];
+      } else if (formData.kota === "102") {
+        kecamatanList.value = [{ id: "10201", name: "MEDAN SELATAN" }];
+      } else {
         kecamatanList.value = [];
+      }
+    };
+
+    // Fungsi untuk mengambil data kelurahan berdasarkan kecamatan
+    const fetchKelurahan = () => {
+      formData.kelurahan = "";
+
+      if (formData.kecamatan === "10101") {
+        kelurahanList.value = [{ id: "1010101", name: "DESA TAMBANGAN" }];
+      } else {
         kelurahanList.value = [];
-  
-        if (formData.value.provinsi === "1") {
-          kotaList.value = [
-            { id: "101", name: "KABUPATEN MANDAILING NATAL" },
-            { id: "102", name: "KOTA MEDAN" },
-          ];
-        } else if (formData.value.provinsi === "2") {
-          kotaList.value = [
-            { id: "201", name: "KOTA BANDUNG" },
-            { id: "202", name: "KOTA BEKASI" },
-          ];
-        } else {
-          kotaList.value = [];
-        }
-      };
-  
-      const fetchKecamatan = () => {
-        formData.value.kecamatan = "";
-        formData.value.kelurahan = "";
-        kelurahanList.value = [];
-  
-        if (formData.value.kota === "101") {
-          kecamatanList.value = [{ id: "10101", name: "TAMBANGAN" }];
-        } else if (formData.value.kota === "102") {
-          kecamatanList.value = [{ id: "10201", name: "MEDAN SELATAN" }];
-        } else {
-          kecamatanList.value = [];
-        }
-      };
-  
-      const fetchKelurahan = () => {
-        formData.value.kelurahan = "";
-  
-        if (formData.value.kecamatan === "10101") {
-          kelurahanList.value = [{ id: "1010101", name: "DESA TAMBANGAN" }];
-        } else {
-          kelurahanList.value = [];
-        }
-      };
-  
-      return {
-        formData,
-        provinsiList,
-        kotaList,
-        kecamatanList,
-        kelurahanList,
-        fetchKota,
-        fetchKecamatan,
-        fetchKelurahan,
-      };
-    },
-  });
-  </script>
+      }
+    };
+
+    return {
+      formData,
+      provinsiList,
+      kotaList,
+      kecamatanList,
+      kelurahanList,
+      fetchKota,
+      fetchKecamatan,
+      fetchKelurahan,
+      isComplete,
+    };
+  },
+});
+</script>
+
   
   <style scoped>
   /* Styling tambahan */

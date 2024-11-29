@@ -42,6 +42,7 @@
       id="agree"
       type="checkbox"
       v-model="formData.isAgreed"
+      @change="emitAgreementChange"
       class="w-[20px] h-[20px] mt-[3px] text-blue-600 border-gray-300 rounded focus:ring-blue-500"
     />
     <label for="agree" class="ml-2 font-medium">
@@ -62,13 +63,19 @@ import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "PernyataanNasabah",
-  setup() {
+  emits: ["completion-change"], // Deklarasi emits
+  setup(_, { emit }) {
     const formData = reactive({
       isAgreed: false, // Checkbox untuk persetujuan
     });
 
+    const emitAgreementChange = () => {
+      emit("completion-change", formData.isAgreed); // Emit event dengan nilai persetujuan
+    };
+
     return {
       formData,
+      emitAgreementChange,
     };
   },
 });

@@ -16,7 +16,7 @@
 
       <!-- Nama Alias -->
       <div class="flex flex-col">
-        <label for="nama-alias" class="font-medium">Nama Alias</label>
+        <label for="nama-alias" class="font-medium">Nama Alias <span class="text-red-500">*</span></label>
         <input
           id="nama-alias"
           type="text"
@@ -28,7 +28,7 @@
       <!-- Nama Yang Diwakili -->
       <div class="flex flex-col">
         <label for="nama-yang-diwakili" class="font-medium">
-          Nama Yang Diwakili (apabila ada)
+          Nama Yang Diwakili (apabila ada) <span class="text-red-500">*</span>
         </label>
         <input
           id="nama-yang-diwakili"
@@ -38,15 +38,23 @@
         />
       </div>
     </div>
+
+    <!-- Status Kelengkapan -->
+    <div class="text-center mt-4">
+      <span :class="isComplete ? 'text-green-500' : 'text-red-500'" class="font-semibold">
+        {{ isComplete ? 'Form lengkap.' : 'Harap lengkapi semua kolom.' }}
+      </span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref, watch } from "vue";
 
 export default defineComponent({
   name: "FormNasabah",
-  setup() {
+  emits: ["completion-change"], // Emit untuk status kelengkapan form
+  setup(_, { emit }) {
     // Data untuk form
     const formData = reactive({
       namaLengkap: "",
@@ -54,8 +62,21 @@ export default defineComponent({
       namaYangDiwakili: "",
     });
 
+    // Ref untuk status kelengkapan form
+    const isComplete = ref(false);
+
+    // Fungsi untuk mengecek kelengkapan form
+    const checkCompletion = () => {
+      isComplete.value = Object.values(formData).every((value) => value.trim() !== ""); // Semua kolom harus terisi
+      emit("completion-change", isComplete.value); // Emit status kelengkapan
+    };
+
+    // Watcher untuk memantau perubahan formData
+    watch(formData, checkCompletion, { deep: true });
+
     return {
       formData,
+      isComplete,
     };
   },
 });

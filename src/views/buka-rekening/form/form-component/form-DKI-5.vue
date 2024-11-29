@@ -38,10 +38,7 @@
             </div>
             <div>
                 <label class="block font-medium">Status Badan Usaha</label>
-                <select
-                    v-model="form.statusBadanUsaha"
-                    id="StatusBadanUsaha"
-                    class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200">
+                <select v-model="form.statusBadanUsaha" class="w-full border rounded px-3 py-2">
                     <option value="" disabled>Pilih Status Badan Usaha</option>
                     <option value="PT">PT</option>
                     <option value="CV">CV</option>
@@ -66,28 +63,57 @@
         <div class="mt-4 space-y-4">
             <div>
                 <label class="block font-medium">Provinsi</label>
-                <select v-model="form.provinsi" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" @change="loadKota">
+                <select
+                    v-model="form.provinsi"
+                    class="w-full border rounded px-3 py-2"
+                    @change="
+                        () => {
+                            loadKota();
+                            resetDependentFields('provinsi');
+                        }
+                    "
+                >
                     <option value="" disabled>Pilih Provinsi</option>
                     <option v-for="prov in provinsi" :key="prov.id" :value="prov.id">{{ prov.nama }}</option>
                 </select>
             </div>
             <div>
                 <label class="block font-medium">Kota/Kabupaten</label>
-                <select v-model="form.kota" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" :disabled="!form.provinsi" @change="loadKecamatan">
+                <select
+                    v-model="form.kota"
+                    class="w-full border rounded px-3 py-2"
+                    :disabled="!form.provinsi"
+                    @change="
+                        () => {
+                            loadKecamatan();
+                            resetDependentFields('kota');
+                        }
+                    "
+                >
                     <option value="" disabled>Pilih Kota/Kabupaten</option>
                     <option v-for="kotaItem in kota" :key="kotaItem.id" :value="kotaItem.id">{{ kotaItem.nama }}</option>
                 </select>
             </div>
             <div>
                 <label class="block font-medium">Kecamatan</label>
-                <select v-model="form.kecamatan" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" :disabled="!form.kota" @change="loadKelurahan">
+                <select
+                    v-model="form.kecamatan"
+                    class="w-full border rounded px-3 py-2"
+                    :disabled="!form.kota"
+                    @change="
+                        () => {
+                            loadKelurahan();
+                            resetDependentFields('kecamatan');
+                        }
+                    "
+                >
                     <option value="" disabled>Pilih Kecamatan</option>
                     <option v-for="kec in kecamatan" :key="kec.id" :value="kec.id">{{ kec.nama }}</option>
                 </select>
             </div>
             <div>
                 <label class="block font-medium">Kelurahan</label>
-                <select v-model="form.kelurahan" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" :disabled="!form.kecamatan">
+                <select v-model="form.kelurahan" class="w-full border rounded px-3 py-2" :disabled="!form.kecamatan">
                     <option value="" disabled>Pilih Kelurahan</option>
                     <option v-for="kel in kelurahan" :key="kel.id" :value="kel.id">{{ kel.nama }}</option>
                 </select>
@@ -98,8 +124,8 @@
         <div class="mt-4">
             <label class="font-semibold">RT/RW <span class="text-red-500">*</span></label>
             <div class="flex space-x-2">
-                <input v-model="rt" type="text" class="border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200 w-1/2" />
-                <input v-model="rw" type="text" class=" border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200 w-1/2" />
+                <input v-model="rt" type="text" class="w-1/2 border rounded px-3 py-2 form-input" />
+                <input v-model="rw" type="text" class="w-1/2 border rounded px-3 py-2 form-input" />
             </div>
         </div>
 
@@ -115,15 +141,20 @@
 <script lang="ts">
     import { defineComponent, reactive, ref, watch } from 'vue';
 
-    interface DropdownItem {
-        id: string;
-        nama: string;
-    }
-
     export default defineComponent({
         name: 'DynamicForm',
-        setup() {
-            const form = reactive({
+        emits: ['completion-change'],
+        setup(_, { emit }) {
+            const form = reactive<{
+                namaSekolah: string;
+                statusBadanUsaha: string;
+                sektorUsaha: string;
+                alamat: string;
+                provinsi: string;
+                kota: string;
+                kecamatan: string;
+                kelurahan: string;
+            }>({
                 namaSekolah: '',
                 statusBadanUsaha: '',
                 sektorUsaha: '',
@@ -134,55 +165,80 @@
                 kelurahan: '',
             });
 
-            const provinsi: DropdownItem[] = [
-                { id: 'aceh', nama: 'Aceh' },
-                { id: 'bali', nama: 'Bali' },
-            ];
-
-            const kota: DropdownItem[] = reactive([]);
-            const kecamatan: DropdownItem[] = reactive([]);
-            const kelurahan: DropdownItem[] = reactive([]);
-
-            const loadKota = () => {
-                kota.splice(0, kota.length);
-                if (form.provinsi === 'aceh') kota.push({ id: 'kab-aceh-tengah', nama: 'Kabupaten Aceh Tengah' });
-                if (form.provinsi === 'bali') kota.push({ id: 'denpasar', nama: 'Denpasar' });
-            };
-
-            const loadKecamatan = () => {
-                kecamatan.splice(0, kecamatan.length);
-                if (form.kota === 'kab-aceh-tengah') kecamatan.push({ id: 'kebayakan', nama: 'Kebayakan' });
-            };
-
-            const loadKelurahan = () => {
-                kelurahan.splice(0, kelurahan.length);
-                if (form.kecamatan === 'kebayakan') kelurahan.push({ id: 'bukit-sama', nama: 'Bukit Sama' });
-            };
-
-            const customerType = ref('');
+            interface DropdownItem {
+                id: string;
+                nama: string;
+            }
+            const customerType = ref(''); // Properti untuk validasi
             const actingFor = ref('');
             const rt = ref('');
             const rw = ref('');
             const isComplete = ref(false);
 
-            const checkCompletion = () => {
-                isComplete.value =
-                    form.namaSekolah.trim() !== '' &&
-                    form.statusBadanUsaha.trim() !== '' &&
-                    form.sektorUsaha.trim() !== '' &&
-                    form.alamat.trim() !== '' &&
-                    form.provinsi !== '' &&
-                    form.kota !== '' &&
-                    form.kecamatan !== '' &&
-                    form.kelurahan !== '' &&
-                    rt.value.trim() !== '' &&
-                    rw.value.trim() !== '';
+            // Dropdown Dinamis
+            const provinsi = ref([
+                { id: 'aceh', nama: 'Aceh' },
+                { id: 'bali', nama: 'Bali' },
+            ]);
+            const kota = ref<DropdownItem[]>([]);
+            const kecamatan = ref<DropdownItem[]>([]);
+            const kelurahan = ref<DropdownItem[]>([]);
+
+            const loadKota = () => {
+                kota.value =
+                    form.provinsi === 'aceh'
+                        ? [{ id: 'kab-aceh-tengah', nama: 'Kabupaten Aceh Tengah' }]
+                        : form.provinsi === 'bali'
+                        ? [{ id: 'denpasar', nama: 'Denpasar' }]
+                        : [];
             };
 
-            watch(() => [form, rt.value, rw.value], checkCompletion, { deep: true });
+            const loadKecamatan = () => {
+                kecamatan.value = form.kota === 'kab-aceh-tengah' ? [{ id: 'kebayakan', nama: 'Kebayakan' }] : []; // Pastikan selalu array
+            };
+
+            const loadKelurahan = () => {
+                kelurahan.value = form.kecamatan === 'kebayakan' ? [{ id: 'bukit-sama', nama: 'Bukit Sama' }] : []; // Pastikan selalu array
+            };
+
+            const resetDependentFields = (field: string) => {
+                if (field === 'provinsi') {
+                    form.kota = '';
+                    form.kecamatan = '';
+                    form.kelurahan = '';
+                } else if (field === 'kota') {
+                    form.kecamatan = '';
+                    form.kelurahan = '';
+                } else if (field === 'kecamatan') {
+                    form.kelurahan = '';
+                }
+            };
+
+            const requiredFields = ['namaSekolah', 'statusBadanUsaha', 'sektorUsaha', 'alamat', 'provinsi', 'kota', 'kecamatan', 'kelurahan'];
+
+            const checkCompletion = () => {
+                isComplete.value =
+                    requiredFields.every((field) => form[field].trim() !== '') &&
+                    customerType.value.trim() !== '' &&
+                    actingFor.value.trim() !== '' &&
+                    rt.value.trim() !== '' &&
+                    rw.value.trim() !== '';
+                emit('completion-change', isComplete.value);
+            };
+
+            watch(() => form, checkCompletion, { deep: true });
+            watch(rt, checkCompletion);
+            watch(rw, checkCompletion);
+            watch(customerType, checkCompletion);
+            watch(actingFor, checkCompletion);
 
             return {
                 form,
+                customerType,
+                actingFor,
+                rt,
+                rw,
+                isComplete,
                 provinsi,
                 kota,
                 kecamatan,
@@ -190,18 +246,8 @@
                 loadKota,
                 loadKecamatan,
                 loadKelurahan,
-                customerType,
-                actingFor,
-                rt,
-                rw,
-                isComplete,
+                resetDependentFields,
             };
         },
     });
 </script>
-
-<style scoped>
-    .form-radio {
-        @apply border-gray-300 text-blue-500 focus:ring focus:ring-blue-200;
-    }
-</style>

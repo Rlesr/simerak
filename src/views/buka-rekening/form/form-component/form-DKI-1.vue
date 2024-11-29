@@ -113,88 +113,70 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            kodeSekolahProp: {
-                type: String,
-                required: true,
-            },
-            namaSekolahProp: {
-                type: String,
-                required: true,
-            },
-            onCompletionChange: {
-                type: Function,
-                required: false,
-            },
+export default {
+    props: {
+        kodeSekolahProp: {
+            type: String,
+            required: true,
         },
-        data() {
-            return {
-                jenisRekening: '',
-                jenisKategori: '',
-                selectedCabang: '',
-                namaRekening: 'P9998376PKBM PERGURUAN ADVENT',
-                nomorRekening: '',
-                tujuanPembuatanRekening: '',
-                cabangList: [
-                    { kode: '1', nama: 'Cabang 1', kodeCabang: 'CAB1' },
-                    { kode: '2', nama: 'Cabang 2', kodeCabang: 'CAB2' },
-                    { kode: '3', nama: 'Cabang 3', kodeCabang: 'CAB3' },
-                    { kode: '4', nama: 'Cabang 4', kodeCabang: 'CAB4' },
-                    { kode: '5', nama: 'Cabang 5', kodeCabang: 'CAB5' },
-                ],
-                isComplete: false, // Status kelengkapan formulir
-            };
+        namaSekolahProp: {
+            type: String,
+            required: true,
         },
-        computed: {
-            kodeSekolah() {
-                return this.kodeSekolahProp;
-            },
-            namaSekolah() {
-                return this.namaSekolahProp;
-            },
+    },
+    emits: ['completion-change'], // Menambahkan deklarasi event
+    data() {
+        return {
+            jenisRekening: '',
+            jenisKategori: '',
+            selectedCabang: '',
+            namaRekening: 'P9998376PKBM PERGURUAN ADVENT',
+            nomorRekening: '',
+            tujuanPembuatanRekening: '',
+            cabangList: [
+                { kode: '1', nama: 'Cabang 1', kodeCabang: 'CAB1' },
+                { kode: '2', nama: 'Cabang 2', kodeCabang: 'CAB2' },
+                { kode: '3', nama: 'Cabang 3', kodeCabang: 'CAB3' },
+                { kode: '4', nama: 'Cabang 4', kodeCabang: 'CAB4' },
+                { kode: '5', nama: 'Cabang 5', kodeCabang: 'CAB5' },
+            ],
+            isComplete: false, // Status kelengkapan formulir
+        };
+    },
+    computed: {
+        kodeSekolah() {
+            return this.kodeSekolahProp;
         },
-        watch: {
-            // Pantau perubahan pada beberapa bidang formulir
-            jenisRekening: 'checkCompletion',
-            jenisKategori: 'checkCompletion',
-            selectedCabang: 'checkCompletion',
-            namaRekening: 'checkCompletion',
-            tujuanPembuatanRekening: 'checkCompletion',
+        namaSekolah() {
+            return this.namaSekolahProp;
         },
-        methods: {
-            onJenisRekeningChange() {
-                if (this.jenisRekening === '') {
-                    this.jenisKategori = '';
-                }
-            },
-            validateRekening() {
-                if (this.nomorRekening.length > 8) {
-                    this.nomorRekening = this.nomorRekening.slice(0, 8);
-                }
-            },
-            updateNomorRekening() {
-                const selected = this.cabangList.find((cabang) => cabang.kode === this.selectedCabang);
-                if (selected) {
-                    this.nomorRekening = `${selected.kodeCabang}001`;
-                } else {
-                    this.nomorRekening = '';
-                }
-            },
-            checkCompletion() {
-                // Periksa apakah semua bidang yang diperlukan sudah terisi
-                const isComplete = this.jenisRekening && this.jenisKategori && this.selectedCabang && this.namaRekening && this.tujuanPembuatanRekening;
-
-                this.isComplete = !!isComplete;
-
-                // Debugging: Periksa status kelengkapan
-                console.log('Form complete:', this.isComplete);
-
-                // Panggil fungsi prop jika disediakan
-                if (this.onCompletionChange) {
-                    this.onCompletionChange(this.isComplete);
-                }
-            },
+    },
+    watch: {
+        jenisRekening: 'checkCompletion',
+        jenisKategori: 'checkCompletion',
+        selectedCabang: 'checkCompletion',
+        namaRekening: 'checkCompletion',
+        tujuanPembuatanRekening: 'checkCompletion',
+    },
+    methods: {
+        onJenisRekeningChange() {
+            if (this.jenisRekening === '') {
+                this.jenisKategori = '';
+            }
         },
-    };
+        updateNomorRekening() {
+            const selected = this.cabangList.find((cabang) => cabang.kode === this.selectedCabang);
+            if (selected) {
+                this.nomorRekening = `${selected.kodeCabang}001`;
+            } else {
+                this.nomorRekening = '';
+            }
+        },
+        checkCompletion() {
+            const isComplete = this.jenisRekening && this.jenisKategori && this.selectedCabang && this.namaRekening && this.tujuanPembuatanRekening;
+            this.isComplete = !!isComplete;
+            this.$emit('completion-change', this.isComplete); // Emit event
+        },
+    },
+};
 </script>

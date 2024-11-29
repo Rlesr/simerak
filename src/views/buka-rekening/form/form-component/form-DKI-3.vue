@@ -99,10 +99,11 @@
 </template>
 
 <script lang="ts">
-import { reactive, computed, watch } from 'vue';
+import { reactive, computed, watch, defineComponent } from 'vue';
 
-export default {
-    setup() {
+export default defineComponent({
+    emits: ['completion-change'], // Deklarasi emits
+    setup(_, { emit }) {
         const files = reactive<{ [key: string]: string | null }>({
             KTPB: null,
             SKB: null,
@@ -123,22 +124,15 @@ export default {
             }
         };
 
-        const isAllFilesComplete = computed(() =>
-            Object.values(files).every(file => file !== null)
-        );
+        const isAllFilesComplete = computed(() => {
+            const status = Object.values(files).every(file => file !== null);
+            emit('completion-change', status); // Memancarkan event setiap kali status berubah
+            return status;
+        });
 
-        const onCompletionChange = (isComplete: boolean) => {
-            if (isComplete) {
-                console.log('Semua dokumen telah diunggah.');
-                alert('Semua dokumen lengkap!');
-            } else {
-                console.log('Masih ada dokumen yang belum diunggah.');
-            }
-        };
-
-        // Watcher untuk memantau perubahan status kelengkapan
+        // Watcher untuk memantau status kelengkapan dan memancarkan event
         watch(isAllFilesComplete, (newValue) => {
-            onCompletionChange(newValue);
+            console.log(newValue ? 'Semua dokumen telah diunggah.' : 'Masih ada dokumen yang belum diunggah.');
         });
 
         return {
@@ -147,6 +141,7 @@ export default {
             isAllFilesComplete,
         };
     },
-};
+});
 </script>
+
 

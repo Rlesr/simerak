@@ -8,7 +8,7 @@
                 <select
                     id="sumber-dana"
                     v-model="selectedSource"
-                    class="block w-full pl-3 pr-10 py-2 border border-gray-30 rounded-md form-input"
+                    class="block w-full pl-3 pr-10 py-2  border-gray-30  border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200;"
                 >
                     <option value="" class="text" disabled>Pilih Sumber Dana</option>
                     <option v-for="option in fundingSources" :key="option.value" :value="option.value">
@@ -26,7 +26,7 @@
                 <select
                     id="total-pendapatan"
                     v-model="selectedIncome"
-                    class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 rounded-md form-input"
+                    class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200;"
                 >
                     <option value="" disabled>Pilih Total Pendapatan/Tahun</option>
                     <option v-for="option in annualIncome" :key="option.value" :value="option.value">
@@ -85,13 +85,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, computed, watch, onMounted } from 'vue';
+import { defineComponent, ref, reactive, watch, onMounted } from 'vue';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 export default defineComponent({
     name: 'DropdownExample',
-    setup() {
+    emits: ['completion-change'], // Emit untuk perubahan status kelengkapan
+    setup(_, { emit }) {
         const fundingSources = [
             { value: 'hasil usaha', label: 'Hasil usaha' },
             { value: 'lainnya', label: 'Lainnya' },
@@ -120,7 +121,7 @@ export default defineComponent({
 
         const isComplete = ref(false);
 
-        const onCompleteChange = () => {
+        const checkCompletion = () => {
             isComplete.value =
                 selectedSource.value.trim() !== '' &&
                 selectedIncome.value.trim() !== '' &&
@@ -131,12 +132,25 @@ export default defineComponent({
                 form.NoSK.trim() !== '' &&
                 form.TanggalSK.trim() !== '' &&
                 form.Tempat.trim() !== '';
+
+            // Emit perubahan kelengkapan
+            emit('completion-change', isComplete.value);
         };
 
-        // Watchers to trigger onCompleteChange
+        // Watchers untuk memantau perubahan
         watch(
-            [selectedSource, selectedIncome, () => form],
-            onCompleteChange,
+            [
+                selectedSource,
+                selectedIncome,
+                () => form.namaKepala,
+                () => form.NIK,
+                () => form.Jabatan,
+                () => form.NoHP,
+                () => form.NoSK,
+                () => form.TanggalSK,
+                () => form.Tempat,
+            ],
+            checkCompletion,
             { deep: true }
         );
 
@@ -145,7 +159,7 @@ export default defineComponent({
                 flatpickr(flatpickrTanggalSK.value, {
                     onChange: (selectedDates) => {
                         form.TanggalSK = selectedDates[0]?.toISOString() || '';
-                        onCompleteChange();
+                        checkCompletion();
                     },
                 });
             }
@@ -164,8 +178,7 @@ export default defineComponent({
 });
 </script>
 
+
 <style scoped>
-    .form-input {
-        @apply border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200;
-    }
+
 </style>
