@@ -14,7 +14,7 @@
                     </li>
                 </ol>
                 <h2 class="text-2xl font-bold mb-[10px]">Pengusulan</h2>
-                    <p class="text-sm mb-[10px]">Menu ini digunakan untuk pengusulan Pelaksana</p>
+                    <p class="text-sm mb-[10px]">Menu ini digunakan untuk pengusulan Kepala</p>
                 <hr class="border-t-2 border-black" />
             </div>
 
@@ -22,7 +22,7 @@
             <div class="mt-8 bg-white shadow rounded-lg p-6">
                 <!-- Search Bar and Buttons -->
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold"></h2>
+                    <h2 class="text-xl font-semibold">Daftar SKPD Kepala</h2>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">

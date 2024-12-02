@@ -17,6 +17,16 @@ import formDeposito from '@/views/buka-rekening/form-deposito/deposito.vue';
 import tutupRekeningBankOpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-bank-opd.vue';
 import tutupRekeningSkpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-skpd.vue';
 import formTutupRekeningDKI from '@/views/tutup-rekening/tutup-bankDKi/form/tutup-rekening.vue'
+import tutupBankLainBanklainOpd from '@/views/tutup-rekening/tutup-bank-lain/tutup-bank-lain-banklain-opd.vue';
+import tutupBankLainSkpd from '@/views/tutup-rekening/tutup-bank-lain/tutup-bank-lain-skpd.vue';
+import PengusulanKepala from '@/views/pengusulan/pengusulan-kepala/pengusulan-kepala-opd.vue';
+import PengusulanKepalaSkpd from '@/views/pengusulan/pengusulan-kepala/pengusulan-kepala-skpd.vue';
+import pengusulanBendahara from '@/views/pengusulan/pengusulan-bendahara/pengusulan-bendahara.vue';
+import pengusulanBendaharaSkpd from '@/views/pengusulan/pengusulan-bendahara/pengusulan-bendahara-skpd.vue';
+import pengusulanPelaksanaopd from '@/views/pengusulan/pengusulan-pelaksana/pengusulan-pelaksana.vue';
+import pengusulanPelaksanaSkpd from '@/views/pengusulan/pengusulan-pelaksana/pengusulan-pelaksana-skpd.vue';
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -110,6 +120,46 @@ const router = createRouter({
         path: '/home/tutup/add/0',
         name: 'formTutupRekeningDKI',
         component: formTutupRekeningDKI,
+    },
+    {
+        path: '/home/tutup-bank-lain/opd',
+        name: 'tutupBankLainBanklainOpd',
+        component: tutupBankLainBanklainOpd,
+    },
+    {
+        path: '/home/tutup-bank-lain/list',
+        name: 'tutupBankLainSkpd',
+        component: tutupBankLainSkpd,
+    },
+    {
+        path: '/home/pengusulan/kepala/opd',
+        name: 'PengusulanKepala',
+        component: PengusulanKepala,
+    },
+    {
+        path: '/home/pengusulan/kepala',
+        name: 'PengusulanKepalaSkpd',
+        component: PengusulanKepalaSkpd,
+    },
+    {
+        path: '/home/pengusulan/opd/bendahara',
+        name: 'pengusulanBendahara',
+        component: pengusulanBendahara,
+    },
+    {
+        path: '/home/pengusulan/bendahara/',
+        name: 'pengusulanBendaharaSkpd',
+        component: pengusulanBendaharaSkpd,
+    },
+    {
+        path: '/home/pengusulan/opd/pelaksana',
+        name: 'pengusulanPelaksanaopd',
+        component: pengusulanPelaksanaopd,
+    },
+    {
+        path: '/home//pengusulan/pelaksana',
+        name: 'pengusulanPelaksanaSkpd',
+        component: pengusulanPelaksanaSkpd,
     },
 
   ],

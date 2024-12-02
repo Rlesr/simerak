@@ -9,12 +9,12 @@
                     <li><a href="/">Home</a></li>
                     <li class="before:content-['/'] before:px-0.5">
                         <a href="javascript:;" class="text-black dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70"
-                            >Pengusulan</a
+                            >Tutup Rekening Bank Lain</a
                         >
                     </li>
                 </ol>
-                <h2 class="text-2xl font-bold mb-[10px]">Pengusulan</h2>
-                    <p class="text-sm mb-[10px]">Menu ini digunakan untuk pengusulan Pelaksana</p>
+                <h2 class="text-2xl font-bold mb-[10px]">Tutup Rekening</h2>
+                <p class="text-sm mb-[10px]">Menu ini digunakan untuk menutup rekening Bank Lain</p>
                 <hr class="border-t-2 border-black" />
             </div>
 
@@ -22,7 +22,7 @@
             <div class="mt-8 bg-white shadow rounded-lg p-6">
                 <!-- Search Bar and Buttons -->
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold"></h2>
+                    <h2 class="text-xl font-semibold">Daftar SKPD Buka Rekening Bank Lain</h2>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
