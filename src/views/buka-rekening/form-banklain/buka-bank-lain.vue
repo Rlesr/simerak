@@ -1,11 +1,8 @@
 <template>
-    <Header class="fixed-header border-1" />
-    <div class="flex">
-        <!-- Sidebar Component -->
-        <Sidebar class="fixed-sidebar" />
-
-        <!-- Main Content -->
-        <div class="content-area p-8 py-16 bg-gray-50 min-h-screen w-full ml-[250px]">
+    <Layout />
+    <div class="min-h-screen flex flex-auto">
+        <!-- Gunakan ml-64 untuk desktop, ml-0 untuk mobile -->
+        <div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">
             <!-- Header and Breadcrumb -->
             <div class="px-6 py-4 flex-shrink-0">
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
@@ -91,9 +88,17 @@
                     </div>
 
                     <!-- Unggah Permohonan -->
+
                     <div class="flex items-center">
-                        <label for="ctnFile" class="w-1/4 font-bold text-gray-800 text-sm">Unggah Permohonan</label>
-                        <input id="ctnFile" type="file" class="p-2 border border-gray-300 rounded w-3/4" required />
+                        <label for="unggahBilyet" class="w-1/4 font-bold text-gray-800 text-sm">Unggah Bilyet</label>
+                        <div class="w-3/4">
+                            <input
+                                id="unggahBilyet"
+                                type="file"
+                                class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-2 border border-gray-300 rounded w-full file:w-auto file:bg-primary/90 file:text-white file:hover:bg-primary file:rounded file:cursor-pointer"
+                                required
+                            />
+                        </div>
                     </div>
 
                     <!-- Button Actions -->
@@ -125,24 +130,5 @@
 </script>
 
 <style scoped>
-    .fixed-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        background-color: rgb(249 250 251);
-        z-index: 50;
-    }
-    .fixed-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 250px;
-        background-color: #1e3a8a;
-    }
-    .content-area {
-        margin-left: 250px; /* Matches sidebar width */
-    }
+    
 </style>

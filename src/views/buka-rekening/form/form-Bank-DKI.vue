@@ -1,11 +1,11 @@
 <template>
     <div>
         <!-- Header -->
-        <Header class="fixed-header border-1" />
+        <Navbar :isSidebarOpen="isSidebarOpen" @toggle-sidebar="toggleSidebar" />
 
         <div class="main-content">
             <!-- Sidebar -->
-            <Sidebar class="fixed-sidebar" />
+            <Sidebar :isSidebarOpen="isSidebarOpen" />
 
             <!-- Form Wizard Content -->
             <div class="form-wizard-container">
@@ -57,6 +57,7 @@
                             <!-- Tombol Dropdown -->
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(4)">
                                 Unggah Dokumen Sekolah
+                            </button>
                             </button>
 
                             <!-- Konten Dropdown -->
@@ -338,6 +339,11 @@
                 } else {
                     alert('Kolom belum terisi semua!');
                 }
+            };
+            const isSidebarOpen = ref(false);
+
+            const toggleSidebar = () => {
+                isSidebarOpen.value = !isSidebarOpen.value;
             };
 
             const closeAllDropdowns = () => {

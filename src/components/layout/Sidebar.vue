@@ -1,7 +1,18 @@
 <template>
-    <aside class="w-64 h-[100vh] bg-[#054083] text-white flex flex-col items-start p-4 overflow-y-scroll no-scrollbar "
-    @scroll="onScroll"
-    ref="scrollContainer">
+    <aside
+        :class="[
+            'h-full bg-[#054083] text-white flex flex-col items-start p-4 overflow-y-scroll no-scrollbar fixed z-40 top-0 left-0 transition-transform duration-300 ease-in-out',
+            isSidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full',
+            'md:translate-x-0 md:w-64',
+        ]"
+        ref="scrollContainer"
+    >
+        <!-- Tombol Close untuk Mobile -->
+        <button class="absolute top-4 right-4 text-white md:hidden" @click="$emit('close-sidebar')">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
 
         <!-- Logo -->
         <div class="mb-6">
@@ -56,9 +67,10 @@
             <li></li>
             <li>
                 <div
-                    class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083] cursor-pointer"
-                    @click="toggleDropdown"
-                >
+            class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+            :class="isOpen ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+            @click="toggleDropdown"
+        >
                     <span class="mr-2">
                         <!-- Buka Rekening Icon -->
                         <svg class="w-[40px] h-[20px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,16 +90,11 @@
                     </span>
                     <span>Buka Rekening</span>
                     <span :class="{ 'rotate-180': isOpen }" class="ml-auto transition-transform">
-                        <!-- Panah dropdown -->
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path
-                                    d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
-                                    fill="currentColor"
-                                ></path>
-                            </g>
+                            <path
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
                         </svg>
                     </span>
                 </div>
@@ -95,8 +102,7 @@
 
             <ul v-if="isOpen" class="ml-8 space-y-2">
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
-                        <!-- Icon SVG for Bank DKI -->
+                    <a href="/buka/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -180,7 +186,6 @@
                 </li>
                 <li>
                     <a href="/buka/opd/bank-lain" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
-                        <!-- Icon SVG for Non Bank DKI -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="20px" viewBox="0 0 20 21" fill="none">
                             <path
                                 d="M10.0001 19.0606C14.5834 19.0606 18.3334 15.3106 18.3334 10.7273C18.3334 6.14395 14.5834 2.39395 10.0001 2.39395C5.41675 2.39395 1.66675 6.14395 1.66675 10.7273C1.66675 15.3106 5.41675 19.0606 10.0001 19.0606Z"
@@ -197,7 +202,6 @@
                 </li>
                 <li>
                     <a href="/buka/opd/deposito/" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
-                        <!-- Icon SVG for Deposito -->
                         <svg width="40px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -243,6 +247,49 @@
                     </a>
                 </li>
             </ul>
+            <li>
+                <a href="/home/tutup/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <span class="mr-2">
+                        <!-- Pengusulan Icon -->
+                        <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M1.6665 7.81061H11.2498"
+                                stroke="white"
+                                stroke-width="1.5"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M5 14.4773H6.66667"
+                                stroke="white"
+                                stroke-width="1.5"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M8.75 14.4773H12.0833"
+                                stroke="white"
+                                stroke-width="1.5"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M18.3332 10.7523V14.1523C18.3332 17.0773 17.5915 17.8106 14.6332 17.8106H5.3665C2.40817 17.8106 1.6665 17.0773 1.6665 14.1523V7.30232C1.6665 4.37732 2.40817 3.64398 5.3665 3.64398H11.2498"
+                                stroke="white"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path d="M14.4238 7.55194L17.6572 4.3186" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                            <path d="M17.6572 7.55194L14.4238 4.3186" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <span>Tutup Rekening</span>
+                </a>
+            </li>
             <li>
                 <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                     <span class="mr-2">
@@ -406,51 +453,53 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+    import { defineComponent, onMounted, ref } from 'vue';
 
-    export default {
+    export default defineComponent({
         name: 'Scrolly',
-  setup() {
-    const scrollContainer = ref<HTMLElement | null>(null);
+        props: {
+            isSidebarOpen: {
+                type: Boolean,
+                required: true,
+            },
+        },
+        setup() {
+            const scrollContainer = ref<HTMLElement | null>(null);
 
-    const onScroll = () => {
-      if (scrollContainer.value) {
-        const scrollTop = scrollContainer.value.scrollTop;
-        const scrollHeight = scrollContainer.value.scrollHeight;
-        const clientHeight = scrollContainer.value.clientHeight;
+            const onScroll = () => {
+                if (scrollContainer.value) {
+                    const scrollTop = scrollContainer.value.scrollTop;
+                    const scrollHeight = scrollContainer.value.scrollHeight;
+                    const clientHeight = scrollContainer.value.clientHeight;
+                    const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+                    console.log(`Scroll position: ${scrollTop}px (${scrollPercentage.toFixed(2)}%)`);
+                }
+            };
 
-        // Persentase scroll
-        const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            onMounted(() => {
+                if (scrollContainer.value) {
+                    scrollContainer.value.addEventListener('scroll', onScroll);
+                }
+            });
 
-        console.log(`Scroll position: ${scrollTop}px (${scrollPercentage.toFixed(2)}%)`);
-
-        // Tambahkan logika lain di sini berdasarkan posisi scroll
-      }
-    };
-
-    onMounted(() => {
-      if (scrollContainer.value) {
-        scrollContainer.value.addEventListener('scroll', onScroll);
-      }
-    });
-
-    return {
-      scrollContainer,
-      onScroll
-    };
-  },
+            return {
+                scrollContainer,
+                onScroll,
+            };
+        },
 
         data() {
             return {
                 isOpen: false,
             };
         },
+
         methods: {
             toggleDropdown() {
                 this.isOpen = !this.isOpen;
             },
         },
-    };
+    });
 </script>
 
 <style scoped>
@@ -463,10 +512,10 @@ import { defineComponent, onMounted, ref } from 'vue';
     }
 
     .no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 </style>
