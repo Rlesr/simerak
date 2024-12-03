@@ -58,7 +58,7 @@
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(4)">
                                 Unggah Dokumen Sekolah
                             </button>
-                            </button>
+                            
 
                             <!-- Konten Dropdown -->
                             <div v-show="dropdownStates[4]" class="p-4 border border-gray-300 rounded shadow">
@@ -355,6 +355,8 @@
             return {
                 dropdownStates,
                 toggleDropdown,
+                isSidebarOpen,
+                toggleSidebar,
                 closeAllDropdowns,
                 kodeSekolah,
                 namaSekolah,

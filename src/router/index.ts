@@ -7,94 +7,123 @@ import bukaRekeningDKI from '@/views/buka-rekening/buka-rekeningDKI.vue';
 import FormDKI from '@/views/buka-rekening/form/form-Bank-DKI.vue';
 import nonDKIOpd from '@/views/buka-rekening/nonDkiOpd/bank-lainOpd.vue';
 import BankLainSKPD from '@/views/buka-rekening/nonDkiOpd/bank-lainSKPD.vue';
-import forbukabanklain from '@/views/buka-rekening/form-banklain/buka-bank-lain.vue'
+import forbukabanklain from '@/views/buka-rekening/form-banklain/buka-bank-lain.vue';
 import opdDeposito from '@/views/buka-rekening/deposito/opd-deposito.vue';
 import listDeposito from '@/views/buka-rekening/deposito/list-deposito.vue';
 import formDeposito from '@/views/buka-rekening/form-deposito/deposito.vue';
 import tutupRekeningBankOpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-bank-opd.vue';
 import tutupRekeningSkpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-skpd.vue';
-import formTutupRekeningDKI from '@/views/tutup-rekening/tutup-bankDKi/form/tutup-rekening.vue'
+import formTutupRekeningDKI from '@/views/tutup-rekening/tutup-bankDKi/form/tutup-rekening.vue';
+import formTutupRekeningLain from '@/views/tutup-rekening/tutup-bank-lain/form/tutup-rekening-bank-lain.vue';
+import formPengusulanPLT from '@/views/pengusulan/pengusulan-pelaksana/form/pengusulan-PLT.vue';
+import formAddUser from '@/views/user-management/form/add-user.vue';
+import formAddOtoritas from '@/views/user-management/form/add-otoritas.vue';
+import formEditAplikasi from '@/views/user-management/form/edit-aplikasi.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.VITE_BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: landingPage,
-    },{
-      path: '/login',
-      name: 'login',
-      component: login,
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: register,
-    },
-    {
-        path: '/buka',
-        name: 'buka-rekening',
-        component: rekeningall,
-
-      },
-    {
-        path: '/buka/opd',
-        name: 'BukaDki',
-        component: bukaRekeningDKI,
-    },
-    {
-        path: '/buka/form/DKI',
-        name: 'form DKI',
-        component: FormDKI,
-    },
-    {
-        path: '/buka/opd/bank-lain',
-        name: 'nonDKIOpd',
-        component: nonDKIOpd,
-    },
-    {
-        path: '/buka/bank-lain',
-        name: 'BankLainSKPD',
-        component: BankLainSKPD,
-    },
-    {
-        path: '/buka/buka-bank-lain/add/0',
-        name: 'forbukabanklain',
-        component: forbukabanklain,
-    },
-    {
-        path: '/buka/opd/deposito/',
-        name: 'opdDeposito',
-        component: opdDeposito,
-    },
-    {
-        path: '/buka/deposito/list',
-        name: 'listDeposito',
-        component: listDeposito,
-    },
-    {
-        path: '/buka/deposito/add/0',
-        name: 'formDeposito',
-        component: formDeposito,
-    },
-    {
-        path: '/home/tutup/opd',
-        name: 'tutupRekeningBankOpd',
-        component: tutupRekeningBankOpd,
-    },
-    {
-        path: '/home/tutup/list',
-        name: 'tutupRekeningSkpd',
-        component: tutupRekeningSkpd,
-    },
-    {
-        path: '/home/tutup/add/0',
-        name: 'formTutupRekeningDKI',
-        component: formTutupRekeningDKI,
-    },
-
-  ],
+    history: createWebHistory(import.meta.env.VITE_BASE_URL),
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: landingPage,
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: login,
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: register,
+        },
+        {
+            path: '/buka',
+            name: 'buka-rekening',
+            component: rekeningall,
+        },
+        {
+            path: '/buka/opd',
+            name: 'BukaDki',
+            component: bukaRekeningDKI,
+        },
+        {
+            path: '/buka/form/DKI',
+            name: 'form DKI',
+            component: FormDKI,
+        },
+        {
+            path: '/buka/opd/bank-lain',
+            name: 'nonDKIOpd',
+            component: nonDKIOpd,
+        },
+        {
+            path: '/buka/bank-lain',
+            name: 'BankLainSKPD',
+            component: BankLainSKPD,
+        },
+        {
+            path: '/buka/buka-bank-lain/add/0',
+            name: 'forbukabanklain',
+            component: forbukabanklain,
+        },
+        {
+            path: '/buka/opd/deposito/',
+            name: 'opdDeposito',
+            component: opdDeposito,
+        },
+        {
+            path: '/buka/deposito/list',
+            name: 'listDeposito',
+            component: listDeposito,
+        },
+        {
+            path: '/buka/deposito/add/0',
+            name: 'formDeposito',
+            component: formDeposito,
+        },
+        {
+            path: '/home/tutup/opd',
+            name: 'tutupRekeningBankOpd',
+            component: tutupRekeningBankOpd,
+        },
+        {
+            path: '/home/tutup/list',
+            name: 'tutupRekeningSkpd',
+            component: tutupRekeningSkpd,
+        },
+        {
+            path: '/home/tutup/add/0',
+            name: 'formTutupRekeningDKI',
+            component: formTutupRekeningDKI,
+        },
+        {
+            path: '/home/tutup-lain/add/0',
+            name: 'form-tutup-rekening-bank-lain',
+            component: formTutupRekeningLain,
+        },
+        {
+            path: '/home/pengusulan-PLT/add/0',
+            name: 'form-pengusulan-PLT',
+            component: formPengusulanPLT,
+        },
+        {
+            path: '/home/UserManagement/AddUser/0',
+            name: 'form-add-user',
+            component: formAddUser,
+        },        
+        {
+          path: '/home/UserManagement/AddOtoritas/0',
+          name: 'form-add-otoritas',
+          component: formAddOtoritas,
+        },        
+        {
+          path: '/home/UserManagement/EditAplikasi/0',
+          name: 'form-edit-aplikasi',
+          component: formEditAplikasi,
+        },
+    ],
 });
 
 export default router;
