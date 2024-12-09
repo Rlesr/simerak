@@ -63,14 +63,12 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
-            <li></li>
             <li>
                 <div
-            class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
-            :class="isOpen ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
-            @click="toggleDropdown"
-        >
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isOpen1 ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown1"
+                >
                     <span class="mr-2">
                         <!-- Buka Rekening Icon -->
                         <svg class="w-[40px] h-[20px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +87,7 @@
                         </svg>
                     </span>
                     <span>Buka Rekening</span>
-                    <span :class="{ 'rotate-180': isOpen }" class="ml-auto transition-transform">
+                    <span :class="{ 'rotate-180': isOpen1 }" class="ml-auto transition-transform">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
@@ -100,7 +98,7 @@
                 </div>
             </li>
 
-            <ul v-if="isOpen" class="ml-8 space-y-2">
+            <ul v-if="isOpen1" class="ml-8 space-y-2">
                 <li>
                     <a href="/buka/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -429,7 +427,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <div
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isOpen2 ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown2"
+                >
+                    <!-- Buka Rekening Icon -->
                     <span class="mr-2">
                         <!-- Master Icon -->
                         <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -445,9 +448,670 @@
                             <path d="M7.08325 10.3023H4.58325" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
+
                     <span>Master</span>
-                </a>
+                    <span :class="{ 'rotate-180': isOpen2 }" class="ml-auto transition-transform">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </span>
+                </div>
             </li>
+            <ul v-if="isOpen2" class="ml-8">
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="Layer_2" data-name="Layer 2">
+                                        <g id="invisible_box" data-name="invisible box"><rect width="48" height="48" fill="none"></rect></g>
+                                        <g id="icons_Q2" data-name="icons Q2">
+                                            <path d="M24,10h0a2,2,0,0,1,2-2H42a2,2,0,0,1,2,2h0a2,2,0,0,1-2,2H26A2,2,0,0,1,24,10Z"></path>
+                                            <path d="M24,24h0a2,2,0,0,1,2-2H42a2,2,0,0,1,2,2h0a2,2,0,0,1-2,2H26A2,2,0,0,1,24,24Z"></path>
+                                            <path d="M24,38h0a2,2,0,0,1,2-2H42a2,2,0,0,1,2,2h0a2,2,0,0,1-2,2H26A2,2,0,0,1,24,38Z"></path>
+                                            <path
+                                                d="M12,7.9,14.4,12H9.5L12,7.9M12,2a2.1,2.1,0,0,0-1.7,1L4.2,13a2.3,2.3,0,0,0,0,2,1.9,1.9,0,0,0,1.7,1H18a2.1,2.1,0,0,0,1.7-1,1.8,1.8,0,0,0,0-2l-6-10A1.9,1.9,0,0,0,12,2Z"
+                                            ></path>
+                                            <path d="M12,30a6,6,0,1,1,6-6A6,6,0,0,1,12,30Zm0-8a2,2,0,1,0,2,2A2,2,0,0,0,12,22Z"></path>
+                                            <path d="M16,44H8a2,2,0,0,1-2-2V34a2,2,0,0,1,2-2h8a2,2,0,0,1,2,2v8A2,2,0,0,1,16,44Zm-6-4h4V36H10Z"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Identifikasi Kategori
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiRekening"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M6 17.4998C6.41783 17.186 6.9372 17 7.5 17C8.88071 17 10 18.1193 10 19.5C10 20.0628 9.81403 20.5822 9.50018 21M18 17.4998C17.5822 17.186 17.0628 17 16.5 17C15.1193 17 14 18.1193 14 19.5C14 20.0628 14.186 20.5822 14.4998 21M17.9999 9.99995C18.9883 9.99918 19.5064 9.98663 19.908 9.78201C20.2843 9.59027 20.5903 9.28431 20.782 8.90798C21 8.48016 21 7.9201 21 6.8V6.2C21 5.0799 21 4.51984 20.782 4.09202C20.5903 3.71569 20.2843 3.40973 19.908 3.21799C19.4802 3 18.9201 3 17.8 3H6.2C5.0799 3 4.51984 3 4.09202 3.21799C3.71569 3.40973 3.40973 3.71569 3.21799 4.09202C3 4.51984 3 5.0799 3 6.2V6.8C3 7.9201 3 8.48016 3.21799 8.90798C3.40973 9.28431 3.71569 9.59027 4.09202 9.78201C4.49359 9.98663 5.01167 9.99918 6.00005 9.99995M17.9999 9.99995C18 10.0646 18 10.1312 18 10.2V17.8C18 18.9201 18 19.4802 17.782 19.908C17.5903 20.2843 17.2843 20.5903 16.908 20.782C16.4802 21 15.9201 21 14.8 21H9.2C8.07989 21 7.51984 21 7.09202 20.782C6.71569 20.5903 6.40973 20.2843 6.21799 19.908C6 19.4802 6 18.9201 6 17.8V10.2C6 10.1312 6 10.0646 6.00005 9.99995M17.9999 9.99995C17.9992 9.01163 17.9866 8.49358 17.782 8.09202C17.5903 7.71569 17.2843 7.40973 16.908 7.21799C16.4802 7 15.9201 7 14.8 7H9.2C8.0799 7 7.51984 7 7.09202 7.21799C6.71569 7.40973 6.40973 7.71569 6.21799 8.09202C6.01338 8.49358 6.00082 9.01163 6.00005 9.99995M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                </g>
+                            </svg>
+                        </span>
+                        Identifikasi Rekening
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/JenisLaporan" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                fill="currentColor"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 512 512"
+                                xml:space="preserve"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M427.692,0H86.442C72.304,0,59.733,10.4,59.733,24.5v460.867c0,14.1,12.571,26.633,26.708,26.633h341.25 c14.137,0,24.575-12.533,24.575-26.633V24.5C452.267,10.4,441.829,0,427.692,0z M435.2,485.367c0,4.683-2.779,9.567-7.508,9.567 H86.442c-4.729,0-9.642-4.883-9.642-9.567V24.5c0-4.683,4.912-7.433,9.642-7.433h341.25c4.729,0,7.508,2.75,7.508,7.433V485.367z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M299.733,59.733H214.4c-4.713,0-8.533,3.817-8.533,8.533c0,4.717,3.821,8.533,8.533,8.533h85.333 c4.713,0,8.533-3.817,8.533-8.533C308.267,63.55,304.446,59.733,299.733,59.733z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M376.533,119.467H137.6c-4.713,0-8.533,3.817-8.533,8.533c0,4.717,3.821,8.533,8.533,8.533h238.933 c4.713,0,8.533-3.817,8.533-8.533C385.067,123.283,381.246,119.467,376.533,119.467z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M376.533,179.2H137.6c-4.713,0-8.533,3.817-8.533,8.533c0,4.717,3.821,8.533,8.533,8.533h238.933 c4.713,0,8.533-3.817,8.533-8.533C385.067,183.017,381.246,179.2,376.533,179.2z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M376.533,238.933H137.6c-4.713,0-8.533,3.817-8.533,8.533c0,4.717,3.821,8.533,8.533,8.533h238.933 c4.713,0,8.533-3.817,8.533-8.533C385.067,242.75,381.246,238.933,376.533,238.933z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M376.533,298.667H137.6c-4.713,0-9.6,2.75-9.6,7.467v128c0,4.717,4.887,9.6,9.6,9.6h238.933 c4.713,0,7.467-4.883,7.467-9.6v-128C384,301.417,381.246,298.667,376.533,298.667z M366.933,426.667H145.067V315.733h221.867 V426.667z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Jenis Laporan
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/JenisPengajuan" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                fill="currentColor"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 219.376 219.376"
+                                xml:space="preserve"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M127.518,0H40.63c-6.617,0-12,5.383-12,12v195.376c0,6.617,5.383,12,12,12h138.117c6.617,0,12-5.383,12-12V59.227 c0-3.204-1.248-6.217-3.514-8.484l-51.364-47.36C133.619,1.2,130.661,0,127.518,0z M175.747,204.376H43.63V15h71.768v40.236 c0,8.885,7.225,16.114,16.105,16.114h44.244V204.376z M131.503,56.35c-0.609,0-1.105-0.5-1.105-1.114v-31.58l34.968,32.693H131.503z M65.499,97.805c-5.14,0-9.321,4.182-9.321,9.321c0,5.14,4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321 C74.82,101.987,70.638,97.805,65.499,97.805z M82.499,99.627h79.5v15h-79.5V99.627z M65.499,127.805 c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321S70.638,127.805,65.499,127.805z M82.499,129.626h79.5v15h-79.5V129.626z M65.499,157.805c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321 c5.14,0,9.321-4.182,9.321-9.321S70.638,157.805,65.499,157.805z M82.499,159.626h79.5v15h-79.5V159.626z"
+                                    ></path>
+                                </g>
+                            </svg>
+                        </span>
+                        Jenis Pengajuan
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/JenisRekening" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                fill="currentColor"
+                                height="40"
+                                width="20"
+                                viewBox="0 0 24 24"
+                                data-name="Layer 1"
+                                id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <title></title>
+                                    <path
+                                        d="M22,11V7.83L12,2.06,2,7.83V11H4v8H2v2H22V19H20V11ZM4,9l8-4.62L20,9H4ZM6,19V11H8v8Zm4,0V11h4v8Zm8,0H16V11h2Z"
+                                    ></path>
+                                </g>
+                            </svg>
+                        </span>
+                        Jenis Rekening
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Provinsi" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 19.639 19.639"
+                                xml:space="preserve"
+                                fill="currentColor"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <path
+                                            style="fill: currentColor"
+                                            d="M10.797,15.837l-0.52-12.751c0.021-0.051,0.051-0.111,0.09-0.146 c0.074-0.069,0.156-0.088,0.156-0.088h0.546l0.104-0.35l-0.076-0.159h-0.022V2.078H10.36C10.402,2,10.441,1.892,10.412,1.791 c-0.056-0.185-0.074-0.203-0.074-0.203s0.049-0.254-0.031-0.41c-0.082-0.154-0.13-0.26-0.13-0.26s0.068-0.119-0.044-0.295 C10.02,0.451,9.914,0.34,9.927,0.248C9.939,0.166,9.88,0.028,9.868,0H9.767C9.755,0.028,9.696,0.166,9.709,0.248 C9.721,0.34,9.615,0.451,9.504,0.623C9.392,0.799,9.459,0.918,9.459,0.918s-0.048,0.104-0.13,0.26 c-0.081,0.156-0.03,0.41-0.03,0.41s-0.02,0.02-0.074,0.203C9.194,1.892,9.232,2,9.273,2.078H8.561v0.266H8.535L8.461,2.502 l0.104,0.35h0.548c0,0,0.081,0.019,0.156,0.088c0.038,0.035,0.069,0.096,0.09,0.146L8.84,15.837H4.339v0.672h0.713 c0.317,0.127,0.844,0.357,1.252,0.646c0.446,0.318,1.073,1.037,1.388,1.414H6.28v1.07h7.076v-1.07h-1.413 c0.314-0.377,0.941-1.098,1.391-1.414c0.406-0.289,0.934-0.52,1.25-0.646h0.715v-0.672H10.797z M9.489,1.649 c0.067-0.108,0.014-0.147,0.055-0.321C9.585,1.151,9.625,1.02,9.678,0.926c0.053-0.096,0.12-0.254,0.12-0.254 S9.706,1.449,9.706,1.556c0,0.105,0.051,0.455,0.051,0.455L9.57,2C9.57,2,9.424,1.759,9.489,1.649z M15,16.226H4.544v-0.211H15 V16.226z"
+                                        ></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Provinsi
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Kota" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg class="ml-[10px]" height="40" width="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M9 18C8.44772 18 8 18.4477 8 19V42H6V19C6 17.3431 7.34315 16 9 16H21C22.6569 16 24 17.3431 24 19V42H22V19C22 18.4477 21.5523 18 21 18H9Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M39 20H32V18H39C40.6569 18 42 19.3431 42 21V42H40V21C40 20.4477 39.5523 20 39 20Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M18 6C17.4477 6 17 6.44772 17 7V17H15V7C15 5.34315 16.3431 4 18 4H30C31.6569 4 33 5.34315 33 7V42H31V7C31 6.44772 30.5523 6 30 6H18Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M44 44H4V42H44V44Z" fill="currentColor"></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M20 8C19.4477 8 19 8.44772 19 9V11C19 11.5523 19.4477 12 20 12H22C22.5523 12 23 11.5523 23 11V9C23 8.44772 22.5523 8 22 8H20Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M11 20C10.4477 20 10 20.4477 10 21V23C10 23.5523 10.4477 24 11 24H13C13.5523 24 14 23.5523 14 23V21C14 20.4477 13.5523 20 13 20H11Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M17 20C16.4477 20 16 20.4477 16 21V23C16 23.5523 16.4477 24 17 24H19C19.5523 24 20 23.5523 20 23V21C20 20.4477 19.5523 20 19 20H17Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M20 14C19.4477 14 19 14.4477 19 15V17C19 17.5523 19.4477 18 20 18H22C22.5523 18 23 17.5523 23 17V15C23 14.4477 22.5523 14 22 14H20Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M11 26C10.4477 26 10 26.4477 10 27V29C10 29.5523 10.4477 30 11 30H13C13.5523 30 14 29.5523 14 29V27C14 26.4477 13.5523 26 13 26H11Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M11 32C10.4477 32 10 32.4477 10 33V35C10 35.5523 10.4477 36 11 36H13C13.5523 36 14 35.5523 14 35V33C14 32.4477 13.5523 32 13 32H11Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M17 26C16.4477 26 16 26.4477 16 27V29C16 29.5523 16.4477 30 17 30H19C19.5523 30 20 29.5523 20 29V27C20 26.4477 19.5523 26 19 26H17Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M17 32C16.4477 32 16 32.4477 16 33V35C16 35.5523 16.4477 36 17 36H19C19.5523 36 20 35.5523 20 35V33C20 32.4477 19.5523 32 19 32H17Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M26 8C25.4477 8 25 8.44772 25 9V11C25 11.5523 25.4477 12 26 12H28C28.5523 12 29 11.5523 29 11V9C29 8.44772 28.5523 8 28 8H26Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M26 14C25.4477 14 25 14.4477 25 15V17C25 17.5523 25.4477 18 26 18H28C28.5523 18 29 17.5523 29 17V15C29 14.4477 28.5523 14 28 14H26Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M26 20C25.4477 20 25 20.4477 25 21V23C25 23.5523 25.4477 24 26 24H28C28.5523 24 29 23.5523 29 23V21C29 20.4477 28.5523 20 28 20H26Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M26 26C25.4477 26 25 26.4477 25 27V29C25 29.5523 25.4477 30 26 30H28C28.5523 30 29 29.5523 29 29V27C29 26.4477 28.5523 26 28 26H26Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M35 22C34.4477 22 34 22.4477 34 23V25C34 25.5523 34.4477 26 35 26H37C37.5523 26 38 25.5523 38 25V23C38 22.4477 37.5523 22 37 22H35Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M35 28C34.4477 28 34 28.4477 34 29V31C34 31.5523 34.4477 32 35 32H37C37.5523 32 38 31.5523 38 31V29C38 28.4477 37.5523 28 37 28H35Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M35 34C34.4477 34 34 34.4477 34 35V37C34 37.5523 34.4477 38 35 38H37C37.5523 38 38 37.5523 38 37V35C38 34.4477 37.5523 34 37 34H35Z"
+                                        fill="currentColor"
+                                    ></path>
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M26 32C25.4477 32 25 32.4477 25 33V35C25 35.5523 25.4477 36 26 36H28C28.5523 36 29 35.5523 29 35V33C29 32.4477 28.5523 32 28 32H26Z"
+                                        fill="currentColor"
+                                    ></path>
+                                </g>
+                            </svg>
+                        </span>
+                        Kota
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Kecamatan" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                height="40"
+                                width="20"
+                                fill="currentColor"
+                                version="1.1"
+                                id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 396.139 396.139"
+                                xml:space="preserve"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <path
+                                            d="M388.986,227.273v-22.015h-82.5v8.125h-19.333v13.89h-3.396l-79.773-67.881h-11.829l-79.773,67.881h-3.395v-13.89H90.379 V126.7H6.964v100.573H0v122.889h113.997v8.431h168.146v-8.431h113.995V227.273H388.986z M48.671,142.724 c11.18,0,20.24,9.062,20.24,20.24c0,11.179-9.06,20.24-20.24,20.24c-11.178,0-20.24-9.062-20.24-20.24 C28.431,151.785,37.493,142.724,48.671,142.724z M127.599,324.593h-13.602v8.431H17.139v-88.611h110.46V324.593z M187.599,324.593 h-39.06v-80.181h39.06V324.593z M247.599,324.593h-39.06v-80.181h39.06V324.593z M142.377,225.716l55.692-47.39l55.692,47.39 H142.377z M379,333.023h-96.857v-8.431h-13.604v-80.181H379V333.023z"
+                                        ></path>
+                                        <rect x="35.653" y="254.968" width="20" height="67.5"></rect>
+                                        <rect x="83.819" y="254.968" width="20" height="67.5"></rect>
+                                        <rect x="292.319" y="254.968" width="20" height="67.5"></rect>
+                                        <rect x="340.487" y="254.968" width="20" height="67.5"></rect>
+                                        <polygon
+                                            points="48.671,88.652 66.469,117.74 90.379,117.74 90.379,112.366 48.671,37.546 6.964,112.366 6.964,117.74 30.873,117.74 "
+                                        ></polygon>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Kecamatan
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Kelurahan" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                fill="currentColor"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 412.795 412.795"
+                                xml:space="preserve"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <path
+                                            d="M319.057,194.575v-15.938h12.484V146.64l-121.814-43.727V78.055c11.607,3.979,20.348-8.847,32.527-1.511 c0-9.043,0-13.566,0-22.607c-12.18-7.334-20.92,5.49-32.527,1.511v-4.05h-6.459v51.444L81.254,146.64v31.998h12.484v15.938H0 v23.162h14.592v132.522h63.607v11.139h256.398v-11.139h63.604V217.737h14.594v-23.162H319.057z M70.188,318.108H41.129v-82.476 h29.059V318.108z M154.266,301.616h-31.623v-34.771h31.623V301.616z M154.266,246.735h-31.623v-34.77h31.623V246.735z M226.4,339.118h-40.006v-75.006H226.4V339.118z M190.588,246.735v-34.77h31.619v34.77H190.588z M230.004,193.04 c0,0-15.059,9.994-23.605,9.994c-8.547,0-23.606-9.994-23.606-9.994v-54.105c0,0,8.578,3.328,23.606,3.328 c15.023,0,23.605-3.328,23.605-3.328V193.04z M290.152,301.616h-31.623v-34.771h31.623V301.616z M290.152,246.735h-31.623v-34.77 h31.623V246.735z M371.666,318.108h-29.057v-82.476h29.057V318.108z"
+                                        ></path>
+                                        <path
+                                            d="M204.063,151.001c0,0.771,0.379,1.451,0.955,1.877l-4.459,6.701l-8.202,0.523c-0.078-1.219-1.081-2.189-2.321-2.189 c-1.287,0-2.334,1.049-2.334,2.338c0,1.285,1.047,2.332,2.334,2.332c0.373,0,0.72-0.096,1.032-0.25l3.651,7.361l-3.663,7.388 c-0.31-0.151-0.653-0.243-1.021-0.243c-1.287,0-2.334,1.045-2.334,2.334c0,1.287,1.047,2.332,2.334,2.332 c1.252,0,2.264-0.984,2.324-2.217l8.199,0.521l4.46,6.703c-0.577,0.426-0.956,1.104-0.956,1.875c0,1.289,1.047,2.334,2.336,2.334 c1.287,0,2.334-1.045,2.334-2.334c0-0.77-0.379-1.449-0.954-1.875l4.46-6.703l8.199-0.521c0.061,1.232,1.072,2.217,2.324,2.217 c1.285,0,2.334-1.045,2.334-2.332c0-1.289-1.049-2.334-2.334-2.334c-0.368,0-0.711,0.093-1.021,0.244l-3.665-7.389l3.652-7.361 c0.313,0.154,0.66,0.25,1.033,0.25c1.285,0,2.334-1.047,2.334-2.332c0-1.289-1.049-2.338-2.334-2.338 c-1.24,0-2.243,0.971-2.321,2.189l-8.202-0.523l-4.459-6.703c0.575-0.426,0.953-1.104,0.953-1.875c0-1.291-1.047-2.334-2.334-2.334 C205.109,148.667,204.063,149.71,204.063,151.001z M214.018,169.694c0,4.209-3.41,7.619-7.619,7.619 c-4.207,0-7.619-3.41-7.619-7.619s3.412-7.619,7.619-7.619C210.607,162.075,214.018,165.485,214.018,169.694z"
+                                        ></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Kelurahan
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/KodeBankDki" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 218.351 218.351"
+                                xml:space="preserve"
+                                fill="currentColor"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M204.707,0H13.649C10.935,0,8.33,1.077,6.41,3.002c-1.92,1.92-2.997,4.531-2.997,7.234v191.053 c0,2.828,1.142,5.385,2.997,7.239c1.855,1.855,4.411,2.997,7.239,2.997h8.697v6.826H35.83h0.163h13.483v-6.826h116.837v6.826 h13.483h0.163h13.483v-6.826h11.264c2.714,0,5.319-1.077,7.239-2.997c1.915-1.925,2.992-4.52,2.992-7.239V10.236 C214.938,4.585,210.364,0,204.707,0z M194.471,191.053H23.886V20.473h170.585V191.053z"
+                                            ></path>
+                                            <path
+                                                d="M35.993,135.362h-6.826v13.652h6.826v21.87c0,3.769,3.057,6.826,6.821,6.826h130.244 c3.769,0,6.821-3.057,6.821-6.826V40.641c0-3.769-3.057-6.821-6.821-6.821H42.819c-3.769,0-6.821,3.051-6.821,6.821v21.827h-6.989 v13.647h6.989v59.248H35.993z M49.64,47.467h116.597v116.597H49.64V47.467z"
+                                            ></path>
+                                            <path
+                                                d="M145.019,65.72c-2.665-2.66-6.984-2.66-9.649,0l-14.239,14.25c-3.976-2.051-8.42-3.312-13.19-3.312 c-4.449,0-8.621,1.082-12.396,2.877L80.468,64.464c-2.665-2.665-6.984-2.665-9.649,0c-2.665,2.665-2.665,6.984,0,9.649 L84.89,88.184c-3.742,4.895-6.059,10.954-6.059,17.579s2.317,12.678,6.059,17.574l-14.016,14.022c-2.665,2.66-2.665,6.978,0,9.643 c1.333,1.333,3.078,2.002,4.824,2.002c1.746,0,3.492-0.669,4.824-2.002l15.017-15.017c3.769,1.789,7.941,2.872,12.396,2.872 c5.037,0,9.709-1.403,13.842-3.666l13.255,13.26c1.333,1.333,3.078,1.996,4.824,1.996c1.746,0,3.492-0.664,4.824-1.996 c2.665-2.665,2.665-6.984,0-9.649l-12.695-12.695c3.176-4.661,5.047-10.296,5.047-16.35c0-6.32-2.078-12.129-5.51-16.905 l13.483-13.483C147.684,72.709,147.684,68.391,145.019,65.72z M107.941,121.226c-8.523,0-15.458-6.935-15.458-15.458 c0-8.523,6.929-15.463,15.458-15.463c8.518,0,15.452,6.935,15.452,15.463C123.393,114.286,116.459,121.226,107.941,121.226z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Kode Bank DKI
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/SkpdSekolah" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                fill="currentColor"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 512 512"
+                                xml:space="preserve"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M53.333,405.261h64c5.888,0,10.667-4.779,10.667-10.667v-64c0-5.888-4.779-10.667-10.667-10.667h-64 c-5.888,0-10.667,4.779-10.667,10.667v64C42.667,400.483,47.445,405.261,53.333,405.261z M64,341.261h42.667v42.667H64V341.261z"
+                                                ></path>
+                                                <path
+                                                    d="M510.933,262.093c-0.043-0.085-0.021-0.192-0.064-0.277l-42.667-85.333c-1.813-3.605-5.504-5.888-9.536-5.888h-96 v-21.333h10.667c4.224,0,8.064-2.496,9.749-6.379c1.707-3.861,0.96-8.384-1.899-11.499l-117.333-128 c-4.032-4.416-11.691-4.416-15.723,0l-117.333,128c-2.859,3.115-3.605,7.637-1.899,11.499c1.707,3.883,5.547,6.379,9.771,6.379 h10.667v21.355h-96c-4.032,0-7.723,2.283-9.536,5.888L1.131,261.837c-0.043,0.085-0.021,0.171-0.064,0.256 C0.427,263.459,0,264.952,0,266.595v192c0,5.888,4.779,10.667,10.667,10.667h138.667v21.333h-10.667 c-5.888,0-10.667,4.779-10.667,10.667s4.779,10.667,10.667,10.667h234.667c5.888,0,10.667-4.779,10.667-10.667 s-4.779-10.667-10.667-10.667h-10.667v-21.333h138.667c5.888,0,10.667-4.779,10.667-10.667v-192 C512,264.973,511.573,263.48,510.933,262.093z M149.333,447.928h-128V277.261h128V447.928z M149.333,255.928H27.925l32-64h89.408 V255.928z M277.333,490.595h-42.667v-85.333h42.667V490.595z M341.333,490.595h-42.667v-96c0-5.888-4.779-10.667-10.667-10.667 h-64c-5.888,0-10.667,4.779-10.667,10.667v96h-42.667V149.261h170.667V490.595z M162.923,127.928l93.099-101.547l93.077,101.547 H162.923z M362.667,191.928h89.408l32,64H362.667V191.928z M490.667,447.928h-128V277.261h128V447.928z"
+                                                ></path>
+                                                <path
+                                                    d="M394.667,405.261h64c5.888,0,10.667-4.779,10.667-10.667v-64c0-5.888-4.779-10.667-10.667-10.667h-64 c-5.888,0-10.667,4.779-10.667,10.667v64C384,400.483,388.779,405.261,394.667,405.261z M405.333,341.261H448v42.667h-42.667 V341.261z"
+                                                ></path>
+                                                <path
+                                                    d="M259.115,252.813c2.091,2.069,4.821,3.115,7.552,3.115c2.731,0,5.461-1.045,7.552-3.115c4.16-4.16,4.16-10.923,0-15.083 l-7.552-7.552v-16.917c0-5.888-4.779-10.667-10.667-10.667s-10.667,4.779-10.667,10.667v21.333c0,2.837,1.109,5.547,3.115,7.552 L259.115,252.813z"
+                                                ></path>
+                                                <path
+                                                    d="M256,298.595c35.285,0,64-28.715,64-64s-28.715-64-64-64s-64,28.715-64,64S220.715,298.595,256,298.595z M256,191.928 c23.531,0,42.667,19.136,42.667,42.667S279.531,277.261,256,277.261s-42.667-19.136-42.667-42.667S232.469,191.928,256,191.928z"
+                                                ></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        SKPD Sekolah
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Status" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                fill="currentColor"
+                                height="40"
+                                width="20"
+                                version="1.1"
+                                id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 512 512"
+                                xml:space="preserve"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M431.288,28.77h-85.25V7.742c0-4.276-3.465-7.742-7.742-7.742H173.702c-4.277,0-7.742,3.466-7.742,7.742V28.77H80.712 c-4.277,0-7.742,3.466-7.742,7.742v467.746c0,4.276,3.465,7.742,7.742,7.742h350.577c4.277,0,7.742-3.466,7.742-7.742V36.512 C439.03,32.237,435.564,28.77,431.288,28.77z M181.444,15.484h149.111v68.358H181.444V15.484z M173.702,99.325h164.595 c4.277,0,7.742-3.466,7.742-7.742V72.902h38.542v383.784H127.42V72.902h38.541v18.682 C165.96,95.859,169.426,99.325,173.702,99.325z M88.454,496.516V44.254h77.507v13.163h-46.283c-4.277,0-7.742,3.466-7.742,7.742 v399.268c0,4.276,3.465,7.742,7.742,7.742h272.645c4.277,0,7.742-3.466,7.742-7.742V65.16c0-4.276-3.465-7.742-7.742-7.742 h-46.284V44.254h77.508v452.262H88.454z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M353.065,127.34H210.788c-4.277,0-7.742,3.466-7.742,7.742v34.406c0,4.276,3.466,7.742,7.742,7.742h142.277 c4.277,0,7.742-3.466,7.742-7.742v-34.406C360.807,130.806,357.342,127.34,353.065,127.34z M345.323,161.747H218.53v-18.922 h126.793V161.747z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M353.065,202.597H210.788c-4.277,0-7.742,3.466-7.742,7.742v34.407c0,4.276,3.466,7.742,7.742,7.742h142.277 c4.277,0,7.742-3.466,7.742-7.742v-34.407C360.807,206.064,357.342,202.597,353.065,202.597z M345.323,237.006H218.53v-18.923 h126.793V237.006z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M354.734,277.856H212.459c-4.277,0-7.742,3.466-7.742,7.742v34.407c0,4.276,3.465,7.742,7.742,7.742h142.276 c4.277,0,7.742-3.466,7.742-7.742v-34.407C362.477,281.322,359.01,277.856,354.734,277.856z M346.993,312.262H220.201v-18.923 h126.792V312.262z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M354.734,359.473H212.459c-4.277,0-7.742,3.466-7.742,7.742v34.407c0,4.276,3.465,7.742,7.742,7.742h142.276 c4.277,0,7.742-3.466,7.742-7.742v-34.407C362.477,362.939,359.01,359.473,354.734,359.473z M346.993,393.879H220.201v-18.923 h126.792V393.879z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M190.681,129.608c-3.023-3.023-7.925-3.023-10.949,0l-19.923,19.923l-9.179-9.178c-3.025-3.023-7.926-3.023-10.949,0 s-3.023,7.926,0,10.948l14.652,14.652c1.512,1.512,3.493,2.268,5.475,2.268c1.981,0,3.963-0.756,5.475-2.268l25.398-25.397 C193.704,137.533,193.704,132.63,190.681,129.608z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M190.681,204.865c-3.026-3.022-7.927-3.022-10.95,0l-19.923,19.923l-9.178-9.178c-3.025-3.024-7.927-3.025-10.948,0 c-3.025,3.023-3.025,7.925-0.001,10.948l14.652,14.653c1.452,1.452,3.421,2.268,5.475,2.268s4.022-0.815,5.475-2.268 l25.398-25.398C193.704,212.79,193.704,207.888,190.681,204.865z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M190.681,280.421c-3.026-3.022-7.927-3.022-10.95,0l-19.923,19.923l-9.178-9.178c-3.025-3.023-7.927-3.025-10.948,0 c-3.025,3.023-3.025,7.925-0.001,10.948l14.652,14.653c1.452,1.452,3.421,2.268,5.475,2.268s4.022-0.815,5.475-2.268 l25.398-25.398C193.704,288.345,193.704,283.443,190.681,280.421z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M190.681,366.245c-3.026-3.023-7.927-3.023-10.95,0l-19.923,19.923l-9.178-9.178c-3.025-3.023-7.927-3.023-10.948,0 c-3.025,3.023-3.025,7.925-0.001,10.948l14.652,14.653c1.452,1.452,3.421,2.268,5.475,2.268s4.022-0.815,5.475-2.268 l25.398-25.398C193.704,374.17,193.704,369.268,190.681,366.245z"
+                                            ></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Status
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Syarat" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg class="ml-[10px]" xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 24 24">
+                                <path
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-miterlimit="10"
+                                    stroke-width="1.5"
+                                    d="M2 14h8m4 0h8m-7-7V4.8a.8.8 0 0 0-.8-.8H9.8a.8.8 0 0 0-.8.8V7M4.4 7h15.2A2.4 2.4 0 0 1 22 9.4v9.2a2.4 2.4 0 0 1-2.4 2.4H4.4A2.4 2.4 0 0 1 2 18.6V9.4A2.4 2.4 0 0 1 4.4 7m6.4 5h2.4a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1-.8-.8v-2.4a.8.8 0 0 1 .8-.8"
+                                />
+                            </svg>
+                        </span>
+                        Syarat
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/Master/Opsi" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                            <svg
+                                class="ml-[10px]"
+                                width="20"
+                                height="40"
+                                viewBox="0 0 32 32"
+                                enable-background="new 0 0 32 32"
+                                id="Stock_cut"
+                                version="1.1"
+                                xml:space="preserve"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                fill="currentColor"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <desc></desc>
+                                    <g>
+                                        <path
+                                            d="M31,19v-6h-4.425 c-0.252-0.888-0.611-1.729-1.065-2.51L29,7l-4-4l-3.49,3.49C21.028,6.21,20.525,5.967,20,5.761V1h-8v4.761 c-0.525,0.205-1.028,0.449-1.51,0.728L7,3L3,7l3.49,3.49C6.036,11.271,5.676,12.112,5.425,13H1v6h4.425 c0.252,0.888,0.611,1.729,1.065,2.51L3,25l4,4l3.49-3.49c0.482,0.28,0.986,0.523,1.51,0.728V31h8v-4.761 c0.525-0.205,1.028-0.449,1.51-0.728L25,29l4-4l-3.49-3.49c0.454-0.781,0.813-1.622,1.065-2.51H31z"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-linejoin="round"
+                                            stroke-miterlimit="10"
+                                            stroke-width="2"
+                                        ></path>
+                                        <circle
+                                            cx="16"
+                                            cy="16"
+                                            fill="none"
+                                            r="5"
+                                            stroke="currentColor"
+                                            stroke-linejoin="round"
+                                            stroke-miterlimit="10"
+                                            stroke-width="2"
+                                        ></circle>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        Opsi
+                    </a>
+                </li>
+                <li>
+                    
+
+                    <a href="/home/Master/Filter" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-[20px]">
+                        <svg class="ml-[10px]" xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 32 32">
+                            <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M2 5s4-2 14-2s14 2 14 2L19 18v9l-6 3V18z"
+                            />
+                        </svg>
+                    </span>
+                        
+                        Filter
+                    </a>
+                </li>
+            </ul>
         </ul>
     </aside>
 </template>
@@ -490,13 +1154,18 @@
 
         data() {
             return {
-                isOpen: false,
+                isOpen1: false,
+                isOpen2: false,
             };
         },
 
         methods: {
-            toggleDropdown() {
-                this.isOpen = !this.isOpen;
+            toggleDropdown1() {
+                this.isOpen1 = !this.isOpen1;
+            },
+
+            toggleDropdown2() {
+                this.isOpen2 = !this.isOpen2;
             },
         },
     });

@@ -70,7 +70,7 @@
                 <ul v-if="dropdownOpen" class="lg:absolute lg:left-0 lg:mt-2 w-full lg:w-[250px] bg-white text-sm text-black shadow-lg rounded-lg lg:z-50">
                     <li v-for="(item, index) in masterItems" :key="index" class="hover:bg-gray-200">
                         <a
-                            href="#"
+                            :href="generateMasterUrl(item)"
                             @click="
                                 dropdownOpen = false;
                                 menuOpen = false;
@@ -87,114 +87,93 @@
 </template>
 
 <script>
-    import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
-    export default {
-        setup() {
-            const menuOpen = ref(false);
-            const dropdownOpen = ref(false);
-            const activeLink = ref(0);
-            const isScrolled = ref(false);
+export default {
+    setup() {
+        const menuOpen = ref(false);
+        const dropdownOpen = ref(false);
+        const activeLink = ref(0);
+        const isScrolled = ref(false);
 
-            const navLinks = [
-                { name: 'Dashboard', href: '#' },
-                { name: 'Buka Rekening', href: '/buka/opd' },
-                { name: 'Tutup Rekening', href: '#' },
-                { name: 'Pengusulan', href: '#' },
-                { name: 'User Management', href: '#' },
-                { name: 'Ubah Specimen', href: '#' },
-                { name: 'Laporan', href: '#' },
-                { name: 'Buku Panduan', href: 'https://drive.google.com/drive/folders/1hE5Hmo6CULyxmPlnAEvEVbE9BnKWuvLz?usp=sharing' },
-                { name: 'Akun', href: '#' },
-            ];
+        const navLinks = [
+            { name: 'Dashboard', href: '#' },
+            { name: 'Buka Rekening', href: '/buka/opd' },
+            { name: 'Tutup Rekening', href: '#' },
+            { name: 'Pengusulan', href: '#' },
+            { name: 'User Management', href: '#' },
+            { name: 'Ubah Specimen', href: '#' },
+            { name: 'Laporan', href: '#' },
+            { name: 'Buku Panduan', href: 'https://drive.google.com/drive/folders/1hE5Hmo6CULyxmPlnAEvEVbE9BnKWuvLz?usp=sharing' },
+            { name: 'Akun', href: '#' },
+        ];
 
-            const masterItems = [
-                'Identifikasi Kategori',
-                'Identifikasi Rekening',
-                'Jenis Laporan',
-                'Jenis Pengajuan',
-                'Jenis Rekening',
-                'Provinsi',
-                'Kota',
-                'Kecamatan',
-                'Kelurahan',
-                'Kode Bank DKI',
-                'SKPD dan Sekolah',
-                'Status',
-                'Syarat',
-                'Opsi',
-                'Filter',
-            ];
+        const masterItems = [
+            'Identifikasi Kategori',
+            'Identifikasi Rekening',
+            'Jenis Laporan',
+            'Jenis Pengajuan',
+            'Jenis Rekening',
+            'Provinsi',
+            'Kota',
+            'Kecamatan',
+            'Kelurahan',
+            'Kode Bank DKI',
+            'SKPD dan Sekolah',
+            'Status',
+            'Syarat',
+            'Opsi',
+            'Filter',
+        ];
 
-            const toggleMenu = () => {
-                menuOpen.value = !menuOpen.value;
-                dropdownOpen.value = false;
+        const generateMasterUrl = (item) => {
+            return `/home/Master/${item.replace(/\s+/g, '').replace(/^./, (c) => c.toUpperCase())}`;
+        };
 
-                if (menuOpen.value) {
-                    document.body.classList.add('overflow-hidden');
-                } else {
-                    document.body.classList.remove('overflow-hidden');
-                }
-            };
+        const toggleMenu = () => {
+            menuOpen.value = !menuOpen.value;
+            dropdownOpen.value = false;
 
-            const toggleDropdown = () => {
-                dropdownOpen.value = !dropdownOpen.value;
-            };
+            if (menuOpen.value) {
+                document.body.classList.add('overflow-hidden');
+            } else {
+                document.body.classList.remove('overflow-hidden');
+            }
+        };
 
-            const setActiveLink = (index) => {
-                activeLink.value = index;
-                menuOpen.value = false;
-            };
+        const toggleDropdown = () => {
+            dropdownOpen.value = !dropdownOpen.value;
+        };
 
-            const handleScroll = () => {
-                isScrolled.value = window.scrollY > 50;
-            };
+        const setActiveLink = (index) => {
+            activeLink.value = index;
+            menuOpen.value = false;
+        };
 
-            onMounted(() => {
-                window.addEventListener('scroll', handleScroll);
-            });
+        const handleScroll = () => {
+            isScrolled.value = window.scrollY > 50;
+        };
 
-            onUnmounted(() => {
-                window.removeEventListener('scroll', handleScroll);
-            });
+        onMounted(() => {
+            window.addEventListener('scroll', handleScroll);
+        });
 
-            return {
-                menuOpen,
-                dropdownOpen,
-                activeLink,
-                isScrolled,
-                navLinks,
-                masterItems,
-                toggleMenu,
-                toggleDropdown,
-                setActiveLink,
-            };
-        },
-    };
+        onUnmounted(() => {
+            window.removeEventListener('scroll', handleScroll);
+        });
+
+        return {
+            menuOpen,
+            dropdownOpen,
+            activeLink,
+            isScrolled,
+            navLinks,
+            masterItems,
+            generateMasterUrl,
+            toggleMenu,
+            toggleDropdown,
+            setActiveLink,
+        };
+    },
+};
 </script>
-
-<style scoped>
-    .bg-gradient {
-        background: linear-gradient(to bottom, #054083, transparent);
-        transition: background-color 0.3s ease;
-    }
-
-    .backdrop-blur {
-        backdrop-filter: blur(5px);
-        background-color: rgba(5, 64, 131, 0.8);
-    }
-
-    button span {
-        transition: all 0.3s ease;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 1024px) {
-        nav ul {
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            padding-bottom: 50px;
-        }
-    }
-</style>

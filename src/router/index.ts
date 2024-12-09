@@ -19,6 +19,36 @@ import formPengusulanPLT from '@/views/pengusulan/pengusulan-pelaksana/form/peng
 import formAddUser from '@/views/user-management/form/add-user.vue';
 import formAddOtoritas from '@/views/user-management/form/add-otoritas.vue';
 import formEditAplikasi from '@/views/user-management/form/edit-aplikasi.vue';
+import identifikasiKategori from '@/views/master/identifikasi-kategori.vue';
+import identifikasiRekening from '@/views/master/identifikasi-rekening.vue';
+import kodeBankDKI from '@/views/master/kode-bank-dki.vue';
+import jenisLaporan from '@/views/master/jenis-laporan.vue';
+import jenisPengajuan from '@/views/master/jenis-pengajuan.vue';
+import jenisRekening from '@/views/master/jenis-rekening.vue';
+import provinsi from '@/views/master/provinsi.vue';
+import kota from '@/views/master/kota.vue';
+import kecamatan from '@/views/master/kecamatan.vue';
+import kelurahan from '@/views/master/kelurahan.vue';
+import skpdSekolah from '@/views/master/skpd-sekolah.vue';
+import status from '@/views/master/status.vue';
+import syarat from '@/views/master/syarat.vue';
+import opsi from '@/views/master/opsi.vue';
+import filter from '@/views/master/filter.vue';
+import formIdentifikasiKategori from '@/views/master/form/form-indentifikasi-kategori.vue';
+import formIdentifikasiRekening from '@/views/master/form/form-indentifikasi-rekening.vue';
+import formJenisLaporan from '@/views/master/form/form-jenis-laporan.vue';
+import formJenisPengajuan from '@/views/master/form/form-jenis-pengajuan.vue';
+import formJenisRekening from '@/views/master/form/form-jenis-rekening.vue';
+import formProvinsi from '@/views/master/form/form-provinsi.vue';
+import formKota from '@/views/master/form/form-kota.vue';
+import formKecamatan from '@/views/master/form/form-kecamatan.vue';
+import formKelurahan from '@/views/master/form/form-kelurahan.vue';
+import formKodeBankDki from '@/views/master/form/form-kode-bank-dki.vue';
+import formSkpdSekolah from '@/views/master/form/form-skpd-sekolah.vue';
+import formStatus from '@/views/master/form/form-status.vue';
+import formSyarat from '@/views/master/form/form-syarat.vue';
+import formOpsi from '@/views/master/form/form-opsi.vue';
+import formFilter from '@/views/master/form/form-filter.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -122,6 +152,156 @@ const router = createRouter({
           path: '/home/UserManagement/EditAplikasi/0',
           name: 'form-edit-aplikasi',
           component: formEditAplikasi,
+        },
+        {
+            path: '/home/Master/IdentifikasiKategori',
+            name: 'MasterIndentifikasiKategori',
+            component: identifikasiKategori,
+        },        
+        {
+            path: '/home/Master/IdentifikasiRekening',
+            name: 'MasterIndentifikasiRekening',
+            component: identifikasiRekening,
+        },
+        {
+            path: '/home/Master/KodeBankDKI',
+            name: 'MasterKodeBankDKI',
+            component: kodeBankDKI,
+        },        
+        {
+            path: '/home/Master/JenisLaporan',
+            name: 'MasterJenisLaporan',
+            component: jenisLaporan,
+        },
+        {
+            path: '/home/Master/JenisPengajuan',
+            name: 'MasterJenisPengajuan',
+            component: jenisPengajuan,
+        },       
+        {
+            path: '/home/Master/JenisRekening',
+            name: 'MasterJenisRekening',
+            component: jenisRekening,
+        },
+        {
+            path: '/home/Master/Provinsi',
+            name: 'MasterProvinsi',
+            component: provinsi,
+        },
+        {
+            path: '/home/Master/Kota',
+            name: 'MasterKota',
+            component: kota,
+        },
+        {
+            path: '/home/Master/Kecamatan',
+            name: 'MasterKecamatan',
+            component: kecamatan,
+        },
+        {
+            path: '/home/Master/Kelurahan',
+            name: 'MasterKelurahan',
+            component: kelurahan,
+        },
+        {
+            path: '/home/Master/SkpdSekolah',
+            name: 'MasterSkpdSekolah',
+            component: skpdSekolah,
+        },
+        {
+            path: '/home/Master/Status',
+            name: 'MasterStatus',
+            component: status,
+        },
+        {
+            path: '/home/Master/Syarat',
+            name: 'MasterSyarat',
+            component: syarat,
+        },
+        {
+            path: '/home/Master/Opsi',
+            name: 'MasterOpsi',
+            component: opsi,
+        },
+        {
+            path: '/home/Master/Filter',
+            name: 'MasterFilter',
+            component: filter,
+        },
+        {
+            path: '/home/Master/Form/AddIdentifikasiKategori/0',
+            name: 'FormIndetifikasiKategori',
+            component: formIdentifikasiKategori,
+        },
+        {
+            path: '/home/Master/Form/AddIdentifikasiRekening/0',
+            name: 'FormIndetifikasiRekening',
+            component: formIdentifikasiRekening,
+        },
+        {
+            path: '/home/Master/Form/AddJenisLaporan/0',
+            name: 'FormJenisLaporan',
+            component: formJenisLaporan,
+        },
+        {
+            path: '/home/Master/Form/AddJenisPengajuan/0',
+            name: 'FormJenisPengajuan',
+            component: formJenisPengajuan,
+        },
+        {
+            path: '/home/Master/Form/AddJenisRekening/0',
+            name: 'FormJenisRekening',
+            component: formJenisRekening,
+        },
+        {
+            path: '/home/Master/Form/AddProvinsi/0',
+            name: 'FormProvinsi',
+            component: formProvinsi,
+        },
+        {
+            path: '/home/Master/Form/AddKota/0',
+            name: 'FormKota',
+            component: formKota,
+        },
+        {
+            path: '/home/Master/Form/AddKecamatan/0',
+            name: 'FormKecamatan',
+            component: formKecamatan,
+        },
+        {
+            path: '/home/Master/Form/AddKelurahan/0',
+            name: 'FormKelurahan',
+            component: formKelurahan,
+        },
+        {
+            path: '/home/Master/Form/AddKodeBankDki/0',
+            name: 'FormKodeBankDki',
+            component: formKodeBankDki,
+        },
+        {
+            path: '/home/Master/Form/AddSkpdsekolah/0',
+            name: 'FormSkpdSekolah',
+            component: formSkpdSekolah,
+        },
+        {
+            path: '/home/Master/Form/AddStatus/0',
+            name: 'FormStatus',
+            component: formStatus,
+        },
+        {
+            path: '/home/Master/Form/AddSyarat/0',
+            name: 'FormSyarat',
+            component: formSyarat,
+        },
+        {
+            path: '/home/Master/Form/AddOpsi/0',
+            name: 'FormOpsi',
+            component: formOpsi,
+        },
+        {
+            path: '/home/Master/Form/AddFilter/0',
+            name: 'FormFilter',
+            component: formFilter,
         },
     ],
 });
