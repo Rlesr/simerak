@@ -1,0 +1,56 @@
+[
+    {
+      "nomorRekening": "10802177759",
+      "namaRekening": "Pusat Keuangan RSUD",
+      "jenisRekening": "Rekening Pengeluaran",
+      "laporan": [
+        { "bulan": "Januari", "tahun": 2020, "jumlahAwal": 500000, "jumlahAkhir": 700000 },
+        { "bulan": "Februari", "tahun": 2020, "jumlahAwal": 700000, "jumlahAkhir": 750000 }
+      ]
+    },
+    {
+      "nomorRekening": "10803155511",
+      "namaRekening": "RSUD Tarakan",
+      "jenisRekening": "Rekening Pengeluaran SKPD",
+      "laporan": [
+        { "bulan": "Januari", "tahun": 2020, "jumlahAwal": 1000000, "jumlahAkhir": 1200000 },
+        { "bulan": "Desember", "tahun": 2020, "jumlahAwal": 1200000, "jumlahAkhir": 1300000 }
+      ]
+    },
+    {
+      "nomorRekening": "10804144422",
+      "namaRekening": "Dinas Pendidikan",
+      "jenisRekening": "Rekening BOS Negeri",
+      "laporan": [
+        { "bulan": "Januari", "tahun": 2021, "jumlahAwal": 1500000, "jumlahAkhir": 1600000 },
+        { "bulan": "Februari", "tahun": 2021, "jumlahAwal": 1600000, "jumlahAkhir": 1700000 }
+      ]
+    },
+    {
+      "nomorRekening": "10805133388",
+      "namaRekening": "Dinas Kesehatan",
+      "jenisRekening": "Rekening Penerimaan BLUD",
+      "laporan": [
+        { "bulan": "Maret", "tahun": 2021, "jumlahAwal": 1400000, "jumlahAkhir": 1450000 },
+        { "bulan": "April", "tahun": 2021, "jumlahAwal": 1450000, "jumlahAkhir": 1500000 }
+      ]
+    },
+    {
+      "nomorRekening": "10806122277",
+      "namaRekening": "Dinas Sosial",
+      "jenisRekening": "Rekening Penerimaan SKPD",
+      "laporan": [
+        { "bulan": "Mei", "tahun": 2021, "jumlahAwal": 1250000, "jumlahAkhir": 1300000 },
+        { "bulan": "Juni", "tahun": 2021, "jumlahAwal": 1300000, "jumlahAkhir": 1350000 }
+      ]
+    },
+    {
+      "nomorRekening": "10807155566",
+      "namaRekening": "Sekolah Negeri 1",
+      "jenisRekening": "Rekening BOP Negeri",
+      "laporan": [
+        { "bulan": "Juli", "tahun": 2021, "jumlahAwal": 900000, "jumlahAkhir": 950000 },
+        { "bulan": "Agustus", "tahun": 2021, "jumlahAwal": 950000, "jumlahAkhir": 1000000 }
+      ]
+    }
+  ]

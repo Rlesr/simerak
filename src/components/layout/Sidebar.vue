@@ -330,7 +330,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/home/pengusulan/opd/bendahara" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a
+                        href="/home/pengusulan/opd/bendahara"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
                         <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                             <path
                                 fill="currentColor"
@@ -341,7 +344,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/home/pengusulan/opd/pelaksana" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a
+                        href="/home/pengusulan/opd/pelaksana"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
                         <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                             <path
                                 fill="currentColor"
@@ -354,39 +360,162 @@
             </ul>
 
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <div
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isBuka ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown3"
+                >
                     <span class="mr-2">
-                        <!-- Ubah Spesimen Icon -->
-                        <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                             <path
-                                d="M11.05 3.72728L4.20829 10.9689C3.94996 11.2439 3.69996 11.7856 3.64996 12.1606L3.34162 14.8606C3.23329 15.8356 3.93329 16.5023 4.89996 16.3356L7.58329 15.8773C7.95829 15.8106 8.48329 15.5356 8.74162 15.2523L15.5833 8.01062C16.7666 6.76062 17.3 5.33562 15.4583 3.59395C13.625 1.86895 12.2333 2.47728 11.05 3.72728Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M9.90845 4.93564C10.2668 7.23564 12.1334 8.99397 14.4501 9.2273"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M2.5 19.0606H17.5"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
                             />
                         </svg>
                     </span>
-                    <span>Ubah Spesimen</span>
-                </a>
+                    <span>User Management</span>
+                    <span :class="{ 'rotate-180': isBuka }" class="ml-auto transition-transform">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </span>
+                </div>
             </li>
+
+            <ul v-if="isBuka" class="ml-8 space-y-2">
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path
+                                fill="currentColor"
+                                d="M8 8a3 3 0 1 0 0-6a3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0a2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1s1-4 6-4s6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"
+                            />
+                        </svg>
+                        Pengguna
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                            <path
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                            />
+                        </svg>
+                        Otoritas
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                            <path
+                                fill="currentColor"
+                                d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12M40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24m176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24"
+                            />
+                        </svg>
+                        Aplikasi
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                                d="M160 144h288M160 256h288M160 368h288"
+                            />
+                            <circle
+                                cx="80"
+                                cy="144"
+                                r="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                            />
+                            <circle
+                                cx="80"
+                                cy="256"
+                                r="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                            />
+                            <circle
+                                cx="80"
+                                cy="368"
+                                r="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                            />
+                        </svg>
+
+                        Menu
+                    </a>
+                </li>
+                <li>
+                    <div
+                        class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                        :class="isBukaKelola ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                        @click="toggleDropdown32"
+                    >
+                        <span class="mr-2">
+                            <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                                <path
+                                    fill="currentColor"
+                                    d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="text-sm text-normal">Kelola Otoritas</span>
+                        <span :class="{ 'rotate-180': isBukaKelola }" class="ml-auto transition-transform">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                    fill="currentColor"
+                                ></path>
+                            </svg>
+                        </span>
+                    </div>
+                </li>
+                <ul v-if="isBukaKelola" class="ml-8 space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                            <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                            <path
+                                fill="currentColor"
+                                d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12M40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24m176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24"
+                            />
+                        </svg>
+                            Otoritas Menu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                            <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                                <path
+                                    fill="currentColor"
+                                    d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                                />
+                            </svg>
+                            Otoritas Pengguna
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+
             <li>
                 <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                     <span class="mr-2">
@@ -532,6 +661,7 @@
                 isOpen: false,
                 isBuka: false,
                 isTutup: false,
+                isBukaKelola: false,
             };
         },
 
@@ -541,6 +671,12 @@
             },
             toggleDropdown2() {
                 this.isTutup = !this.isTutup;
+            },
+            toggleDropdown3() {
+                this.isBuka = !this.isBuka;
+            },
+            toggleDropdown32() {
+                this.isBukaKelola = !this.isBukaKelola;
             },
         },
     });

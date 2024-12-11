@@ -1,0 +1,57 @@
+[
+    {
+        "noRekening": "123456789",
+        "namaRekening": "PT ABC",
+        "jenisRekening": "Rekening RKUD",
+        "saldo27Desember2024": 1000000,
+        "giro27Desember2024": 200000,
+        "saldo1Januari2025": 1100000,
+        "giro1Januari2025": 210000,
+        "saldo2Januari2025": 1200000,
+        "giro2Januari2025": 220000
+    },
+    {
+        "noRekening": "987654321",
+        "namaRekening": "PT XYZ",
+        "jenisRekening": "Rekening BUD",
+        "saldo27Desember2024": 2000000,
+        "giro27Desember2024": 300000,
+        "saldo1Januari2025": 2100000,
+        "giro1Januari2025": 310000,
+        "saldo2Januari2025": 2200000,
+        "giro2Januari2025": 320000
+    },
+    {
+        "noRekening": "112233445",
+        "namaRekening": "PT DEF",
+        "jenisRekening": "Rekening Pengeluaran",
+        "saldo27Desember2024": 500000,
+        "giro27Desember2024": 50000,
+        "saldo1Januari2025": 600000,
+        "giro1Januari2025": 60000,
+        "saldo2Januari2025": 700000,
+        "giro2Januari2025": 70000
+    },
+    {
+        "noRekening": "556677889",
+        "namaRekening": "PT GHI",
+        "jenisRekening": "Rekening Penerimaan",
+        "saldo27Desember2024": 3000000,
+        "giro27Desember2024": 400000,
+        "saldo1Januari2025": 3100000,
+        "giro1Januari2025": 410000,
+        "saldo2Januari2025": 3200000,
+        "giro2Januari2025": 420000
+    },
+    {
+        "noRekening": "667788990",
+        "namaRekening": "PT JKL",
+        "jenisRekening": "Rekening BOS Negeri",
+        "saldo27Desember2024": 1500000,
+        "giro27Desember2024": 150000,
+        "saldo1Januari2025": 1600000,
+        "giro1Januari2025": 160000,
+        "saldo2Januari2025": 1700000,
+        "giro2Januari2025": 170000
+    }
+]

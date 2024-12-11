@@ -25,7 +25,18 @@ import pengusulanBendahara from '@/views/pengusulan/pengusulan-bendahara/pengusu
 import pengusulanBendaharaSkpd from '@/views/pengusulan/pengusulan-bendahara/pengusulan-bendahara-skpd.vue';
 import pengusulanPelaksanaopd from '@/views/pengusulan/pengusulan-pelaksana/pengusulan-pelaksana.vue';
 import pengusulanPelaksanaSkpd from '@/views/pengusulan/pengusulan-pelaksana/pengusulan-pelaksana-skpd.vue';
-
+import Pengguna from '@/views/user-management/pengguna/pengguna.vue';
+import laporanNonbankDKi from '@/views/laporan/laporan-saldo-non-bank-DKI/List.vue'
+import formLaporanNonBankDKI from '@/views/laporan/laporan-saldo-non-bank-DKI/form/form-laporan-nonbank-DKI.vue'
+import laporanSaldoBankDKI from '@/views/laporan/laporan-saldo-BDKI/laporan-saldo-BDKI.vue'
+import laporanDeposito from '@/views/laporan/laporan-deposito/laporan-deposito.vue';
+import laporanMutasi from '@/views/laporan/laporan-mutasi/laporan-mutasi.vue';
+import laporanMutasiFee from '@/views/laporan/laporan-mutasi-fee/laporan-mutasi-fee.vue';
+import laporanLogAktivitas from '@/views/laporan/laporan-log-aktivitas/laporan-log-aktivitas.vue';
+import laporanInfoBankDki from '@/views/laporan/laporan-info-bank-Dki/laporan-info-bank-dki.vue';
+import LaporanInfoBankLain from '@/views/laporan/laporan-info-rekening-bank-lain/laporan-info-bank-lain.vue';
+import LaporanGiro from '@/views/laporan/laporan-giro/laporan-giro.vue';
+import mutasiForm from '@/views/laporan/laporan-giro/form/giro.vue'
 
 
 const router = createRouter({
@@ -157,9 +168,69 @@ const router = createRouter({
         component: pengusulanPelaksanaopd,
     },
     {
-        path: '/home//pengusulan/pelaksana',
+        path: '/home/pengusulan/pelaksana',
         name: 'pengusulanPelaksanaSkpd',
         component: pengusulanPelaksanaSkpd,
+    },
+    {
+        path: '/home/user-management/pengguna/list',
+        name: 'Pengguna',
+        component: Pengguna,
+    },
+    {
+        path: '/home/laporan/saldo/list',
+        name: 'laporanNonbankDKi',
+        component: laporanNonbankDKi,
+    },
+    {
+        path: '/home/laporan/saldo/add/',
+        name: 'formLaporanNonBankDKI',
+        component: formLaporanNonBankDKI,
+    },
+    {
+        path: '/home/laporan/saldo-bdki/list/',
+        name: 'laporanSaldoBankDKI',
+        component: laporanSaldoBankDKI,
+    },
+    {
+        path: '/home/laporan/deposito/list',
+        name: 'laporanDeposito',
+        component: laporanDeposito,
+    },
+    {
+        path: '/home/laporan/mutasi/list/',
+        name: 'laporanMutasi',
+        component: laporanMutasi,
+    },
+    {
+        path: '/home/laporan/mutasi-fee',
+        name: 'laporanMutasiFee',
+        component: laporanMutasiFee,
+    },
+    {
+        path: '/home/laporan/log-aktivitas',
+        name: 'laporanLogAktivitas',
+        component: laporanLogAktivitas,
+    },
+    {
+        path: '/home/laporan/info-bankdki',
+        name: 'laporanInfoBankDki',
+        component: laporanInfoBankDki,
+    },
+    {
+        path: '/home/laporan/info-nonbankdki',
+        name: 'LaporanInfoBankLain',
+        component: LaporanInfoBankLain,
+    },
+    {
+        path: '/home/laporan/giro-bdki/list',
+        name: 'LaporanGiro',
+        component: LaporanGiro,
+    },
+    {
+        path: '/home/laporan/giro-bdki/add/',
+        name: 'mutasiForm',
+        component: mutasiForm,
     },
 
   ],
