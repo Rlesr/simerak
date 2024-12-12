@@ -37,6 +37,13 @@ import laporanInfoBankDki from '@/views/laporan/laporan-info-bank-Dki/laporan-in
 import LaporanInfoBankLain from '@/views/laporan/laporan-info-rekening-bank-lain/laporan-info-bank-lain.vue';
 import LaporanGiro from '@/views/laporan/laporan-giro/laporan-giro.vue';
 import mutasiForm from '@/views/laporan/laporan-giro/form/giro.vue'
+import UserManagementOtoritas from '@/views/user-management/otoritas/user-management-otoritas.vue';
+import userManagementAplikasi from '@/views/user-management/aplikasi/aplikasi.vue'
+import userManagementMenu from '@/views/user-management/menu/menu.vue';
+import OtoritasPengguna from '@/views/user-management/otoritas-pengguna/otoritas-pengguna.vue';
+import OtoritasMenu from '@/views/user-management/otoritas-menu/otoritas-menu.vue';
+
+
 
 
 const router = createRouter({
@@ -176,6 +183,31 @@ const router = createRouter({
         path: '/home/user-management/pengguna/list',
         name: 'Pengguna',
         component: Pengguna,
+    },
+    {
+        path: '/home/user-management/otoritas/list',
+        name: 'UserManagementOtoritas',
+        component: UserManagementOtoritas,
+    },
+    {
+        path: '/home/user-management/aplikasi/list',
+        name: 'userManagementAplikasi',
+        component: userManagementAplikasi,
+    },
+    {
+        path: '/home/user-management/menu/list',
+        name: 'userManagementMenu',
+        component: userManagementMenu,
+    },
+    {
+        path: '/home/user-management/otoritas-pengguna/list',
+        name: 'OtoritasPengguna',
+        component: OtoritasPengguna,
+    },
+    {
+        path: '/home/user-management/otoritas-menu/list',
+        name: 'OtoritasMenu',
+        component: OtoritasMenu,
     },
     {
         path: '/home/laporan/saldo/list',

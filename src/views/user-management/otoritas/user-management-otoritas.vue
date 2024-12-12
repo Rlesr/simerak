@@ -18,11 +18,11 @@
                         </a>
                     </li>
                     <li class="before:content-['/'] before:px-0.5">
-                        <a href="#" class="text-blue-500 dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70"> Pengguna</a>
+                        <a href="#" class="text-blue-500 dark:text-white-light hover:text-black/70 dark:hover:text-white-light/70"> Otoritas</a>
                     </li>
                 </ol>
-                <h2 class="text-2xl font-bold mb-[10px]">Daftar Pengguna</h2>
-                <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat daftar Pengguna</p>
+                <h2 class="text-2xl font-bold mb-[10px]">Daftar Otoritas</h2>
+                <p class="text-sm mb-[10px]">Menu ini digunakan untuk melihat daftar Otoritas</p>
                 <hr class="border-t-2 border-black" />
             </div>
 
@@ -38,40 +38,33 @@
                                 <!-- Input Pencarian -->
                                 <input
                                     type="text"
-                                    v-model="searchNama"
+                                    v-model="searchkodeOtoritas"
                                     class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
-                                    placeholder="Nama"
+                                    placeholder="kodeOtoritas"
                                 />
                             </div>
                             <div class="flex items-center space-x-4">
                                 <div class="relative flex items-center border border-gray-300 rounded-md h-10 w-[150px] px-2">
                                     <input
                                         type="text"
-                                        v-model="searchEmail"
+                                        v-model="searchnamaOtoritas"
                                         class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
-                                        placeholder="Email"
+                                        placeholder="Nama Otoritas"
                                     />
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="relative flex items-center border border-gray-300 rounded-md h-10 w-[150px] px-2">
-                                    <input
-                                        type="text"
-                                        v-model="searchNIP"
-                                        class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
-                                        placeholder="NIP"
-                                    />
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="relative flex items-center border border-gray-300 rounded-md h-10 w-[150px] px-2">
-                                    <input
-                                        type="text"
-                                        v-model="searchUsername"
-                                        class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
-                                        placeholder="Username/NRK"
-                                    />
-                                </div>
+                            <!-- Pilih Status -->
+                            <div class="relative flex items-center border border-gray-300 rounded-md h-10 w-[150px] px-2">
+                                <select
+                                    class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
+                                    name="pilihStatus"
+                                    id="status"
+                                    v-model="selectedStatus"
+                                >
+                                    <option value="">Semua Status</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                </select>
                             </div>
 
                             <button class="btn-primary h-8 w-[150px] flex items-center justify-center">
@@ -98,17 +91,47 @@
                                         <path stroke-linecap="round" d="M6 10V8a6 6 0 1 1 12 0v2" />
                                     </g>
                                 </svg>
-                                <p>Kunci        </p>
+                                <p>Nonaktifkan</p>
+                            </button>
+
+                            <button
+                                :class="[
+                                    'h-8 w-[150px] flex items-center justify-center rounded-md border font-semibold',
+                                    selectedRows.length > 0
+                                        ? 'bg-red-500 text-white border-red-500 hover:bg-white hover:text-red-500'
+                                        : 'bg-gray-200 text-gray-500 border-gray-200 cursor-not-allowed',
+                                ]"
+                                @click="selectedRows.length > 0 ? openDeleteModal() : null"
+                            >
+                                <svg class="w-[20px] h-[20px] ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path
+                                            d="M2 16c0-2.828 0-4.243.879-5.121C3.757 10 5.172 10 8 10h8c2.828 0 4.243 0 5.121.879C22 11.757 22 13.172 22 16s0 4.243-.879 5.121C20.243 22 18.828 22 16 22H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16Z"
+                                        />
+                                        <path stroke-linecap="round" d="M6 10V8a6 6 0 1 1 12 0v2" />
+                                    </g>
+                                </svg>
+                                <p>Hapus</p>
                             </button>
 
                             <!-- Modal -->
                             <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                                <div class="bg-white rounded-lg p-6 w-[400px]">
-                                    <h2 class="text-lg font-semibold mb-4">Konfirmasi Penguncian</h2>
-                                    <p class="mb-4">Apakah Anda yakin ingin mengunci item yang dipilih?</p>
+                                <div class="bg-white rounded-lg p-6 w-[400px] shadow-lg">
+                                    <h2 class="text-lg font-semibold mb-4">Konfirmasi Penonaktifan</h2>
+                                    <p class="mb-4">Apakah Anda yakin ingin menonaktifkan item yang dipilih?</p>
                                     <div class="flex justify-end space-x-4">
                                         <button class="btn-secondary px-4 py-2" @click="showModal = false">Batal</button>
                                         <button class="btn-primary px-4 py-2" @click="confirmLock">Kunci</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+                                <div class="bg-white rounded-lg p-6 w-96 shadow-lg">
+                                    <h2 class="text-lg font-bold text-gray-800 mb-4">Konfirmasi Penghapusan</h2>
+                                    <p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus item yang dipilih?</p>
+                                    <div class="flex justify-end space-x-4">
+                                        <button @click="cancelDelete" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">Tidak</button>
+                                        <button @click="confirmDelete" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Ya</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,34 +146,34 @@
                                         <input type="checkbox" @change="toggleSelectAll($event)" />
                                     </th>
                                     <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">
-                                        Nama
-                                        <button @click="toggleSort('nama')">
+                                        Kode Otoritas
+                                        <button @click="toggleSort('kodeOtoritas')">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                 <!-- Panah Ascending -->
                                                 <path
-                                                    :fill="sortColumn === 'nama' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'kodeOtoritas' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
                                                 ></path>
                                                 <!-- Panah Descending -->
                                                 <path
-                                                    :fill="sortColumn === 'nama' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'kodeOtoritas' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
                                                 ></path>
                                             </svg>
                                         </button>
                                     </th>
                                     <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">
-                                        Email
-                                        <button @click="toggleSort('email')">
+                                        Nama Otoritas
+                                        <button @click="toggleSort('namaOtoritas')">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                 <!-- Panah Ascending -->
                                                 <path
-                                                    :fill="sortColumn === 'email' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'namaOtoritas' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
                                                 ></path>
                                                 <!-- Panah Descending -->
                                                 <path
-                                                    :fill="sortColumn === 'email' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                    :fill="sortColumn === 'namaOtoritas' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
                                                     d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
                                                 ></path>
                                             </svg>
@@ -158,17 +181,17 @@
                                     </th>
                                     <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">
                                         <div class="flex items-center space-x-2">
-                                            NIP
-                                            <button @click="toggleSort('nip')">
+                                            Keterangan
+                                            <button @click="toggleSort('Keterangan')">
                                                 <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg">
                                                     <!-- Panah Ascending -->
                                                     <path
-                                                        :fill="sortColumn === 'nip' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
+                                                        :fill="sortColumn === 'Keterangan' && sortDirection === 'asc' ? '#0000FF' : '#0F0F0F'"
                                                         d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z"
                                                     ></path>
                                                     <!-- Panah Descending -->
                                                     <path
-                                                        :fill="sortColumn === 'nip' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
+                                                        :fill="sortColumn === 'Keterangan' && sortDirection === 'desc' ? '#0000FF' : '#0F0F0F'"
                                                         d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"
                                                     ></path>
                                                 </svg>
@@ -193,8 +216,7 @@
                                         </button>
                                     </th>
 
-                                    <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">Status Aktif</th>
-                                    <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">Status Terkunci</th>
+                                    <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">Status</th>
                                     <th class="border-b p-4 font-medium text-gray-900 text-center align-middle">Action</th>
                                 </tr>
                             </thead>
@@ -203,9 +225,9 @@
                                     <td class="border-b p-4 text-center align-middle">
                                         <input type="checkbox" :value="item" v-model="selectedRows" />
                                     </td>
-                                    <td class="border-b p-4 text-center align-middle">{{ item.nama }}</td>
-                                    <td class="border-b p-4 text-center align-middle">{{ item.email }}</td>
-                                    <td class="border-b p-4 text-center align-middle">{{ item.nip }}</td>
+                                    <td class="border-b p-4 text-center align-middle">{{ item.kodeOtoritas }}</td>
+                                    <td class="border-b p-4 text-center align-middle">{{ item.namaOtoritas }}</td>
+                                    <td class="border-b p-4 text-center align-middle">{{ item.Keterangan }}</td>
                                     <td class="border-b p-4 text-center align-middle">{{ item.username }}</td>
                                     <td class="border-b p-4 text-center align-middle">
                                         <span
@@ -215,47 +237,9 @@
                                             {{ item.statusAktif }}
                                         </span>
                                     </td>
-                                    <td class="border-b p-4 text-center align-middle flex items-center justify-center">
-                                        <div class="w-[50px] h-8 px-3 py-1 rounded-full text-sm" :class="statusTerkunciClass(item.statusTerkunci)">
-                                            <span v-if="item.statusTerkunci === 'Terkunci'">
-                                                <!-- SVG Lock -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-                                                    <path
-                                                        fill="currentColor"
-                                                        d="M17 9V7A5 5 0 0 0 7 7v2a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-7a3 3 0 0 0-3-3M9 7a3 3 0 0 1 6 0v2H9Zm9 12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1Z"
-                                                    />
-                                                </svg>
-                                            </span>
-                                            <span v-else>
-                                                <!-- SVG Unlock -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-                                                    <path
-                                                        fill="currentColor"
-                                                        d="M17 9H9V7a3 3 0 0 1 5.12-2.13a3.1 3.1 0 0 1 .78 1.38a1 1 0 1 0 1.94-.5a5.1 5.1 0 0 0-1.31-2.29A5 5 0 0 0 7 7v2a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-7a3 3 0 0 0-3-3m1 10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1Z"
-                                                    />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </td>
-
                                     <td class="border-b p-4 text-center align-middle">
                                         <!-- Container untuk tombol -->
                                         <div class="flex justify-center space-x-4">
-                                            <!-- Tombol Change Password -->
-                                            <button class="h-8 w-8 flex items-center justify-center hover:text-blue-700">
-                                                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor" stroke-width="1.5">
-                                                        <path
-                                                            stroke-linejoin="round"
-                                                            d="M15.68 14.587c3.49 0 6.32-2.818 6.32-6.294S19.17 2 15.68 2S9.363 4.818 9.363 8.293c0 1.61.734 2.781.734 2.781l-7.642 7.61c-.343.342-.823 1.23 0 2.05l.882.878c.343.293 1.205.703 1.91 0l1.03-1.024c1.028 1.024 2.204.439 2.645-.147c.734-1.024-.147-2.049-.147-2.049l.294-.293c1.41 1.406 2.645.586 3.086 0c.735-1.024 0-2.049 0-2.049c-.294-.585-.882-.585-.147-1.317l.882-.878c.705.585 2.155.732 2.792.732Z"
-                                                        />
-                                                        <path
-                                                            d="M17.885 8.294a2.2 2.2 0 0 1-2.204 2.195a2.2 2.2 0 0 1-2.205-2.195a2.2 2.2 0 0 1 2.205-2.196a2.2 2.2 0 0 1 2.204 2.196Z"
-                                                            opacity="0.5"
-                                                        />
-                                                    </g>
-                                                </svg>
-                                            </button>
                                             <!-- Tombol Edit -->
                                             <button class="h-8 w-8 flex items-center justify-center hover:text-green-700">
                                                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
@@ -356,12 +340,11 @@
     import Layout from '@/components/layout/Layout.vue';
 
     interface DataItem {
-        nama: string;
-        email: string;
-        nip: string;
+        kodeOtoritas: string;
+        namaOtoritas: string;
+        Keterangan: string;
         username: string;
         statusAktif: string;
-        statusTerkunci: string;
     }
 
     export default defineComponent({
@@ -373,36 +356,32 @@
             return {
                 data: [
                     {
-                        nama: 'ijonk',
-                        email: 'zain@gmail.com',
-                        nip: 'string',
+                        kodeOtoritas: 'ijonk',
+                        namaOtoritas: 'zain@gmail.com',
+                        Keterangan: 'i',
                         username: 'ijonk',
                         statusAktif: 'Aktif',
-                        statusTerkunci: 'String',
                     },
                     {
-                        nama: 'nda',
-                        email: 'nda@gmail.com',
-                        nip: 'string',
+                        kodeOtoritas: 'nda',
+                        namaOtoritas: 'nda@gmail.com',
+                        Keterangan: 'm',
                         username: 'maman',
                         statusAktif: 'Tidak Aktif',
-                        statusTerkunci: 'Terkunci',
                     },
                     {
-                        nama: 'nana',
-                        email: 'nana@gmail.com',
-                        nip: 'string',
+                        kodeOtoritas: 'nana',
+                        namaOtoritas: 'nana@gmail.com',
+                        Keterangan: 'q',
                         username: 'dwsq',
                         statusAktif: 'Aktif',
-                        statusTerkunci: 'Tidak Terkunci',
                     },
                     {
-                        nama: 'mantap',
-                        email: 'suryana@gmail.com',
-                        nip: 'string',
+                        kodeOtoritas: 'mantap',
+                        namaOtoritas: 'suryana@gmail.com',
+                        Keterangan: 'a',
                         username: 'saas',
                         statusAktif: 'Tidak Aktif',
-                        statusTerkunci: 'Terkunci',
                     },
                 ],
                 selectedRows: [] as DataItem[],
@@ -410,11 +389,13 @@
                 sortDirection: 'asc' as 'asc' | 'desc',
                 entriesPerPage: 5,
                 currentPage: 1,
-                searchNama: '',
-                searchEmail: '',
-                searchNIP: '',
+                searchkodeOtoritas: '',
+                searchnamaOtoritas: '',
+                searchKeterangan: '',
                 showModal: false,
+                showDeleteModal: false,
                 searchUsername: '',
+                selectedStatus: '', // Tambahan untuk filter status
             };
         },
 
@@ -425,12 +406,13 @@
             filteredData() {
                 let sortedData = [
                     ...this.data.filter((item) => {
-                        const matchesNama = item.nama.toLowerCase().includes(this.searchNama.toLowerCase());
-                        const matchesEmail = item.email.toLowerCase().includes(this.searchEmail.toLowerCase());
-                        const matchesNIP = item.nip.toLowerCase().includes(this.searchNIP.toLowerCase());
+                        const matcheskodeOtoritas = item.kodeOtoritas.toLowerCase().includes(this.searchkodeOtoritas.toLowerCase());
+                        const matchesnamaOtoritas = item.namaOtoritas.toLowerCase().includes(this.searchnamaOtoritas.toLowerCase());
+                        const matchesKeterangan = item.Keterangan.toLowerCase().includes(this.searchKeterangan.toLowerCase());
                         const matchesUsername = item.username.toLowerCase().includes(this.searchUsername.toLowerCase());
+                        const matchesStatus = this.selectedStatus === '' || item.statusAktif === this.selectedStatus;
 
-                        return matchesNama && matchesEmail && matchesNIP && matchesUsername;
+                        return matcheskodeOtoritas && matchesnamaOtoritas && matchesKeterangan && matchesUsername && matchesStatus;
                     }),
                 ];
 
@@ -468,19 +450,48 @@
                     this.selectedRows = [];
                 }
             },
+            deleteSelected() {
+                if (this.selectedRows.length === 0) {
+                    alert('Tidak ada item yang dipilih!');
+                    return;
+                }
+
+                if (confirm('Apakah Anda yakin ingin menghapus item yang dipilih?')) {
+                    // Filter data asli
+                    this.data = this.data.filter((item) => !this.selectedRows.some((selected) => selected.kodeOtoritas === item.kodeOtoritas));
+
+                    // Reset pilihan
+                    this.selectedRows = [];
+                }
+            },
             lockSelectedItems() {
                 this.showModal = true;
             },
             confirmLock() {
                 this.selectedRows.forEach((item) => {
-                    const targetItem = this.data.find((dataItem) => dataItem.nama === item.nama);
+                    const targetItem = this.data.find((dataItem) => dataItem.kodeOtoritas === item.kodeOtoritas);
                     if (targetItem) {
-                        targetItem.statusTerkunci = 'Terkunci';
+                        targetItem.statusAktif = 'Tidak Aktif';
                     }
                 });
                 this.selectedRows = []; // Reset pilihan setelah mengunci
                 this.showModal = false; // Tutup modal setelah konfirmasi
-                alert('Item yang dipilih telah dikunci.');
+            },
+            openDeleteModal() {
+                if (this.selectedRows.length === 0) {
+                    alert('Tidak ada item yang dipilih!');
+                    return;
+                }
+                this.showDeleteModal = true; // Buka modal penghapusan
+            },
+            confirmDelete() {
+                // Filter data asli
+                this.data = this.data.filter((item) => !this.selectedRows.some((selected) => selected.kodeOtoritas === item.kodeOtoritas));
+                this.selectedRows = []; // Reset pilihan
+                this.showDeleteModal = false; // Tutup modal
+            },
+            cancelDelete() {
+                this.showDeleteModal = false; // Tutup modal tanpa menghapus
             },
             isAllSelected() {
                 // Periksa apakah semua baris di halaman saat ini dipilih
@@ -500,16 +511,12 @@
                         return 'bg-green-500';
                     case 'Tidak Aktif':
                         return 'bg-red-500';
-                    case 'Terkunci':
-                        return 'bg-red-500';
-                    case 'Tidak Terkunci':
-                        return 'bg-green-500';
                     default:
                         return 'bg-gray-500';
                 }
             },
-            statusTerkunciClass(status: string): string {
-                return status === 'Terkunci' ? 'bg-red-200 text-red-600' : 'bg-green-200 text-green-600';
+            statusAktifClass(status: string): string {
+                return status === 'Tidak Aktif' ? 'bg-red-200 text-red-600' : 'bg-green-200 text-green-600';
             },
 
             changeEntries() {
