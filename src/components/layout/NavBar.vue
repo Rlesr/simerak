@@ -67,7 +67,7 @@
                     Master
                     <span v-if="dropdownOpen" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-8 bg-[#F57900] rounded-full"></span>
                 </button>
-                <ul v-if="dropdownOpen" class="lg:absolute lg:left-0 lg:mt-2 w-full lg:w-[250px] bg-white text-sm text-black shadow-lg rounded-lg lg:z-50">
+                <ul v-if="dropdownOpen" class="lg:absolute lg:right-2 lg:mt-2 w-full lg:w-[250px] bg-white text-sm text-black shadow-lg rounded-lg lg:z-50">
                     <li v-for="(item, index) in masterItems" :key="index" class="hover:bg-gray-200">
                         <a
                             href="#"
