@@ -87,14 +87,24 @@
             </label>
             <input id="foto-upload" type="file" accept=".pdf" class="hidden" @change="handleFileChange('FotoKS', $event)" />
         </div>
+        <div class="text-center mt-4">
+            <span
+                :class="isAllFilesComplete ? 'text-green-500' : 'text-red-500'"
+                class="font-semibold"
+            >
+                {{ isAllFilesComplete ? 'Semua dokumen telah diunggah.' : 'Harap lengkapi semua dokumen.' }}
+            </span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { reactive, watch, computed } from 'vue';
+import { reactive, watch, computed, defineComponent } from 'vue';
 
-export default {
-    setup() {
+export default defineComponent({
+    props: {},
+    emits: ['completion-change'], // Deklarasi emits
+    setup(_, { emit }) {
         const files = reactive<{ [key: string]: string | null }>({
             KTPKS: null,
             SKKS: null,
@@ -115,23 +125,18 @@ export default {
             }
         };
 
-
-
-        const onCompletionChange = () => {
-            const isComplete = Object.values(files).every((file) => file !== null);
-            if (isComplete) {
-                alert('Semua dokumen telah terunggah!');
-                // Atau jalankan logika lainnya seperti API call
-            }
-        };
-
-        watch(files, onCompletionChange, { deep: true });
+        const isAllFilesComplete = computed(() => {
+            const status = Object.values(files).every(file => file !== null);
+            emit('completion-change', status); // Memancarkan event setiap kali status berubah
+            return status;
+        });
 
         return {
             files,
             handleFileChange,
-           
+            isAllFilesComplete,
         };
     },
-};
+});
 </script>
+

@@ -19,7 +19,7 @@
             </div>
 
             <!-- Form Section -->
-            <div class="mt-3 bg-white shadow rounded-lg p-6">
+            <div class="mt-3 bg-white rounded-lg p-6">
                 <form class="space-y-5">
                     <!-- Input Tanggal -->
                     <div class="flex items-center">

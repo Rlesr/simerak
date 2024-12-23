@@ -8,7 +8,7 @@
                 <select
                     id="sumber-dana"
                     v-model="selectedSource"
-                    class="block w-full pl-3 pr-10 py-2 border border-gray-30 rounded-md form-input"
+                    class="block w-full pl-3 pr-10 py-2  border-gray-30  border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200;"
                 >
                     <option value="" class="text" disabled>Pilih Sumber Dana</option>
                     <option v-for="option in fundingSources" :key="option.value" :value="option.value">
@@ -26,7 +26,7 @@
                 <select
                     id="total-pendapatan"
                     v-model="selectedIncome"
-                    class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 rounded-md form-input"
+                    class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200;"
                 >
                     <option value="" disabled>Pilih Total Pendapatan/Tahun</option>
                     <option v-for="option in annualIncome" :key="option.value" :value="option.value">
@@ -76,17 +76,23 @@
                 <input type="text" v-model="form.Tempat" class="w-full border rounded px-3 py-2 form-input" />
             </div>
         </div>
+        <div class="text-center mt-6">
+            <span :class="isComplete ? 'text-green-500' : 'text-red-500'" class="font-semibold">
+                {{ isComplete ? 'Form lengkap dan siap dikirim.' : 'Harap lengkapi semua Form.' }}
+            </span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, onMounted } from 'vue';
+import { defineComponent, ref, reactive, watch, onMounted } from 'vue';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 export default defineComponent({
     name: 'DropdownExample',
-    setup() {
+    emits: ['completion-change'], // Emit untuk perubahan status kelengkapan
+    setup(_, { emit }) {
         const fundingSources = [
             { value: 'hasil usaha', label: 'Hasil usaha' },
             { value: 'lainnya', label: 'Lainnya' },
@@ -113,11 +119,47 @@ export default defineComponent({
             Tempat: '',
         });
 
+        const isComplete = ref(false);
+
+        const checkCompletion = () => {
+            isComplete.value =
+                selectedSource.value.trim() !== '' &&
+                selectedIncome.value.trim() !== '' &&
+                form.namaKepala.trim() !== '' &&
+                form.NIK.trim() !== '' &&
+                form.Jabatan.trim() !== '' &&
+                form.NoHP.trim() !== '' &&
+                form.NoSK.trim() !== '' &&
+                form.TanggalSK.trim() !== '' &&
+                form.Tempat.trim() !== '';
+
+            // Emit perubahan kelengkapan
+            emit('completion-change', isComplete.value);
+        };
+
+        // Watchers untuk memantau perubahan
+        watch(
+            [
+                selectedSource,
+                selectedIncome,
+                () => form.namaKepala,
+                () => form.NIK,
+                () => form.Jabatan,
+                () => form.NoHP,
+                () => form.NoSK,
+                () => form.TanggalSK,
+                () => form.Tempat,
+            ],
+            checkCompletion,
+            { deep: true }
+        );
+
         onMounted(() => {
             if (flatpickrTanggalSK.value) {
                 flatpickr(flatpickrTanggalSK.value, {
                     onChange: (selectedDates) => {
                         form.TanggalSK = selectedDates[0]?.toISOString() || '';
+                        checkCompletion();
                     },
                 });
             }
@@ -130,13 +172,13 @@ export default defineComponent({
             selectedSource,
             selectedIncome,
             flatpickrTanggalSK,
+            isComplete,
         };
     },
 });
 </script>
 
+
 <style scoped>
-    .form-input {
-        @apply border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200;
-    }
+
 </style>

@@ -8,10 +8,10 @@
             <Sidebar :isSidebarOpen="isSidebarOpen" />
 
             <!-- Form Wizard Content -->
-            <div class="form-wizard-container" :class="['transition-all duration-300', isSidebarOpen ? 'md:ml-64' : 'ml-0']">
-                <form-wizard shape="square" color="#4361ee" class="square" :stagger="100">
+            <div class="form-wizard-container">
+                <form-wizard shape="square" color="#4361ee" class="square" :stagger="100" @on-complete="onFinish">
                     <!-- Tabs di bagian atas -->
-                    <tab-content title="umum"   :before-change="() => validateFormsInTab('umum')">
+                    <tab-content title="umum" :before-change="() => validateFormsInTab('umum')">
                         <template #icon>
                             <i class="fas fa-user"></i>
                         </template>
@@ -24,7 +24,7 @@
                                 <Form1
                                     :kodeSekolahProp="kodeSekolah"
                                     :namaSekolahProp="namaSekolah"
-                                    :onCompletionChange="(isComplete) => (formCompletionStates.umum = isComplete)"
+                                    @completion-change="(isComplete) => (formCompletionStates.umum.Form1 = isComplete)"
                                 />
                             </div>
                         </div>
@@ -37,7 +37,7 @@
 
                             <!-- Konten Dropdown -->
                             <div v-show="dropdownStates[2]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form2 :onCompletionChange="(isComplete) => (formCompletionStates.umum = isComplete)" />
+                                <Form2 @completion-change="(isComplete) => (formCompletionStates.umum.Form2 = isComplete)" />
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
 
                             <!-- Konten Dropdown -->
                             <div v-show="dropdownStates[3]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form3 :onCompletionChange="(isComplete) => (formCompletionStates.umum = isComplete)" />
+                                <Form3 @completion-change="(isComplete) => (formCompletionStates.umum.Form3 = isComplete)" />
                             </div>
                         </div>
 
@@ -58,15 +58,16 @@
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(4)">
                                 Unggah Dokumen Sekolah
                             </button>
+                            
 
                             <!-- Konten Dropdown -->
                             <div v-show="dropdownStates[4]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form4 :onCompletionChange="(isComplete) => (formCompletionStates.umum = isComplete)" />
+                                <Form4 @completion-change="(isComplete) => (formCompletionStates.umum.Form4 = isComplete)" />
                             </div>
                         </div>
                     </tab-content>
 
-                    <tab-content title="kepalaSekolah"   :before-change="(moveNext) =>  validateFormsInTab('kepalasekolah')">
+                    <tab-content title="kepalaSekolah" :before-change="() => validateFormsInTab('kepalaSekolah')">
                         <template #icon>
                             <i class="fas fa-user-tie"></i>
                         </template>
@@ -76,7 +77,7 @@
                             </button>
 
                             <div v-show="dropdownStates[0]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form5 :onCompletionChange="(isComplete) => (formCompletionStates.kepalaSekolah = isComplete)" />
+                                <Form5 @completion-change="(isComplete) => (formCompletionStates.kepalaSekolah.Form1 = isComplete)" />
                             </div>
                         </div>
 
@@ -86,7 +87,7 @@
                             </button>
 
                             <div v-show="dropdownStates[5]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form6 :onCompletionChange="(isComplete) => (formCompletionStates.kepalaSekolah = isComplete)" />
+                                <Form6 @completion-change="(isComplete) => (formCompletionStates.kepalaSekolah.Form2 = isComplete)" />
                             </div>
                         </div>
 
@@ -96,7 +97,7 @@
                             </button>
 
                             <div v-show="dropdownStates[6]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form7 :onCompletionChange="(isComplete) => (formCompletionStates.kepalaSekolah = isComplete)" />
+                                <Form7 @completion-change="(isComplete) => (formCompletionStates.kepalaSekolah.Form3 = isComplete)" />
                             </div>
                         </div>
                         <div class="form-8">
@@ -105,7 +106,7 @@
                             </button>
 
                             <div v-show="dropdownStates[7]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form8 :onCompletionChange="(isComplete) => (formCompletionStates.kepalaSekolah = isComplete)" />
+                                <Form8 @completion-change="(isComplete) => (formCompletionStates.kepalaSekolah.Form4 = isComplete)" />
                             </div>
                         </div>
 
@@ -115,7 +116,7 @@
                             </button>
 
                             <div v-show="dropdownStates[8]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form9 :onCompletionChange="(isComplete) => (formCompletionStates.kepalaSekolah = isComplete)" />
+                                <Form9 @completion-change="(isComplete) => (formCompletionStates.kepalaSekolah.Form5 = isComplete)" />
                             </div>
                         </div>
 
@@ -125,12 +126,12 @@
                             </button>
 
                             <div v-show="dropdownStates[9]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form10 :onCompletionChange="(isComplete) => (formCompletionStates.kepalaSekolah = isComplete)" />
+                                <Form10 @completion-change="(isComplete) => (formCompletionStates.kepalaSekolah.Form6 = isComplete)" />
                             </div>
                         </div>
                     </tab-content>
 
-                    <tab-content title="bendahara"   :before-change="(moveNext) =>  validateFormsInTab('bendahara')">
+                    <tab-content title="bendahara" :before-change="() => validateFormsInTab('bendahara')">
                         <template #icon>
                             <i class="fas fa-user-shield"></i>
                         </template>
@@ -140,7 +141,7 @@
                             </button>
 
                             <div v-show="dropdownStates[10]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form11 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form11 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form1 = isComplete)" />
                             </div>
                         </div>
 
@@ -148,7 +149,7 @@
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(11)">Data Pribadi</button>
 
                             <div v-show="dropdownStates[11]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form12 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form12 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form2 = isComplete)" />
                             </div>
                         </div>
 
@@ -158,14 +159,14 @@
                             </button>
 
                             <div v-show="dropdownStates[12]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form13 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form13 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form3 = isComplete)" />
                             </div>
                         </div>
                         <div class="form-14">
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(13)">Data pekerjaan</button>
 
                             <div v-show="dropdownStates[13]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form14 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form14 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form4 = isComplete)" />
                             </div>
                         </div>
                         <div class="form-15">
@@ -174,14 +175,14 @@
                             </button>
 
                             <div v-show="dropdownStates[14]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form15 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form15 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form5 = isComplete)" />
                             </div>
                         </div>
                         <div class="form-16">
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(15)">Data Keuangan</button>
 
                             <div v-show="dropdownStates[15]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form16 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form16 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form6 = isComplete)" />
                             </div>
                         </div>
                         <div class="form-17">
@@ -190,19 +191,36 @@
                             </button>
 
                             <div v-show="dropdownStates[16]" class="p-4 border border-gray-300 rounded shadow">
-                                <Form17 :onCompletionChange="(isComplete) => (formCompletionStates.bendahara = isComplete)" />
+                                <Form17 @completion-change="(isComplete) => (formCompletionStates.bendahara.Form7 = isComplete)" />
                             </div>
                         </div>
                     </tab-content>
 
-                    <tab-content title="Tanda Tangan"   :before-change="(moveNext) =>  validateFormsInTab('Tanda Tangan')">
+                    <tab-content title="tandaTangan" :before-change="() => validateFormsInTab('tandaTangan')">
                         <template #icon>
                             <i class="fas fa-pen"></i>
                         </template>
                         <div class="form-18">
-                            <Form18 :onCompletionChange="(isComplete) => (formCompletionStates.tandaTangan = isComplete)" />
+                            <Form18 @completion-change="(isComplete) => (formCompletionStates.tandaTangan.Form1 = isComplete)" />
                         </div>
                     </tab-content>
+                    <div
+                        v-if="showConfirmationCard"
+                        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 p-8 rounded-xl shadow-xl w-96 opacity-0 scale-90 transition-all duration-300"
+                        :class="{ 'opacity-100 scale-100': showConfirmationCard }"
+                    >
+                        <div class="text-center">
+                            <p class="mb-6 text-lg font-semibold">Apakah Anda yakin data yang diisi sudah benar?</p>
+                            <div class="flex gap-4 justify-center">
+                                <button class="bg-green-500 text-white py-2 px-5 rounded-lg hover:bg-green-600 transition" @click="confirmFinish">
+                                    Ya, Lanjutkan
+                                </button>
+                                <button class="bg-red-500 text-white py-2 px-5 rounded-lg hover:bg-red-600 transition" @click="closeConfirmationCard">
+                                    Tidak, Periksa Lagi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form-wizard>
             </div>
         </div>
@@ -262,6 +280,28 @@
         name: 'CombinedLayout',
 
         setup() {
+            const showConfirmationCard = ref(false); // Kontrol visibilitas kartu konfirmasi
+
+            const onFinish = () => {
+                // Ketika tombol Finish ditekan, tampilkan kartu konfirmasi
+                if (formCompletionStates.tandaTangan) {
+                    showConfirmationCard.value = true;
+                } else {
+                    alert('Kolom belum terisi semua!');
+                }
+            };
+
+            const confirmFinish = () => {
+                // Tutup kartu konfirmasi dan arahkan ke route /buka
+                showConfirmationCard.value = false;
+                window.location.href = '/buka';
+            };
+
+            const closeConfirmationCard = () => {
+                // Tutup kartu konfirmasi
+                showConfirmationCard.value = false;
+            };
+
             const dropdownStates = ref<boolean[]>(Array(18).fill(false));
             // State untuk kontrol dropdown
             const toggleDropdown = (index: number) => {
@@ -273,25 +313,26 @@
                     dropdownStates.value = dropdownStates.value.map((_, i) => i === index);
                 }
             };
-            const formCompletionStates = reactive<Record<string, boolean>>({
-                umum: false,
-                kepalaSekolah: false,
-                bendahara: false,
-                tandaTangan: false,
+            const formCompletionStates = reactive({
+                umum: { Form1: false, Form2: false, Form3: false, Form4: false },
+                kepalaSekolah: { Form1: false, Form2: false, Form3: false, Form4: false, Form5: false, Form6: false },
+                bendahara: { Form1: false, Form2: false, Form3: false, Form4: false, Form5: false, Form6: false, Form7: false },
+                tandaTangan: { Form1: false },
             });
             const validateFormsInTab = (tab: string) => {
-                // Simulasi validasi, ganti dengan logika validasi masing-masing form
-                if (tab === 'umum') {
-                    return formCompletionStates.umum;
-                } else if (tab === 'kepalaSekolah') {
-                    return formCompletionStates.kepalaSekolah;
-                } else if (tab === 'bendahara') {
-                    return formCompletionStates.bendahara;
-                } else if (tab === 'tandaTangan') {
-                    return formCompletionStates.tandaTangan;
+                const forms = formCompletionStates[tab];
+                const incompleteForms = Object.entries(forms)
+                    .map(([formName, isComplete], index) => ({ name: `Form ${index + 1}`, isComplete }))
+                    .filter(({ isComplete }) => !isComplete);
+
+                if (incompleteForms.length > 0) {
+                    const formNames = incompleteForms.map(({ name }) => name).join('\n- ');
+                    alert(`Harap lengkapi form berikut di tab "${tab}":\n- ${formNames}`);
+                    return false;
                 }
-                return false;
+                return true;
             };
+
             const nextTab = (tab: string, moveNext: Function) => {
                 if (validateFormsInTab(tab)) {
                     moveNext();
@@ -314,12 +355,18 @@
             return {
                 dropdownStates,
                 toggleDropdown,
+                isSidebarOpen,
+                toggleSidebar,
                 closeAllDropdowns,
                 kodeSekolah,
                 namaSekolah,
                 formCompletionStates,
                 validateFormsInTab,
                 nextTab,
+                showConfirmationCard,
+                onFinish,
+                confirmFinish,
+                closeConfirmationCard,
             };
         },
     };

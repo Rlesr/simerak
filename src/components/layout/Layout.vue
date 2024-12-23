@@ -1,10 +1,12 @@
 <template>
   <div>
     <Header :isSidebarOpen="isSidebarOpen" @toggle-sidebar="toggleSidebar" />
+    <aside>
     <Sidebar
       :isSidebarOpen="isSidebarOpen"
       @close-sidebar="toggleSidebar"
     />
+    </aside>
     <main
       :class="[
         'transition-all duration-300',

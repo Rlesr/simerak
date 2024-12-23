@@ -87,14 +87,23 @@
             </label>
             <input id="sio-upload" type="file" class="hidden" accept=".pdf" @change="handleFileChange('SIO', $event)" />
         </div>
+        <div class="text-center mt-4">
+            <span
+                :class="isAllFilesComplete ? 'text-green-500' : 'text-red-500'"
+                class="font-semibold"
+            >
+                {{ isAllFilesComplete ? 'Semua dokumen telah diunggah.' : 'Harap lengkapi semua dokumen.' }}
+            </span>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { reactive, computed } from 'vue';
+import { reactive, computed, watch, defineComponent } from 'vue';
 
-export default {
-    setup() {
+export default defineComponent({
+    emits: ['completion-change'], // Deklarasi emits
+    setup(_, { emit }) {
         const files = reactive<{ [key: string]: string | null }>({
             SP: null,
             AP: null,
@@ -115,15 +124,23 @@ export default {
             }
         };
 
-        const allFilesUploaded = computed(() => {
-            return Object.values(files).every(file => file !== null);
+        const isAllFilesComplete = computed(() => {
+            const status = Object.values(files).every(file => file !== null);
+            emit('completion-change', status); // Memancarkan event setiap kali status berubah
+            return status;
+        });
+
+        // Watcher untuk logging status kelengkapan
+        watch(isAllFilesComplete, (newVal) => {
+            console.log(newVal ? 'Semua dokumen lengkap.' : 'Dokumen belum lengkap.');
         });
 
         return {
             files,
             handleFileChange,
-            allFilesUploaded,
+            isAllFilesComplete,
         };
     },
-};
+});
 </script>
+

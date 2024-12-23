@@ -3,19 +3,36 @@
         <!-- Kode Sekolah -->
         <div class="mb-4">
             <label for="kodeSekolah" class="block font-medium">Kode Sekolah</label>
-            <input v-model="kodeSekolah" type="text" id="kodeSekolah" class="w-full border-gray-300 bg-gray-100 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" readonly />
+            <input
+                v-model="kodeSekolah"
+                type="text"
+                id="kodeSekolah"
+                class="w-full border-gray-300 bg-gray-100 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+                readonly
+            />
         </div>
 
         <!-- Nama Sekolah -->
         <div class="mb-4">
             <label for="namaSekolah" class="block font-medium">Nama Sekolah</label>
-            <input v-model="namaSekolah" type="text" id="namaSekolah" class="w-full border-gray-300 bg-gray-100 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" readonly />
+            <input
+                v-model="namaSekolah"
+                type="text"
+                id="namaSekolah"
+                class="w-full border-gray-300 bg-gray-100 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+                readonly
+            />
         </div>
 
         <!-- Jenis Rekening -->
         <div class="mb-4">
             <label for="jenisRekening" class="block font-medium">Jenis Rekening</label>
-            <select v-model="jenisRekening" id="jenisRekening" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" @change="onJenisRekeningChange">
+            <select
+                v-model="jenisRekening"
+                id="jenisRekening"
+                class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+                @change="onJenisRekeningChange"
+            >
                 <option value="">Pilih Jenis Rekening</option>
                 <option value="Sekolah">Sekolah</option>
             </select>
@@ -24,7 +41,12 @@
         <!-- Jenis Kategori -->
         <div class="mb-4">
             <label for="jenisKategori" class="block font-medium">Jenis Kategori</label>
-            <select v-model="jenisKategori" id="jenisKategori" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" :disabled="jenisRekening === ''">
+            <select
+                v-model="jenisKategori"
+                id="jenisKategori"
+                class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+                :disabled="jenisRekening === ''"
+            >
                 <option value="">Pilih Jenis Kategori</option>
                 <option value="BOS Swasta">BOS Swasta</option>
                 <option value="BOP Kesetaraan Swasta">BOP Kesetaraan Swasta</option>
@@ -35,7 +57,12 @@
         <!-- Cabang -->
         <div class="mb-4">
             <label for="cabang" class="block font-medium">Cabang</label>
-            <select id="cabang" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" v-model="selectedCabang" @change="updateNomorRekening">
+            <select
+                id="cabang"
+                class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+                v-model="selectedCabang"
+                @change="updateNomorRekening"
+            >
                 <option value="">Pilih Cabang</option>
                 <option v-for="cabang in cabangList" :key="cabang.kode" :value="cabang.kode">
                     {{ cabang.nama }}
@@ -46,19 +73,41 @@
         <!-- Nama Rekening -->
         <div class="mb-4">
             <label for="namaRekening" class="block font-medium">Nama Rekening</label>
-            <input v-model="namaRekening" type="text" id="namaRekening" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" />
+            <input
+                v-model="namaRekening"
+                type="text"
+                id="namaRekening"
+                class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+            />
         </div>
 
         <!-- Nomor Rekening -->
         <div class="mb-4">
             <label for="nomorRekening" class="block font-medium">Nomor Rekening</label>
-            <input v-model="nomorRekening" type="text" id="nomorRekening" class="w-full border-gray-300 bg-gray-100 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" readonly />
+            <input
+                v-model="nomorRekening"
+                type="text"
+                id="nomorRekening"
+                class="w-full border-gray-300 bg-gray-100 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+                readonly
+            />
         </div>
 
         <!-- Tujuan Pembuatan Rekening -->
         <div class="mb-4">
             <label for="tujuanPembuatanRekening" class="block font-medium">Tujuan Pembuatan Rekening</label>
-            <textarea v-model="tujuanPembuatanRekening" id="tujuanPembuatanRekening" rows="4" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"></textarea>
+            <textarea
+                v-model="tujuanPembuatanRekening"
+                id="tujuanPembuatanRekening"
+                rows="4"
+                class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200"
+            ></textarea>
+        </div>
+
+        <div class="text-center mt-4">
+            <span :class="isComplete ? 'text-green-500' : 'text-red-500'" class="font-semibold">
+                {{ isComplete ? 'Semua form telah terisi.' : 'Harap lengkapi semua form.' }}
+            </span>
         </div>
     </div>
 </template>
@@ -74,11 +123,8 @@ export default {
             type: String,
             required: true,
         },
-        onCompletionChange: {
-            type: Function,
-            required: false,
-        },
     },
+    emits: ['completion-change'], // Menambahkan deklarasi event
     data() {
         return {
             jenisRekening: '',
@@ -106,7 +152,6 @@ export default {
         },
     },
     watch: {
-        // Pantau perubahan pada beberapa bidang formulir
         jenisRekening: 'checkCompletion',
         jenisKategori: 'checkCompletion',
         selectedCabang: 'checkCompletion',
@@ -119,11 +164,6 @@ export default {
                 this.jenisKategori = '';
             }
         },
-        validateRekening() {
-            if (this.nomorRekening.length > 8) {
-                this.nomorRekening = this.nomorRekening.slice(0, 8);
-            }
-        },
         updateNomorRekening() {
             const selected = this.cabangList.find((cabang) => cabang.kode === this.selectedCabang);
             if (selected) {
@@ -133,20 +173,9 @@ export default {
             }
         },
         checkCompletion() {
-            // Periksa apakah semua bidang yang diperlukan sudah terisi
-            const isComplete =
-                this.jenisRekening &&
-                this.jenisKategori &&
-                this.selectedCabang &&
-                this.namaRekening &&
-                this.tujuanPembuatanRekening;
-
+            const isComplete = this.jenisRekening && this.jenisKategori && this.selectedCabang && this.namaRekening && this.tujuanPembuatanRekening;
             this.isComplete = !!isComplete;
-
-            // Panggil fungsi prop jika disediakan
-            if (this.onCompletionChange) {
-                this.onCompletionChange(this.isComplete);
-            }
+            this.$emit('completion-change', this.isComplete); // Emit event
         },
     },
 };
