@@ -63,11 +63,12 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
             <li>
                 <div
                     class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
-                    :class="isOpen1 ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
-                    @click="toggleDropdown1"
+                    :class="isOpen ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown"
                 >
                     <span class="mr-2">
                         <!-- Buka Rekening Icon -->
@@ -246,9 +247,13 @@
                 </li>
             </ul>
             <li>
-                <a href="/home/tutup/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <div
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isOpen4 ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown4"
+                >
                     <span class="mr-2">
-                        <!-- Pengusulan Icon -->
+                        <!-- Tutup Icon -->
                         <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M1.6665 7.81061H11.2498"
@@ -286,32 +291,46 @@
                         </svg>
                     </span>
                     <span>Tutup Rekening</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
-                    <span class="mr-2">
-                        <!-- Pengusulan Icon -->
-                        <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <span :class="{ 'rotate-180': isOpen4 }" class="ml-auto transition-transform">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M18.3334 9.89395V14.894C18.3334 18.2273 17.5001 19.0606 14.1667 19.0606H5.83341C2.50008 19.0606 1.66675 18.2273 1.66675 14.894V6.56062C1.66675 3.22728 2.50008 2.39395 5.83341 2.39395H7.08341C8.33341 2.39395 8.60841 2.76062 9.08341 3.39395L10.3334 5.06062C10.6501 5.47728 10.8334 5.72728 11.6667 5.72728H14.1667C17.5001 5.72728 18.3334 6.56062 18.3334 9.89395Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                            />
-                            <path
-                                d="M6.66675 2.39395H14.1667C15.8334 2.39395 16.6667 3.22728 16.6667 4.89395V6.04395"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
                         </svg>
                     </span>
-                    <span>Pengusulan</span>
-                </a>
+                </div>
             </li>
+            <ul v-if="isOpen4" class="ml-8">
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <rect width="40" height="20" fill="none" />
+                                <path
+                                    fill="currentColor"
+                                    d="M20.8 22.7L19.1 21H2v-2h15.1l-4.6-4.6V17h-2v-4.6L6.1 8H2V6l1.4-.7L1.1 3l1.3-1.3l19.7 19.7zM4.5 10v7h2v-7zm7-6.7L16.7 6H9.2l2 2H21V6l-9.5-5l-4.8 2.5L8.2 5zm7 12V10h-2v3.3z"
+                                />
+                            </svg>
+                        </span>
+                        Bank DKI
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <span class="mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <rect width="40" height="20" fill="none" />
+                                <path
+                                    fill="currentColor"
+                                    d="m20.8 22.7l-.7-.7H2v-3h15.1L13 14.9V17h-3v-5.1L6.1 8H2V6l1.4-.7L1.1 3l1.3-1.3l19.7 19.7zM4 10v7h3v-7zm17-2V6l-9.5-5l-4.8 2.5L11.2 8zm-2 7.8V10h-3v2.8z"
+                                />
+                            </svg>
+                        </span>
+                        Bank Lain
+                    </a>
+                </li>
+            </ul>
             <li>
                 <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                     <span class="mr-2">
@@ -347,90 +366,416 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <div
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isTutup ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown2"
+                >
                     <span class="mr-2">
-                        <!-- Laporan Icon -->
-                        <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Buka Rekening Icon -->
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                             <path
-                                d="M17.5 6.56063V14.894C17.5 17.394 16.25 19.0606 13.3333 19.0606H6.66667C3.75 19.0606 2.5 17.394 2.5 14.894V6.56063C2.5 4.06063 3.75 2.39397 6.66667 2.39397H13.3333C16.25 2.39397 17.5 4.06063 17.5 6.56063Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M12.0833 4.47729V6.14396C12.0833 7.06063 12.8333 7.81063 13.7499 7.81063H15.4166"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M6.66675 11.5606H10.0001"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M6.66675 14.894H13.3334"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
                             />
                         </svg>
                     </span>
-                    <span>Laporan</span>
-                </a>
+                    <span>Pengusulan</span>
+                    <span :class="{ 'rotate-180': isTutup }" class="ml-auto transition-transform">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </span>
+                </div>
             </li>
+
+            <ul v-if="isTutup" class="ml-8 space-y-2">
+                <li>
+                    <a href="/home/pengusulan/kepala" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path
+                                fill="currentColor"
+                                d="M8 8a3 3 0 1 0 0-6a3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0a2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1s1-4 6-4s6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"
+                            />
+                        </svg>
+                        KPA
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/pengusulan/opd/bendahara"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                            <path
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                            />
+                        </svg>
+                        Bendahara
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/pengusulan/opd/pelaksana"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                            <path
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                            />
+                        </svg>
+                        Pengajuan PLT/PLH
+                    </a>
+                </li>
+            </ul>
+
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <div
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isBuka ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown3"
+                >
                     <span class="mr-2">
-                        <!-- User Management Icon -->
-                        <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                             <path
-                                d="M7.63338 9.78563C7.55005 9.7773 7.45005 9.7773 7.35838 9.78563C5.37505 9.71897 3.80005 8.09397 3.80005 6.09397C3.80005 4.0523 5.45005 2.39397 7.50005 2.39397C9.54172 2.39397 11.2 4.0523 11.2 6.09397C11.1917 8.09397 9.61672 9.71897 7.63338 9.78563Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M13.675 4.06062C15.2916 4.06062 16.5916 5.36896 16.5916 6.97729C16.5916 8.55229 15.3417 9.83562 13.7833 9.89396C13.7167 9.88562 13.6417 9.88562 13.5667 9.89396"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M3.4666 12.8606C1.44993 14.2106 1.44993 16.4106 3.4666 17.7523C5.75827 19.2856 9.5166 19.2856 11.8083 17.7523C13.8249 16.4023 13.8249 14.2023 11.8083 12.8606C9.52494 11.3356 5.7666 11.3356 3.4666 12.8606Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M15.2834 17.394C15.8834 17.269 16.4501 17.0273 16.9168 16.669C18.2168 15.694 18.2168 14.0856 16.9168 13.1106C16.4584 12.7606 15.9001 12.5273 15.3084 12.394"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
                             />
                         </svg>
                     </span>
                     <span>User Management</span>
-                </a>
+                    <span :class="{ 'rotate-180': isBuka }" class="ml-auto transition-transform">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </span>
+                </div>
             </li>
+
+            <ul v-if="isBuka" class="ml-8 space-y-2">
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path
+                                fill="currentColor"
+                                d="M8 8a3 3 0 1 0 0-6a3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0a2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1s1-4 6-4s6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"
+                            />
+                        </svg>
+                        Pengguna
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                            <path
+                                fill="currentColor"
+                                d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                            />
+                        </svg>
+                        Otoritas
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                            <path
+                                fill="currentColor"
+                                d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12M40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24m176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24"
+                            />
+                        </svg>
+                        Aplikasi
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                                d="M160 144h288M160 256h288M160 368h288"
+                            />
+                            <circle
+                                cx="80"
+                                cy="144"
+                                r="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                            />
+                            <circle
+                                cx="80"
+                                cy="256"
+                                r="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                            />
+                            <circle
+                                cx="80"
+                                cy="368"
+                                r="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="32"
+                            />
+                        </svg>
+
+                        Menu
+                    </a>
+                </li>
+                <li>
+                    <div
+                        class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                        :class="isBukaKelola ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                        @click="toggleDropdown32"
+                    >
+                        <span class="mr-2">
+                            <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                                <path
+                                    fill="currentColor"
+                                    d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="text-sm text-normal">Kelola Otoritas</span>
+                        <span :class="{ 'rotate-180': isBukaKelola }" class="ml-auto transition-transform">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                    fill="currentColor"
+                                ></path>
+                            </svg>
+                        </span>
+                    </div>
+                </li>
+                <ul v-if="isBukaKelola" class="ml-8 space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                            <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                                <path
+                                    fill="currentColor"
+                                    d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12M40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24m176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24"
+                                />
+                            </svg>
+                            Otoritas Menu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                            <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+                                <path
+                                    fill="currentColor"
+                                    d="M38.446 29.232c4.786 0 8.686-4.263 8.686-9.45c0-5.128-3.88-9.19-8.686-9.19c-4.766 0-8.687 4.122-8.687 9.23c.02 5.167 3.921 9.41 8.687 9.41m-23.164.442c4.142 0 7.54-3.72 7.54-8.284c0-4.464-3.358-8.063-7.54-8.063c-4.142 0-7.56 3.66-7.54 8.103c.02 4.545 3.398 8.244 7.54 8.244m23.164-3.478c-2.936 0-5.45-2.815-5.45-6.374c0-3.5 2.474-6.193 5.45-6.193c2.996 0 5.449 2.654 5.449 6.152c0 3.56-2.473 6.415-5.449 6.415m-23.164.482c-2.453 0-4.544-2.352-4.544-5.248c0-2.835 2.07-5.107 4.544-5.107c2.533 0 4.564 2.232 4.564 5.067c0 2.936-2.091 5.288-4.564 5.288M4.102 48.113h15.785c-.966-.543-1.71-1.75-1.569-2.976H3.6c-.402 0-.603-.16-.603-.543c0-4.986 5.69-9.651 12.266-9.651c2.533 0 4.805.603 6.756 1.749a10.5 10.5 0 0 1 2.272-2.131c-2.594-1.71-5.71-2.594-9.028-2.594C6.837 31.967 0 38.079 0 44.775c0 2.232 1.367 3.338 4.102 3.338m21.716 0h25.256c3.337 0 4.926-1.005 4.926-3.217c0-5.268-6.656-12.89-17.554-12.89c-10.919 0-17.574 7.622-17.574 12.89c0 2.212 1.588 3.217 4.946 3.217m-.965-3.036c-.523 0-.744-.14-.744-.563c0-3.298 5.107-9.47 14.337-9.47c9.21 0 14.316 6.172 14.316 9.47c0 .422-.2.563-.724.563Z"
+                                />
+                            </svg>
+                            Otoritas Pengguna
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+
+            <li>
+                <div
+                    class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
+                    :class="isOpen3 ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
+                    @click="toggleDropdown22"
+                >
+                    <!-- Buka Laporan Icon -->
+                    <span class="mr-2">
+                        <!-- Master Icon -->
+                        <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.3334 14.6773V4.61896C18.3334 3.61896 17.5167 2.87729 16.5251 2.96063H16.4751C14.7251 3.11063 12.0667 4.00229 10.5834 4.93563L10.4417 5.02729C10.2001 5.17729 9.80008 5.17729 9.55842 5.02729L9.35008 4.90229C7.86675 3.97729 5.21675 3.09396 3.46675 2.95229C2.47508 2.86896 1.66675 3.61896 1.66675 4.61063V14.6773C1.66675 15.4773 2.31675 16.2273 3.11675 16.3273L3.35841 16.3606C5.16675 16.6023 7.95842 17.519 9.55842 18.394L9.59175 18.4106C9.81675 18.5356 10.1751 18.5356 10.3917 18.4106C11.9917 17.5273 14.7917 16.6023 16.6084 16.3606L16.8834 16.3273C17.6834 16.2273 18.3334 15.4773 18.3334 14.6773Z"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path d="M10 5.30229V17.8023" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6.45825 7.80229H4.58325" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.08325 10.3023H4.58325" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+
+                    <span>Laporan</span>
+                    <span :class="{ 'rotate-180': isOpen2 }" class="ml-auto transition-transform">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </span>
+                </div>
+            </li>
+            <ul v-if="isOpen3" class="ml-8">
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Saldo Non Bank Dki
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Saldo Bank Dki
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Deposito
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Mutasi
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Jasa Giro Bank DKI
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Mutasi FEE
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Log Aktifitas
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Indo Rekening Bank Dki
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/home/Master/IdentifikasiKategori"
+                        class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
+                    >
+                        <span class="mr-2">
+                            <svg width="40" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="m15 19.923l-6-2.1l-3.958 1.53q-.384.143-.713-.083T4 18.634V6.404q0-.268.13-.489t.378-.307L9 4.077l6 2.1l3.958-1.53q.384-.143.713.054t.329.588v12.384q0 .287-.159.498q-.158.212-.426.298zm-.5-1.22v-11.7l-5-1.745v11.7zm1 0L19 17.55V5.7l-3.5 1.304zM5 18.3l3.5-1.342v-11.7L5 6.45zM15.5 7.004v11.7zm-7-1.746v11.7z"
+                                />
+                            </svg>
+                        </span>
+                        Indo Rekening Non Bank Dki
+                    </a>
+                </li>
+            </ul>
             <li>
                 <div
                     class="flex items-center p-2 rounded transition duration-200 cursor-pointer"
                     :class="isOpen2 ? 'bg-[#7EA5EC] text-[#054083]' : 'hover:bg-[#7EA5EC] hover:text-[#054083]'"
-                    @click="toggleDropdown2"
+                    @click="toggleDropdown12"
                 >
                     <!-- Buka Rekening Icon -->
                     <span class="mr-2">
@@ -448,6 +793,7 @@
                             <path d="M7.08325 10.3023H4.58325" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
+
 
                     <span>Master</span>
                     <span :class="{ 'rotate-180': isOpen2 }" class="ml-auto transition-transform">
@@ -1092,22 +1438,20 @@
                     </a>
                 </li>
                 <li>
-                    
-
                     <a href="/home/Master/Filter" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <span class="mr-[20px]">
-                        <svg class="ml-[10px]" xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 32 32">
-                            <path
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M2 5s4-2 14-2s14 2 14 2L19 18v9l-6 3V18z"
-                            />
-                        </svg>
-                    </span>
-                        
+                            <svg class="ml-[10px]" xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 32 32">
+                                <path
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M2 5s4-2 14-2s14 2 14 2L19 18v9l-6 3V18z"
+                                />
+                            </svg>
+                        </span>
+
                         Filter
                     </a>
                 </li>
@@ -1154,18 +1498,41 @@
 
         data() {
             return {
+                isOpen: false,
                 isOpen1: false,
                 isOpen2: false,
+                isOpen3: false,
+                isOpen4: false,
+                isBuka: false,
+                isTutup: false,
+                isBukaKelola: false,
             };
         },
 
         methods: {
-            toggleDropdown1() {
-                this.isOpen1 = !this.isOpen1;
+            toggleDropdown() {
+                this.isOpen = !this.isOpen;
             },
-
-            toggleDropdown2() {
+            toggleDropdown1() {
+                this.isOpen = !this.isOpen;
+            },
+            toggleDropdown12() {
                 this.isOpen2 = !this.isOpen2;
+            },
+            toggleDropdown22() {
+                this.isOpen3 = !this.isOpen3;
+            },
+            toggleDropdown2() {
+                this.isTutup = !this.isTutup;
+            },
+            toggleDropdown3() {
+                this.isBuka = !this.isBuka;
+            },
+            toggleDropdown32() {
+                this.isBukaKelola = !this.isBukaKelola;
+            },
+            toggleDropdown4() {
+                this.isOpen4 = !this.isOpen4;
             },
         },
     });

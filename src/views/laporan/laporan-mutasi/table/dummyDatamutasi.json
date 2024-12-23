@@ -1,0 +1,88 @@
+[
+    {
+      "nomorRekening": "10802177759",
+      "namaRekening": "Pusat Keuangan RSUD",
+      "jenisRekening": "Rekening Pengeluaran",
+      "mutasi": [
+        {
+          "tanggalTransaksi": "2024-01-01",
+          "jamTransaksi": "10:30",
+          "kodeTransaksi": "TRX001",
+          "namaRekeningTujuan": "Vendor Alkes",
+          "nomorRekeningTujuan": "1234567890",
+          "deskripsi1": "Pembelian alat kesehatan",
+          "deskripsi2": "Pembayaran termin pertama",
+          "kredit": 50000000,
+          "debit": 0,
+          "saldo": 95000000
+        },
+        {
+          "tanggalTransaksi": "2024-01-10",
+          "jamTransaksi": "14:00",
+          "kodeTransaksi": "TRX002",
+          "namaRekeningTujuan": "Vendor IT",
+          "nomorRekeningTujuan": "0987654321",
+          "deskripsi1": "Pembangunan sistem informasi",
+          "deskripsi2": "Pembayaran akhir",
+          "kredit": 25000000,
+          "debit": 0,
+          "saldo": 70000000
+        }
+      ]
+    },
+    {
+      "nomorRekening": "20803188760",
+      "namaRekening": "Dana BOS Negeri",
+      "jenisRekening": "Rekening BOS Negeri",
+      "mutasi": [
+        {
+          "tanggalTransaksi": "2024-02-15",
+          "jamTransaksi": "09:00",
+          "kodeTransaksi": "TRX003",
+          "namaRekeningTujuan": "Sekolah ABC",
+          "nomorRekeningTujuan": "222333444",
+          "deskripsi1": "Transfer dana operasional",
+          "deskripsi2": "Bulan Februari",
+          "kredit": 10000000,
+          "debit": 0,
+          "saldo": 5000000
+        },
+        {
+          "tanggalTransaksi": "2024-02-15",
+          "jamTransaksi": "09:00",
+          "kodeTransaksi": "TRX003",
+          "namaRekeningTujuan": "Sekolah ABC",
+          "nomorRekeningTujuan": "222333444",
+          "deskripsi1": "Transfer dana operasional",
+          "deskripsi2": "Bulan Februari",
+          "kredit": 10000000,
+          "debit": 0,
+          "saldo": 5000000
+        },
+        {
+          "tanggalTransaksi": "2024-02-15",
+          "jamTransaksi": "09:00",
+          "kodeTransaksi": "TRX003",
+          "namaRekeningTujuan": "Sekolah ABC",
+          "nomorRekeningTujuan": "222333444",
+          "deskripsi1": "Transfer dana operasional",
+          "deskripsi2": "Bulan Februari",
+          "kredit": 10000000,
+          "debit": 0,
+          "saldo": 5000000
+        },
+        {
+          "tanggalTransaksi": "2024-02-15",
+          "jamTransaksi": "09:00",
+          "kodeTransaksi": "TRX003",
+          "namaRekeningTujuan": "Sekolah ABC",
+          "nomorRekeningTujuan": "222333444",
+          "deskripsi1": "Transfer dana operasional",
+          "deskripsi2": "Bulan Februari",
+          "kredit": 10000000,
+          "debit": 0,
+          "saldo": 5000000
+        }
+      ]
+    }
+  ]

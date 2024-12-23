@@ -14,6 +14,31 @@ import formDeposito from '@/views/buka-rekening/form-deposito/deposito.vue';
 import tutupRekeningBankOpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-bank-opd.vue';
 import tutupRekeningSkpd from '@/views/tutup-rekening/tutup-bankDKi/tutup-rekening-skpd.vue';
 import formTutupRekeningDKI from '@/views/tutup-rekening/tutup-bankDKi/form/tutup-rekening.vue';
+import tutupBankLainBanklainOpd from '@/views/tutup-rekening/tutup-bank-lain/tutup-bank-lain-banklain-opd.vue';
+import tutupBankLainSkpd from '@/views/tutup-rekening/tutup-bank-lain/tutup-bank-lain-skpd.vue';
+import PengusulanKepala from '@/views/pengusulan/pengusulan-kepala/pengusulan-kepala-opd.vue';
+import PengusulanKepalaSkpd from '@/views/pengusulan/pengusulan-kepala/pengusulan-kepala-skpd.vue';
+import pengusulanBendahara from '@/views/pengusulan/pengusulan-bendahara/pengusulan-bendahara.vue';
+import pengusulanBendaharaSkpd from '@/views/pengusulan/pengusulan-bendahara/pengusulan-bendahara-skpd.vue';
+import pengusulanPelaksanaopd from '@/views/pengusulan/pengusulan-pelaksana/pengusulan-pelaksana.vue';
+import pengusulanPelaksanaSkpd from '@/views/pengusulan/pengusulan-pelaksana/pengusulan-pelaksana-skpd.vue';
+import Pengguna from '@/views/user-management/pengguna/pengguna.vue';
+import laporanNonbankDKi from '@/views/laporan/laporan-saldo-non-bank-DKI/List.vue';
+import formLaporanNonBankDKI from '@/views/laporan/laporan-saldo-non-bank-DKI/form/form-laporan-nonbank-DKI.vue';
+import laporanSaldoBankDKI from '@/views/laporan/laporan-saldo-BDKI/laporan-saldo-BDKI.vue';
+import laporanDeposito from '@/views/laporan/laporan-deposito/laporan-deposito.vue';
+import laporanMutasi from '@/views/laporan/laporan-mutasi/laporan-mutasi.vue';
+import laporanMutasiFee from '@/views/laporan/laporan-mutasi-fee/laporan-mutasi-fee.vue';
+import laporanLogAktivitas from '@/views/laporan/laporan-log-aktivitas/laporan-log-aktivitas.vue';
+import laporanInfoBankDki from '@/views/laporan/laporan-info-bank-Dki/laporan-info-bank-dki.vue';
+import LaporanInfoBankLain from '@/views/laporan/laporan-info-rekening-bank-lain/laporan-info-bank-lain.vue';
+import LaporanGiro from '@/views/laporan/laporan-giro/laporan-giro.vue';
+import mutasiForm from '@/views/laporan/laporan-giro/form/giro.vue';
+import UserManagementOtoritas from '@/views/user-management/otoritas/user-management-otoritas.vue';
+import userManagementAplikasi from '@/views/user-management/aplikasi/aplikasi.vue';
+import userManagementMenu from '@/views/user-management/menu/menu.vue';
+import OtoritasPengguna from '@/views/user-management/otoritas-pengguna/otoritas-pengguna.vue';
+import OtoritasMenu from '@/views/user-management/otoritas-menu/otoritas-menu.vue';
 import formTutupRekeningLain from '@/views/tutup-rekening/tutup-bank-lain/form/tutup-rekening-bank-lain.vue';
 import formPengusulanPLT from '@/views/pengusulan/pengusulan-pelaksana/form/pengusulan-PLT.vue';
 import formAddUser from '@/views/user-management/form/add-user.vue';
@@ -129,35 +154,135 @@ const router = createRouter({
             component: formTutupRekeningDKI,
         },
         {
-            path: '/home/tutup-lain/add/0',
-            name: 'form-tutup-rekening-bank-lain',
-            component: formTutupRekeningLain,
+            path: '/home/tutup-bank-lain/opd',
+            name: 'tutupBankLainBanklainOpd',
+            component: tutupBankLainBanklainOpd,
         },
         {
-            path: '/home/pengusulan-PLT/add/0',
-            name: 'form-pengusulan-PLT',
-            component: formPengusulanPLT,
+            path: '/home/tutup-bank-lain/list',
+            name: 'tutupBankLainSkpd',
+            component: tutupBankLainSkpd,
         },
         {
-            path: '/home/UserManagement/AddUser/0',
-            name: 'form-add-user',
-            component: formAddUser,
-        },        
+            path: '/home/pengusulan/kepala/opd',
+            name: 'PengusulanKepala',
+            component: PengusulanKepala,
+        },
         {
-          path: '/home/UserManagement/AddOtoritas/0',
-          name: 'form-add-otoritas',
-          component: formAddOtoritas,
-        },        
+            path: '/home/pengusulan/kepala',
+            name: 'PengusulanKepalaSkpd',
+            component: PengusulanKepalaSkpd,
+        },
         {
-          path: '/home/UserManagement/EditAplikasi/0',
-          name: 'form-edit-aplikasi',
-          component: formEditAplikasi,
+            path: '/home/pengusulan/opd/bendahara',
+            name: 'pengusulanBendahara',
+            component: pengusulanBendahara,
+        },
+        {
+            path: '/home/pengusulan/bendahara/',
+            name: 'pengusulanBendaharaSkpd',
+            component: pengusulanBendaharaSkpd,
+        },
+        {
+            path: '/home/pengusulan/opd/pelaksana',
+            name: 'pengusulanPelaksanaopd',
+            component: pengusulanPelaksanaopd,
+        },
+        {
+            path: '/home/pengusulan/pelaksana',
+            name: 'pengusulanPelaksanaSkpd',
+            component: pengusulanPelaksanaSkpd,
+        },
+        {
+            path: '/home/user-management/pengguna/list',
+            name: 'Pengguna',
+            component: Pengguna,
+        },
+        {
+            path: '/home/user-management/otoritas/list',
+            name: 'UserManagementOtoritas',
+            component: UserManagementOtoritas,
+        },
+        {
+            path: '/home/user-management/aplikasi/list',
+            name: 'userManagementAplikasi',
+            component: userManagementAplikasi,
+        },
+        {
+            path: '/home/user-management/menu/list',
+            name: 'userManagementMenu',
+            component: userManagementMenu,
+        },
+        {
+            path: '/home/user-management/otoritas-pengguna/list',
+            name: 'OtoritasPengguna',
+            component: OtoritasPengguna,
+        },
+        {
+            path: '/home/user-management/otoritas-menu/list',
+            name: 'OtoritasMenu',
+            component: OtoritasMenu,
+        },
+        {
+            path: '/home/laporan/saldo/list',
+            name: 'laporanNonbankDKi',
+            component: laporanNonbankDKi,
+        },
+        {
+            path: '/home/laporan/saldo/add/',
+            name: 'formLaporanNonBankDKI',
+            component: formLaporanNonBankDKI,
+        },
+        {
+            path: '/home/laporan/saldo-bdki/list/',
+            name: 'laporanSaldoBankDKI',
+            component: laporanSaldoBankDKI,
+        },
+        {
+            path: '/home/laporan/deposito/list',
+            name: 'laporanDeposito',
+            component: laporanDeposito,
+        },
+        {
+            path: '/home/laporan/mutasi/list/',
+            name: 'laporanMutasi',
+            component: laporanMutasi,
+        },
+        {
+            path: '/home/laporan/mutasi-fee',
+            name: 'laporanMutasiFee',
+            component: laporanMutasiFee,
+        },
+        {
+            path: '/home/laporan/log-aktivitas',
+            name: 'laporanLogAktivitas',
+            component: laporanLogAktivitas,
+        },
+        {
+            path: '/home/laporan/info-bankdki',
+            name: 'laporanInfoBankDki',
+            component: laporanInfoBankDki,
+        },
+        {
+            path: '/home/laporan/info-nonbankdki',
+            name: 'LaporanInfoBankLain',
+            component: LaporanInfoBankLain,
+        },
+        {
+            path: '/home/laporan/giro-bdki/list',
+            name: 'LaporanGiro',
+            component: LaporanGiro,
+        },
+        {
+            path: '/home/laporan/giro-bdki/add/',
+            name: 'mutasiForm',
+            component: mutasiForm,
         },
         {
             path: '/home/Master/IdentifikasiKategori',
             name: 'MasterIndentifikasiKategori',
             component: identifikasiKategori,
-        },        
+        },
         {
             path: '/home/Master/IdentifikasiRekening',
             name: 'MasterIndentifikasiRekening',
@@ -167,7 +292,7 @@ const router = createRouter({
             path: '/home/Master/KodeBankDKI',
             name: 'MasterKodeBankDKI',
             component: kodeBankDKI,
-        },        
+        },
         {
             path: '/home/Master/JenisLaporan',
             name: 'MasterJenisLaporan',
@@ -177,7 +302,7 @@ const router = createRouter({
             path: '/home/Master/JenisPengajuan',
             name: 'MasterJenisPengajuan',
             component: jenisPengajuan,
-        },       
+        },
         {
             path: '/home/Master/JenisRekening',
             name: 'MasterJenisRekening',
@@ -302,6 +427,31 @@ const router = createRouter({
             path: '/home/Master/Form/AddFilter/0',
             name: 'FormFilter',
             component: formFilter,
+        },
+        {
+            path: '/home/UserManagement/AddUser/0',
+            name: 'form-add-user',
+            component: formAddUser,
+        },
+        {
+            path: '/home/UserManagement/AddOtoritas/0',
+            name: 'form-add-otoritas',
+            component: formAddOtoritas,
+        },
+        {
+            path: '/home/UserManagement/EditAplikasi/0',
+            name: 'form-edit-aplikasi',
+            component: formEditAplikasi,
+        },
+        {
+            path: '/home/tutup-lain/add/0',
+            name: 'form-tutup-rekening-bank-lain',
+            component: formTutupRekeningLain,
+        },
+        {
+            path: '/home/pengusulan-PLT/add/0',
+            name: 'form-pengusulan-PLT',
+            component: formPengusulanPLT,
         },
     ],
 });
