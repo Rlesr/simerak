@@ -1,8 +1,8 @@
 <template>
     <Layout />
     <div class="min-h-screen flex flex-auto">
-       
-        
+
+
 
         <!-- Main Content -->
         <div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">

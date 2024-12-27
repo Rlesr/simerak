@@ -19,15 +19,16 @@
 
             <div class="flex-1 px-6 py-4 space-y-6">
                 <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full">
-                    <div class="flex flex-wrap space-x-4">
-                        <div class="flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
+                    <!-- Filter Section -->
+                    <div class="flex items-center gap-2 w-full overflow-x-auto whitespace-nowrap">
+                        <div class="flex items-center border border-gray-300 rounded-md h-10 min-w-[200px] px-2">
                             <input
                                 v-model="searchNamaJenisPengajuan"
                                 placeholder="Nama Jenis Pengajuan"
                                 class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
                             />
                         </div>
-                        <div class="flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
+                        <div class="flex items-center border border-gray-300 rounded-md h-10 min-w-[200px] px-2">
                             <input
                                 v-model="searchKodeJenisPengajuan"
                                 placeholder="Kode Jenis Pengajuan"
@@ -230,8 +231,8 @@
                 sortDirection: 'asc' as 'asc' | 'desc',
                 entriesPerPage: 5,
                 currentPage: 1,
-                searchNamaJenisPengajuan: "",
-                searchKodeJenisPengajuan: "",
+                searchNamaJenisPengajuan: '',
+                searchKodeJenisPengajuan: '',
             };
         },
         setup() {},
@@ -244,7 +245,7 @@
                 let filtered = this.data.filter((item) => {
                     const matchesNamaJenisPengajuan = item.namaJenisPengajuan.toLowerCase().includes(this.searchNamaJenisPengajuan.toLowerCase());
                     const matchesKodeJenisPengajuan = item.kodeJenisPengajuan.toLowerCase().includes(this.searchKodeJenisPengajuan.toLowerCase());
-                    return matchesNamaJenisPengajuan && matchesKodeJenisPengajuan ;
+                    return matchesNamaJenisPengajuan && matchesKodeJenisPengajuan;
                 });
 
                 // Sorting logic

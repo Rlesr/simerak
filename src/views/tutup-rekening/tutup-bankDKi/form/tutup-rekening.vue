@@ -216,12 +216,12 @@
                         <label class="w-1/4 font-normal text-sm text-gray-800">1. Yang Belum Terpakai</label>
                         <div class="flex items-center space-x-1 w-3/4">
                             <span class="text-sm font-normal px-3 text-gray-800">CEK</span>
-                            <input type="text" id="cek" class="p-1 border border-gray-300 rounded-md text-sm w-1/4"  />
-                            <span class="text-sm font-normal px-3 text-gray-800">Lembar</span>
+                            <input type="text" id="cek" class="p-1 border border-gray-300 rounded-md text-sm max-w-1/4 min-w-[35px]"  />
+                            <span class="text-sm font-normal text-gray-800">Lembar</span>
                             <span class="text-sm font-normal text-gray-800">/</span>
-                            <span class="text-sm font-normal px-3 text-gray-800">BG</span>
-                            <input type="text" id="bg" class="p-1 border border-gray-300 rounded-md text-sm w-1/4"  />
-                            <span class="text-sm font-normal px-3 text-gray-800">Lembar</span>
+                            <span class="text-sm font-normal  text-gray-800">BG</span>
+                            <input type="text" id="bg" class="p-1 border border-gray-300 rounded-md text-sm  max-w-1/4 min-w-[35px]"  />
+                            <span class="text-sm font-normal text-gray-800">Lembar</span>
                         </div>
                     </div>
                     <!-- 1. Yang masih beredar  -->
@@ -229,12 +229,12 @@
                         <label class="w-1/4 font-normal text-sm text-gray-800">2. Yang masih beredar</label>
                         <div class="flex items-center space-x-1 w-3/4">
                             <span class="text-sm font-normal px-3 text-gray-800">CEK</span>
-                            <input type="text" id="cek" class="p-1 border border-gray-300 rounded-md text-sm w-1/4"  />
-                            <span class="text-sm font-normal px-3 text-gray-800">Lembar</span>
+                            <input type="text" id="cek" class="p-1 border border-gray-300 rounded-md text-sm  max-w-1/4 min-w-[35px]"  />
+                            <span class="text-sm font-normal text-gray-800">Lembar</span>
                             <span class="text-sm font-normal text-gray-800">/</span>
-                            <span class="text-sm font-normal px-3 text-gray-800">BG</span>
-                            <input type="text" id="bg" class="p-1 border border-gray-300 rounded-md text-sm w-1/4"  />
-                            <span class="text-sm font-normal px-3 text-gray-800">Lembar</span>
+                            <span class="text-sm font-normal text-gray-800">BG</span>
+                            <input type="text" id="bg" class="p-1 border border-gray-300 rounded-md text-sm  max-w-1/4 min-w-[35px]"  />
+                            <span class="text-sm font-normal text-gray-800">Lembar</span>
                         </div>
                     </div>
                     <!-- alasan tutup rekening -->

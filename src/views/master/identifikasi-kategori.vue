@@ -2,9 +2,7 @@
     <Layout />
 
     <div class="min-h-screen flex flex-auto">
-        
         <div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">
-            
             <div class="px-6 py-4 flex-shrink-0">
                 <ol class="flex text-xs mt-[20px] mb-[10px] text-gray-500 font-semibold dark:text-white-dark">
                     <li><a href="javascript:;">Home</a></li>
@@ -19,39 +17,36 @@
                 <hr class="border-t-2 border-black" />
             </div>
 
-           
             <div class="flex-1 px-6 py-4 space-y-6">
-
-                
-            <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full ">
+                <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full">
                     <!-- Filter Section -->
-                <div class=" flex flex-wrap space-x-4 ">
-                    <div class=" flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2 ">
-                        <input
-                            type="text"
-                            v-model="searchNamaKategori"
-                            class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
-                            placeholder="Nama Kategori"
-                        />
-                    </div>                   
-                    <div class=" flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
-                        <input
-                            type="text"
-                            v-model="searchKodeKategori"
-                            class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
-                            placeholder="Kode Kategori"
+                    <div class="flex items-center w-full overflow-x-auto whitespace-nowrap">
+                        <div class="flex items-center border border-gray-300 rounded-md h-10 min-w-[250px] px-2">
+                            <input
+                                type="text"
+                                v-model="searchNamaKategori"
+                                class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
+                                placeholder="Nama Kategori"
                             />
-                    </div>
-                    <div class="flex gap-2">
-                        <select v-model="selectedJenisKategori" class="relative flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
-                            <option disabled value="">Pilih Bulan</option>
-                            <option value="">All</option>
-                            <option v-for="JenisKategoriOption in JenisKategoriOption" :key="JenisKategoriOption.value" :value="JenisKategoriOption.value">
-                             {{ JenisKategoriOption.label }}
-                            </option>
-                        </select>
-                    </div>
-                    <button class="btn-primary h-10 w-[200px] flex items-center justify-center" @click="navigateToAddKategori">
+                        </div>
+                        <div class="flex items-center border border-gray-300 rounded-md h-10 min-w-[250px] px-2">
+                            <input
+                                type="text"
+                                v-model="searchKodeKategori"
+                                class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
+                                placeholder="Kode Kategori"
+                            />
+                        </div>
+                        <div class="flex gap-2">
+                            <select v-model="selectedJenisKategori" class="relative flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
+                                <option disabled value="">Pilih Bulan</option>
+                                <option value="">All</option>
+                                <option v-for="JenisKategoriOption in JenisKategoriOption" :key="JenisKategoriOption.value" :value="JenisKategoriOption.value">
+                                    {{ JenisKategoriOption.label }}
+                                </option>
+                            </select>
+                        </div>
+                        <button class="btn-primary h-10 w-[200px] flex items-center justify-center" @click="navigateToAddKategori">
                             <p class="text-[#054083] font-semibold">Tambah</p>
                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px] ml-2" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 12H20M12 4V20" stroke="#054083" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -141,7 +136,6 @@
                                         </div>
                                     </th>
 
-                                    
                                     <th class="border-b p-4 font-medium text-gray-900">Action</th>
                                 </tr>
                             </thead>
@@ -282,7 +276,7 @@
                         kode: 1,
                         keterangan: 'Lorem Ipsum',
                     },
-                    
+
                     // Tambahkan data lainnya sesuai kebutuhan
                 ] as DataItem[],
                 sortColumn: null as keyof DataItem | null,
@@ -294,8 +288,8 @@
                 searchNamaKategori: '',
                 JenisKategoriOption: [
                     // Define the dropdown options here
-                    { value: "Sekolah", label: "Sekolah" },
-                    { value: "Non Sekolah", label: "Non Sekolah" },
+                    { value: 'Sekolah', label: 'Sekolah' },
+                    { value: 'Non Sekolah', label: 'Non Sekolah' },
                 ],
             };
         },
@@ -309,7 +303,9 @@
                 let filtered = this.data.filter((item) => {
                     const matcheskode = item.kode.toString().includes(this.searchKodeKategori.toLowerCase());
                     const matchesNamaKategori = item.namaKategori.toLowerCase().includes(this.searchNamaKategori.toLowerCase());
-                    const matchesJenisKategori = this.selectedJenisKategori ? String(item.jenisKategori).toLowerCase() === String(this.selectedJenisKategori).toLowerCase() : true;
+                    const matchesJenisKategori = this.selectedJenisKategori
+                        ? String(item.jenisKategori).toLowerCase() === String(this.selectedJenisKategori).toLowerCase()
+                        : true;
                     return matcheskode && matchesNamaKategori && matchesJenisKategori;
                 });
 

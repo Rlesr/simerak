@@ -88,7 +88,7 @@
                         </svg>
                     </span>
                     <span>Buka Rekening</span>
-                    <span :class="{ 'rotate-180': isOpen1 }" class="ml-auto transition-transform">
+                    <span :class="{ 'rotate-180': isOpen }" class="ml-auto transition-transform">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
@@ -99,7 +99,7 @@
                 </div>
             </li>
 
-            <ul v-if="isOpen1" class="ml-8 space-y-2">
+            <ul v-if="isOpen" class="ml-8 space-y-2">
                 <li>
                     <a href="/buka/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -303,7 +303,7 @@
             </li>
             <ul v-if="isOpen4" class="ml-8">
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/home/tutup/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <span class="mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <rect width="40" height="20" fill="none" />
@@ -317,7 +317,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/home/tutup-bank-lain/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <span class="mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <rect width="40" height="20" fill="none" />
@@ -332,7 +332,7 @@
                 </li>
             </ul>
             <li>
-                <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                <a href="/home/ubah-specimen/opd" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                     <span class="mr-2">
                         <!-- Ubah Spesimen Icon -->
                         <svg width="40" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -462,7 +462,7 @@
 
             <ul v-if="isBuka" class="ml-8 space-y-2">
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/home/user-management/pengguna/list" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                             <path
                                 fill="currentColor"
@@ -473,7 +473,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/home/user-management/otoritas/list" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                             <path
                                 fill="currentColor"
@@ -484,7 +484,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/home/user-management/aplikasi/list" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
                             <path
                                 fill="currentColor"
@@ -495,7 +495,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                    <a href="/home/user-management/menu/list" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                         <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path
                                 fill="none"
@@ -567,7 +567,7 @@
                 </li>
                 <ul v-if="isBukaKelola" class="ml-8 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <a href="/home/user-management/otoritas-menu/list" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                             <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
                                 <path
                                     fill="currentColor"
@@ -578,7 +578,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
+                        <a href="/home/user-management/otoritas-pengguna/list" class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]">
                             <svg width="40px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
                                 <path
                                     fill="currentColor"
@@ -628,7 +628,7 @@
             <ul v-if="isOpen3" class="ml-8">
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/saldo/list"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -644,7 +644,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/saldo-bdki/list/"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -660,7 +660,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/deposito/list"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -676,7 +676,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/mutasi/list/"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -692,7 +692,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/giro-bdki/list"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -708,7 +708,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/mutasi-fee"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -724,7 +724,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/log-aktivitas"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -740,7 +740,7 @@
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/info-bankdki"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -751,12 +751,12 @@
                                 />
                             </svg>
                         </span>
-                        Indo Rekening Bank Dki
+                        Info ReKening Bank DKI
                     </a>
                 </li>
                 <li>
                     <a
-                        href="/home/Master/IdentifikasiKategori"
+                        href="/home/laporan/info-nonbankdki"
                         class="flex items-center p-2 rounded transition duration-200 hover:bg-[#7EA5EC] hover:text-[#054083]"
                     >
                         <span class="mr-2">
@@ -767,7 +767,7 @@
                                 />
                             </svg>
                         </span>
-                        Indo Rekening Non Bank Dki
+                        Info Rekening Non Bank DKI
                     </a>
                 </li>
             </ul>
@@ -1514,7 +1514,7 @@
                 this.isOpen = !this.isOpen;
             },
             toggleDropdown1() {
-                this.isOpen = !this.isOpen;
+                this.isOpen1 = !this.isOpen1;
             },
             toggleDropdown12() {
                 this.isOpen2 = !this.isOpen2;

@@ -27,49 +27,33 @@
             <div class="flex-1 px-6 py-4 space-y-6">
                 <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full">
                     <!-- Filter Section -->
-                    <div class="flex justify-between items-center w-full overflow-x-auto">
-                        <!-- Left side: Search/Filter Controls -->
-                        <div class="flex items-center space-x-4">
-                            <!-- Search Input -->
+                    <div class="flex flex-wrap justify-between items-center w-full overflow-x-auto whitespace-nowrap gap-4">
+                        <!-- Left Side: Search/Filter Controls -->
+                        <div class="flex flex-wrap items-center space-x-4 min-w-[700px]">
                             <input
                                 v-model="searchQuery"
                                 type="text"
                                 placeholder="Search by Rekening"
-                                class="px-4 py-2 border border-[#7EA5EC] rounded-md text-sm"
+                                class="px-4 py-2 border border-[#7EA5EC] rounded-md text-sm w-full md:w-auto"
                             />
-
-                            <!-- Month Filter -->
-                            <select v-model="selectedBulan" class="px-4 py-2 border border-[#7EA5EC] rounded-md text-sm">
+                            <select v-model="selectedBulan" class="px-4 py-2 border border-[#7EA5EC] rounded-md text-sm w-full md:w-auto">
                                 <option value="">Select Bulan</option>
-                                <option value="januari">Januari</option>
-                                <option value="februari">Februari</option>
-                                <option value="maret">Maret</option>
-                                <option value="april">April</option>
-                                <option value="mei">Mei</option>
-                                <option value="juni">Juni</option>
-                                <option value="juli">Juli</option>
-                                <option value="agustus">Agustus</option>
-                                <option value="september">September</option>
-                                <option value="oktober">Oktober</option>
-                                <option value="november">November</option>
-                                <option value="desember">Desember</option>
+                                <!-- Add options -->
                             </select>
-
-                            <!-- Tahun Filter -->
-                            <select v-model="selectedTahun" class="px-4 py-2 border border-[#7EA5EC] rounded-md text-sm">
+                            <select v-model="selectedTahun" class="px-4 py-2 border border-[#7EA5EC] rounded-md text-sm w-full md:w-auto">
                                 <option value="">Select Tahun</option>
                                 <option v-for="year in availableTahun" :key="year" :value="year">{{ year }}</option>
                             </select>
                         </div>
 
-                        <!-- Right side: Export Controls -->
-                        <div class="flex items-center ml-8">
+                        <!-- Right Side: Export Controls -->
+                        <div class="flex items-center min-w-[400px] flex-wrap gap-2">
                             <div class="flex border border-[#7EA5EC] h-[40px] rounded-md overflow-hidden">
-                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm">Copy</button>
-                                <button class="bg-[#7EA5EC] text-[#054083] px-4 py-2 text-sm border-[#7EA5EC]">CSV</button>
-                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm border-[#7EA5EC]">PDF</button>
-                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm border-[#7EA5EC]">Excel</button>
-                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm border-[#7EA5EC]">Print</button>
+                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm w-full md:w-auto">Copy</button>
+                                <button class="bg-[#7EA5EC] text-[#054083] px-4 py-2 text-sm border-[#7EA5EC] w-full md:w-auto">CSV</button>
+                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm border-[#7EA5EC] w-full md:w-auto">PDF</button>
+                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm border-[#7EA5EC] w-full md:w-auto">Excel</button>
+                                <button class="bg-[#7EA5EC] text-[#054083] px-3 py-2 text-sm border-[#7EA5EC] w-full md:w-auto">Print</button>
                             </div>
                         </div>
                     </div>

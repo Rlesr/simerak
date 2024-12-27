@@ -195,97 +195,105 @@
 </template>
 
 <script lang="ts">
-    import Layout from '@/components/layout/Layout.vue';
-    interface DataItem {
-        Kode: string;
-        nama: string;
-    }
-    export default {
-        components: {
-            Layout,
-        },
-        data() {
-            return {
-                data: [
-                    { Kode: 'P97665469', nama: 'Lorem Ipsum' },
-                    { Kode: 'P97665470', nama: 'Dolor Sit' },
-                    { Kode: 'P97665471', nama: 'Amet Consectetur' },
-                    { Kode: 'P97665472', nama: 'Adipiscing Elit' },
-                    { Kode: 'P97665473', nama: 'Sed Do' },
-                    { Kode: 'P97665474', nama: 'Eiusmod Tempor' },
-                    { Kode: 'P97665475', nama: 'Incididunt Ut' },
-                    { Kode: 'P97665476', nama: 'Labore Et' },
-                    { Kode: 'P97665477', nama: 'Dolore Magna' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                    { Kode: 'P97665478', nama: 'Aliqua Ut' },
-                ] as DataItem[],
-                sortColumn: null as keyof DataItem | null,
-                sortDirection: 'asc' as 'asc' | 'desc',
-                entriesPerPage: 10,
-                currentPage: 1,
-            };
-        },
-        computed: {
-                totalPages() {
-                    return Math.ceil(this.data.length / this.entriesPerPage);
-                },
-                sortedData() {
-                    if (!this.sortColumn) return this.data;
+import Layout from '@/components/layout/Layout.vue';
 
-                    return [...this.data].sort((a, b) => {
-                        const aValue = a[this.sortColumn!];
-                        const bValue = b[this.sortColumn!];
+interface DataItem {
+    Kode: string;
+    nama: string;
+}
 
-                        if (aValue === bValue) return 0;
-                        if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
-                        if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
-                        return 0;
-                    });
-                },
-                paginatedData() {
-                    const start = (this.currentPage - 1) * this.entriesPerPage;
-                    const end = start + this.entriesPerPage;
-                    return this.sortedData.slice(start, end);
-                },
+export default {
+    components: {
+        Layout,
+    },
+    data() {
+        return {
+            data: [
+                { Kode: 'P97665469', nama: 'Lorem Ipsum' },
+                { Kode: 'P97665470', nama: 'Dolor Sit' },
+                { Kode: 'P97665471', nama: 'Amet Consectetur' },
+                { Kode: 'P97665472', nama: 'Adipiscing Elit' },
+                { Kode: 'P97665473', nama: 'Sed Do' },
+                { Kode: 'P97665474', nama: 'Eiusmod Tempor' },
+                { Kode: 'P97665475', nama: 'Incididunt Ut' },
+                { Kode: 'P97665476', nama: 'Labore Et' },
+                { Kode: 'P97665477', nama: 'Dolore Magna' },
+                { Kode: 'P97665478', nama: 'Aliqua Ut' },
+            ] as DataItem[],
+            searchQuery: '',
+            sortColumn: null as keyof DataItem | null,
+            sortDirection: 'asc' as 'asc' | 'desc',
+            entriesPerPage: 10,
+            currentPage: 1,
+        };
+    },
+    computed: {
+        totalPages() {
+            return Math.ceil(this.filteredData.length / this.entriesPerPage);
         },
-        methods: {
-            toggleSort(column: keyof DataItem) {
-                if (this.sortColumn === column) {
-                    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-                } else {
-                    this.sortColumn = column;
-                    this.sortDirection = 'asc';
-                }
-            },
-            changeEntries() {
-                this.currentPage = 1;
-            },
+        filteredData() {
+            if (!this.searchQuery) return this.data;
 
-            goToFirstPage() {
-                this.currentPage = 1;
-            },
-            goToLastPage() {
-                this.currentPage = this.totalPages;
-            },
-            nextPage() {
-                if (this.currentPage < this.totalPages) {
-                    this.currentPage++;
-                }
-            },
-            prevPage() {
-                if (this.currentPage > 1) {
-                    this.currentPage--;
-                }
-            },
-            goToPage(page) {
-                this.currentPage = page;
-            },
+            return this.data.filter(item =>
+                Object.values(item).some(value =>
+                    String(value).toLowerCase().includes(this.searchQuery.toLowerCase())
+                )
+            );
         },
-    };
+        sortedData() {
+            if (!this.sortColumn) return this.filteredData;
+
+            return [...this.filteredData].sort((a, b) => {
+                const aValue = a[this.sortColumn!];
+                const bValue = b[this.sortColumn!];
+
+                if (aValue === bValue) return 0;
+                if (aValue < bValue) return this.sortDirection === 'asc' ? -1 : 1;
+                if (aValue > bValue) return this.sortDirection === 'asc' ? 1 : -1;
+                return 0;
+            });
+        },
+        paginatedData() {
+            const start = (this.currentPage - 1) * this.entriesPerPage;
+            const end = start + this.entriesPerPage;
+            return this.sortedData.slice(start, end);
+        },
+    },
+    methods: {
+        toggleSort(column: keyof DataItem) {
+            if (this.sortColumn === column) {
+                this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                this.sortColumn = column;
+                this.sortDirection = 'asc';
+            }
+        },
+        changeEntries() {
+            this.currentPage = 1;
+        },
+        goToFirstPage() {
+            this.currentPage = 1;
+        },
+        goToLastPage() {
+            this.currentPage = this.totalPages;
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPages) {
+                this.currentPage++;
+            }
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+            }
+        },
+        goToPage(page: number) {
+            this.currentPage = page;
+        },
+    },
+};
 </script>
+
 
 <style scoped>
     button[disabled] {

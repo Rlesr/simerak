@@ -74,6 +74,9 @@ import formStatus from '@/views/master/form/form-status.vue';
 import formSyarat from '@/views/master/form/form-syarat.vue';
 import formOpsi from '@/views/master/form/form-opsi.vue';
 import formFilter from '@/views/master/form/form-filter.vue';
+import ubahSpecimen from '@/views/ubah-specimen/ubah-specimen.vue';
+import ubahSpecimenopd from '@/views/ubah-specimen/ubah-specimen-opd.vue';
+import formUbahSpecimen from '@/views/ubah-specimen/form/form-ubah-specimen.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -452,6 +455,21 @@ const router = createRouter({
             path: '/home/pengusulan-PLT/add/0',
             name: 'form-pengusulan-PLT',
             component: formPengusulanPLT,
+        },
+        {
+            path: '/home/ubah-specimen/list',
+            name: 'ubahSpecimen',
+            component: ubahSpecimen,
+        },
+        {
+            path: '/home/ubah-specimen/opd',
+            name: 'ubahSpecimenopd',
+            component: ubahSpecimenopd,
+        },
+        {
+            path: '/home/ubah-specimen/add/0',
+            name: 'formUbahSpecimen',
+            component: formUbahSpecimen,
         },
     ],
 });

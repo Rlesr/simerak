@@ -19,7 +19,8 @@
 
             <div class="flex-1 px-6 py-4 space-y-6">
                 <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full">
-                    <div class="flex flex-wrap space-x-4">
+                    <!-- Filter Section -->
+                    <div class="flex items-center gap-2 w-full overflow-x-auto whitespace-nowrap">
                         <div class="flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
                             <input
                                 v-model="searchNamaProvinsi"

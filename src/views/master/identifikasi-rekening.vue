@@ -21,17 +21,22 @@
 
             <!-- Scrollable Content -->
             <div class="flex-1 px-6 py-4 space-y-6">
-                <!-- Rekening Details Form -->
-
-                <!-- Rekening List -->
-                <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full ">
+                <div class="bg-white p-4 rounded-md shadow max-h-full max-w-full">
                     <!-- Filter Section -->
-                <div class=" flex flex-wrap space-x-4 ">
-                    <div class=" flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2 ">
-                            <input v-model="searchNamaRekening" placeholder="Nama Rekening" class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700" />
+                    <div class="flex items-center gap-2 w-full overflow-x-auto whitespace-nowrap">
+                        <div class="flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
+                            <input
+                                v-model="searchNamaRekening"
+                                placeholder="Nama Rekening"
+                                class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
+                            />
                         </div>
-                        <div class=" flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2 ">
-                            <input v-model="searchKodeRekening" placeholder="Kode Rekening" class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700" />
+                        <div class="flex items-center border border-gray-300 rounded-md h-10 w-[250px] px-2">
+                            <input
+                                v-model="searchKodeRekening"
+                                placeholder="Kode Rekening"
+                                class="h-full w-full bg-transparent border-none outline-none text-sm placeholder-gray-400 text-gray-700"
+                            />
                         </div>
                         <button class="btn-primary h-10 w-[200px] flex items-center justify-center" @click="navigateToAddRekening">
                             <p class="text-[#054083] font-semibold">Tambah</p>
@@ -39,9 +44,7 @@
                                 <path d="M4 12H20M12 4V20" stroke="#054083" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                         </button>
-                        
-                    
-                </div>
+                    </div>
                     <div class="overflow-x-auto">
                         <table class="w-full max-w-full border-collapse bg-white text-left text-sm text-gray-700 h-full">
                             <thead>
@@ -212,10 +215,8 @@
                             </button>
                         </div>
                     </div>
-
-                
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </template>
@@ -239,17 +240,17 @@
         data() {
             return {
                 data: [
-        { id: 1, namaJenisRekening: 'Rekening Bank DKI', kode: 1, keterangan: 'Rekening Bank DKI BPKD BUD' },
-        { id: 2, namaJenisRekening: 'Kas BLUD', kode: 72, keterangan: 'Rekening Kas BLUD' },
-        { id: 3, namaJenisRekening: 'Sekolah', kode: 54, keterangan: 'Rekening Sekolah Negeri' },
-        { id: 4, namaJenisRekening: 'Sekolah', kode: 54, keterangan: 'Rekening Sekolah Swasta' },
-        { id: 5, namaJenisRekening: 'Penerimaan', kode: 42, keterangan: 'Rekening Penerimaan SKPD' },
-        { id: 6, namaJenisRekening: 'Pengeluaran', kode: 52, keterangan: 'Rekening Pengeluaran SKPD' },
-        { id: 7, namaJenisRekening: 'Penerimaan', kode: 42, keterangan: 'Rekening Penerimaan BLUD' },
-        { id: 8, namaJenisRekening: 'Pengeluaran', kode: 52, keterangan: 'Rekening Pengeluaran BLUD' },
-        { id: 9, namaJenisRekening: 'Rekening non Bank DKI', kode: 1, keterangan: 'Buka Rekening non Bank DKI' },
-        { id: 10, namaJenisRekening: 'Rekening non Bank DKI BLUD', kode: 1, keterangan: 'Buka Rekening non Bank DKI BLUD' },
-      ] as DataItem[],
+                    { id: 1, namaJenisRekening: 'Rekening Bank DKI', kode: 1, keterangan: 'Rekening Bank DKI BPKD BUD' },
+                    { id: 2, namaJenisRekening: 'Kas BLUD', kode: 72, keterangan: 'Rekening Kas BLUD' },
+                    { id: 3, namaJenisRekening: 'Sekolah', kode: 54, keterangan: 'Rekening Sekolah Negeri' },
+                    { id: 4, namaJenisRekening: 'Sekolah', kode: 54, keterangan: 'Rekening Sekolah Swasta' },
+                    { id: 5, namaJenisRekening: 'Penerimaan', kode: 42, keterangan: 'Rekening Penerimaan SKPD' },
+                    { id: 6, namaJenisRekening: 'Pengeluaran', kode: 52, keterangan: 'Rekening Pengeluaran SKPD' },
+                    { id: 7, namaJenisRekening: 'Penerimaan', kode: 42, keterangan: 'Rekening Penerimaan BLUD' },
+                    { id: 8, namaJenisRekening: 'Pengeluaran', kode: 52, keterangan: 'Rekening Pengeluaran BLUD' },
+                    { id: 9, namaJenisRekening: 'Rekening non Bank DKI', kode: 1, keterangan: 'Buka Rekening non Bank DKI' },
+                    { id: 10, namaJenisRekening: 'Rekening non Bank DKI BLUD', kode: 1, keterangan: 'Buka Rekening non Bank DKI BLUD' },
+                ] as DataItem[],
                 sortColumn: null as keyof DataItem | null,
                 sortDirection: 'asc' as 'asc' | 'desc',
                 entriesPerPage: 5,
@@ -266,7 +267,7 @@
             },
             filteredData() {
                 let filtered = this.data.filter((item) => {
-                    const matcheskode = item.kode.toString().includes(this.searchKodeRekening)
+                    const matcheskode = item.kode.toString().includes(this.searchKodeRekening);
                     const matchesNamaRekening = item.namaJenisRekening.toLowerCase().includes(this.searchNamaRekening.toLowerCase());
                     return matcheskode && matchesNamaRekening;
                 });
@@ -304,7 +305,7 @@
             },
             navigateToAddRekening() {
                 this.$router.push('/home/Master/Form/AddIdentifikasiRekening/0');
-            }, 
+            },
 
             editItem(id) {
                 // Arahkan ke URL Edit. Ganti URL berikut sesuai kebutuhan Anda.

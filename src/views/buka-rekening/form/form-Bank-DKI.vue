@@ -1,13 +1,11 @@
 <template>
-    <div>
-        <!-- Header -->
-        <Navbar :isSidebarOpen="isSidebarOpen" @toggle-sidebar="toggleSidebar" />
+    <Layout />
+    <div class="min-h-screen flex flex-auto">
 
-        <div class="main-content">
-            <!-- Sidebar -->
-            <Sidebar :isSidebarOpen="isSidebarOpen" />
 
-            <!-- Form Wizard Content -->
+
+<!-- Main Content -->
+<div class="ml-0 md:ml-64 py-16 flex-1 flex flex-col overflow-hidden">
             <div class="form-wizard-container">
                 <form-wizard shape="square" color="#4361ee" class="square" :stagger="100" @on-complete="onFinish">
                     <!-- Tabs di bagian atas -->
@@ -58,7 +56,7 @@
                             <button class="w-full bg-[#054083] text-white font-bold py-3 rounded mb-4" @click="toggleDropdown(4)">
                                 Unggah Dokumen Sekolah
                             </button>
-                            
+
 
                             <!-- Konten Dropdown -->
                             <div v-show="dropdownStates[4]" class="p-4 border border-gray-300 rounded shadow">
@@ -224,12 +222,11 @@
                 </form-wizard>
             </div>
         </div>
-    </div>
+        </div>
 </template>
 
 <script lang="ts">
-    import Sidebar from '@/components/layout/Sidebar.vue';
-    import Header from '@/components/layout/Header.vue';
+    import Layout from '@/components/layout/Layout.vue';
     import { FormWizard, TabContent } from 'vue3-form-wizard';
     import 'vue3-form-wizard/dist/style.css';
     import { reactive, ref, computed } from 'vue';
@@ -254,8 +251,7 @@
 
     export default {
         components: {
-            Sidebar,
-            Header,
+            Layout,
             Form1,
             Form2,
             Form3,
@@ -397,9 +393,7 @@
     }
 
     .form-wizard-container {
-        margin-left: 250px;
-        padding: 20px;
-        width: 100%;
+
     }
 
     .form-section1 {
